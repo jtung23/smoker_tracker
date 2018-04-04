@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import InfoBox from '../../components/InfoBox';
+import CustomButton from '../../components/CustomButton';
 
 class NewSmoke extends Component {
 	constructor(props) {
@@ -16,7 +18,9 @@ class NewSmoke extends Component {
 	render() {
 		return (
 			<div>
-				<h1> {this.state.info.title}</h1>
+				<h1>{this.state.info.title}</h1>
+				<CustomButton link="/newsmokeinfo" text="Back" />
+				<InfoBox />
 			</div>
 		)
 	}

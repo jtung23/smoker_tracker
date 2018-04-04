@@ -3,7 +3,12 @@ import {Link} from 'react-router-dom';
 
 const CustomButton = props =>
 	<button>
-		{props.children}
+		<Link to={{
+			pathname: props.link,
+			state: props.state
+		}}>
+			{props.text}
+		</Link>
 	</button>
 
 export default CustomButton

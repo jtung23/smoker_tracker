@@ -68,14 +68,7 @@ class NewSmokeInfo extends Component {
 						<Label>Notes</Label>
 						<Input type="textarea" name="notes" onChange={this.handleFormChange} value={this.state.notes} id="notes" placeholder="ex. Cold day, ~50F. strong winds..." />
 					</FormGroup>
-						<CustomButton>
-							<Link to={{
-								pathname: '/newsmoke',
-								state: this.state
-							}}>
-								Submit
-							</Link>
-						</CustomButton>
+						<CustomButton link="/newsmoke" text="Submit" state={this.state} />
 					<Button color="danger" href="/">Cancel</Button>
 				</Form>
 
