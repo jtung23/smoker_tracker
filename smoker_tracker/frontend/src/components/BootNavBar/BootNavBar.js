@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button,
+import {
 	Navbar,
 	NavbarBrand,
 	Nav,

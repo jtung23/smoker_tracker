@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+// import CustomButton from '../CustomButton';
+
+import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Link} from 'react-router-dom';
-import CustomButton from '../CustomButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TimePicker from 'material-ui/TimePicker';
 
 class NewSmokeInfo extends Component { 
 	state = {
@@ -10,6 +13,8 @@ class NewSmokeInfo extends Component {
 		meatCut: "",
 		ogWeight: "",
 		trimWeight: "",
+		smoker: "",
+		startingTime: {},
 		physDesc: "",
 		notes: "",
 		submit: false
@@ -20,6 +25,24 @@ class NewSmokeInfo extends Component {
 		this.setState({
 		  [name]: value
 		});
+	}
+
+	handleTimeChange = (a, date) => {
+		let hours = date.getHours().toString()
+		let minutes = date.getMinutes().toString()
+		if (hours < 10) {
+			hours = "0" + hours
+		}
+		if (minutes < 10) {
+			minutes = "0" + minutes
+		}
+
+		let start = hours + minutes
+		start = parseInt(start)
+		
+		this.setState({
+			startingTime: start
+		})
 	}
 
 	submitForm = (e)=> {
@@ -61,6 +84,32 @@ class NewSmokeInfo extends Component {
 						<Input type="number" name="trimWeight" onChange={this.handleFormChange} value={this.state.trimWeight} id="trimWeight" />
 					</FormGroup>
 					<FormGroup>
+						<Label>Smoker</Label>
+						<Input type="select" name="smoker" onChange={this.handleFormChange} value={this.state.smoker} id="smoker">
+							<option></option>
+							<option value='1'>Weber Smokey Mountain</option>
+						</Input>
+					</FormGroup>
+					<MuiThemeProvider>
+						<FormGroup>
+							<Label>Starting Time</Label>
+							<TimePicker
+					      format="24hr"
+					      autoOk={true}
+								name="startingTime"
+								onChange={this.handleTimeChange}
+								id="startingTime"
+					    />
+						</FormGroup>
+  				</MuiThemeProvider>
+					<FormGroup>
+						<Label>Smoker</Label>
+						<Input type="select" name="smoker" onChange={this.handleFormChange} value={this.state.smoker} id="smoker">
+							<option></option>
+							<option value='1'>Weber Smokey Mountain</option>
+						</Input>
+					</FormGroup>
+					<FormGroup>
 						<Label>Physical Description</Label>
 						<Input type="textarea" name="physDesc" onChange={this.handleFormChange} value={this.state.physDesc} id="physDesc" placeholder="ex. Thick cap, uneven fat on flat..." />
 					</FormGroup>
@@ -68,7 +117,15 @@ class NewSmokeInfo extends Component {
 						<Label>Notes</Label>
 						<Input type="textarea" name="notes" onChange={this.handleFormChange} value={this.state.notes} id="notes" placeholder="ex. Cold day, ~50F. strong winds..." />
 					</FormGroup>
-						<CustomButton link="/newsmoke" text="Submit" state={this.state} />
+
+					<Link to={{
+					  pathname: '/newsmoke',
+					  state: this.state
+					}}
+					className="btn btn-primary"
+					>
+						newSmoke
+					</Link>
 					<Button color="danger" href="/">Cancel</Button>
 				</Form>
 

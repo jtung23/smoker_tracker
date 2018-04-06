@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Background from '../../img/jumbotronmeat.jpg';
 import MiddleLanding from '../../components/MiddleLanding';
 import {Button} from 'reactstrap';
 const style = {
