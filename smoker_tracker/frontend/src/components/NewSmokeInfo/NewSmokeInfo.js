@@ -5,6 +5,8 @@ import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TimePicker from 'material-ui/TimePicker';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 class NewSmokeInfo extends Component { 
 	state = {
@@ -15,6 +17,7 @@ class NewSmokeInfo extends Component {
 		trimWeight: "",
 		smoker: "",
 		startingTime: {},
+		interval: "",
 		physDesc: "",
 		notes: "",
 		submit: false
@@ -39,11 +42,14 @@ class NewSmokeInfo extends Component {
 
 		let start = hours + minutes
 		start = parseInt(start)
-		
+
 		this.setState({
 			startingTime: start
 		})
 	}
+
+  handleChange = (event, index, value) => 
+  	this.setState({interval: value});
 
 	submitForm = (e)=> {
 		e.preventDefault()
@@ -90,18 +96,31 @@ class NewSmokeInfo extends Component {
 							<option value='1'>Weber Smokey Mountain</option>
 						</Input>
 					</FormGroup>
+					<Label>Starting Time</Label>
 					<MuiThemeProvider>
-						<FormGroup>
-							<Label>Starting Time</Label>
-							<TimePicker
-					      format="24hr"
-					      autoOk={true}
-								name="startingTime"
-								onChange={this.handleTimeChange}
-								id="startingTime"
-					    />
-						</FormGroup>
+						<TimePicker
+				      format="24hr"
+				      autoOk={true}
+							name="startingTime"
+							onChange={this.handleTimeChange}
+							id="startingTime"
+				    />
+				  </MuiThemeProvider>
+				  <MuiThemeProvider>
+          	
+		        	<SelectField
+			          floatingLabelText="Interval"
+			          value={this.state.interval}
+			          onChange={this.handleChange}
+			        >
+			          <MenuItem value={30} primaryText="30 minutes" />
+			          <MenuItem value={45} primaryText="45 miinutes" />
+			          <MenuItem value={60} primaryText="60 minutes" />
+			          <MenuItem value={90} primaryText="90 minutes" />
+			          <MenuItem value={120} primaryText="120 minutes" />
+			        </SelectField>
   				</MuiThemeProvider>
+
 					<FormGroup>
 						<Label>Smoker</Label>
 						<Input type="select" name="smoker" onChange={this.handleFormChange} value={this.state.smoker} id="smoker">

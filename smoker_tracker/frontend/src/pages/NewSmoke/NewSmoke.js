@@ -4,6 +4,9 @@ import InfoBox from '../../components/InfoBox';
 import Table from '../../components/Table';
 // import CustomButton from '../../components/CustomButton';
 import {Link} from "react-router-dom";
+const style = {
+	background: '#a5f3ff'
+}
 class NewSmoke extends Component {
 	constructor(props) {
 		super(props);
@@ -14,6 +17,7 @@ class NewSmoke extends Component {
 				ogWeight: '',
 				trimWeight: '',
 				smoker: '',
+				interval: '',
 				startingTime: '',
 				physDesc: '',
 				notes: ''
@@ -30,6 +34,7 @@ class NewSmoke extends Component {
 				ogWeight: this.props.location.state.ogWeight,
 				trimWeight: this.props.location.state.trimWeight,
 				smoker: this.props.location.state.smoker,
+				interval: this.props.location.state.interval,
 				startingTime: this.props.location.state.startingTime,
 				physDesc: this.props.location.state.physDesc,
 				notes: this.props.location.state.notes
@@ -65,13 +70,15 @@ class NewSmoke extends Component {
 	somethingElse = () =>
 		<tbody>
 			<tr>
-				Nothing
+				<td>
+					Nothing
+				</td>
 			</tr>
 		</tbody>
 
 	render() {
 		return (
-			<div>
+			<div style={style} >
 				<h1>{this.state.info.title ? this.state.info.title : 'Not Entered'}</h1>
 				<Link to="/newsmokeinfo" className="btn btn-primary">Back</Link>
 				<InfoBox 
@@ -83,9 +90,11 @@ class NewSmoke extends Component {
 					physDesc={this.state.info.physDesc ? this.state.info.physDesc : 'Not Entered'}
 					notes={this.state.info.notes ? this.state.info.notes : 'Not Entered'}
 				/>
-				<Table typeOfSmoker={this.state.info.smoker} >
-					{(this.state.info.smoker === "1") ? this.returnWSMColHeader() : this.somethingElse()}
-				</Table>
+				<Table 
+					typeOfSmoker={this.state.info.smoker}
+					startingTime={this.state.info.startingTime} 
+					interval={this.state.info.interval}
+				/>
 			</div>
 		)
 	}
