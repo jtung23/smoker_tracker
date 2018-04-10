@@ -13,6 +13,15 @@
 		'description_notes': 'fatty point, solid thickness',
 		'interval': 30
 	},
+
+	'record': {
+		'time': ['Time', 600, 700, 800],
+		'internal_temp': ['Internal Temp',120, 120, 120],
+		'grill_temp': ['Grill Temp',250, 'empty', 250],
+		'vent1': ['Vent 1','50%', '50%', '50%'],
+		'vent2': ['Vent 2','50%', '50%', '50%'],
+		'vent3': ['Vent 3','50%', '50%', '50%']
+	}
 	'record': {
 		1: {
 			'time': 600,

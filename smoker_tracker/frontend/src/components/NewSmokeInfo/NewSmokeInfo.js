@@ -33,15 +33,14 @@ class NewSmokeInfo extends Component {
 	handleTimeChange = (a, date) => {
 		let hours = date.getHours().toString()
 		let minutes = date.getMinutes().toString()
+		console.log(hours, minutes)
 		if (hours < 10) {
 			hours = "0" + hours
 		}
 		if (minutes < 10) {
 			minutes = "0" + minutes
 		}
-
-		let start = hours + minutes
-		start = parseInt(start)
+		let start = hours + ":" + minutes
 
 		this.setState({
 			startingTime: start
@@ -120,14 +119,6 @@ class NewSmokeInfo extends Component {
 			          <MenuItem value={120} primaryText="120 minutes" />
 			        </SelectField>
   				</MuiThemeProvider>
-
-					<FormGroup>
-						<Label>Smoker</Label>
-						<Input type="select" name="smoker" onChange={this.handleFormChange} value={this.state.smoker} id="smoker">
-							<option></option>
-							<option value='1'>Weber Smokey Mountain</option>
-						</Input>
-					</FormGroup>
 					<FormGroup>
 						<Label>Physical Description</Label>
 						<Input type="textarea" name="physDesc" onChange={this.handleFormChange} value={this.state.physDesc} id="physDesc" placeholder="ex. Thick cap, uneven fat on flat..." />

@@ -4,6 +4,9 @@ import InfoBox from '../../components/InfoBox';
 import Table from '../../components/Table';
 // import CustomButton from '../../components/CustomButton';
 import {Link} from "react-router-dom";
+import CustomButton from '../../components/CustomButton';
+import BootModal from '../../components/BootModal';
+
 const style = {
 	background: '#a5f3ff'
 }
@@ -18,83 +21,110 @@ class NewSmoke extends Component {
 				trimWeight: '',
 				smoker: '',
 				interval: '',
-				startingTime: '',
 				physDesc: '',
 				notes: ''
-			}
-
+			},
+			timeCols: [],
+			addRemove: "",
+			modal: false,
+			newTime: ""
 		}
+		this.handleAddRemove = this.handleAddRemove.bind(this);
+		this.toggle = this.toggle.bind(this);
 	}
 
-	componentWillMount() {
+	componentWillMount =()=>{
+		const location = this.props.location.state
+		const newTimeCol = this.state.timeCols
+		if (location.startingTime) {
+			newTimeCol.push(location.startingTime)
+		}
 		this.setState({
 			info: {
-				animal: this.props.location.state.animal,
-				meatCut: this.props.location.state.meatCut,
-				ogWeight: this.props.location.state.ogWeight,
-				trimWeight: this.props.location.state.trimWeight,
-				smoker: this.props.location.state.smoker,
-				interval: this.props.location.state.interval,
-				startingTime: this.props.location.state.startingTime,
-				physDesc: this.props.location.state.physDesc,
-				notes: this.props.location.state.notes
-
-			}
+				animal: location.animal ? location.animal : 'Not Entered',
+				meatCut: location.meatCut ? location.meatCut : 'Not Entered',
+				ogWeight: location.ogWeight ? location.ogWeight : 'Not Entered',
+				trimWeight: location.trimWeight ? location.trimWeight : 'Not Entered',
+				smoker: location.smoker ? location.smoker : 'Not Entered',
+				interval: location.interval ? location.interval : 'Not Entered',
+				physDesc: location.physDesc ? location.physDesc : 'Not Entered',
+				notes: location.notes ? location.notes : 'Not Entered'
+			},
+			timeCols: newTimeCol
 		})
-		console.log(this.state)
-		console.log(this.props)
 	}
-
-	returnWSMColHeader = () => {
-		return (
-			<tbody>
-				<tr>
-					<th>
-						Vent 1
-					</th>
-				</tr>
-				<tr>
-					<th>
-						Vent 2
-					</th>
-				</tr>
-				<tr>
-					<th>
-						Vent 3
-					</th>
-				</tr>
-			</tbody>
-		)
+	componentDidUpdate = () => {
+		console.log("updatedstate", this.state)
 	}
+	handleAddRemove = (event) => {
+		const value = event.target.value
+		// opens timepicker modal if "add" col,
+		// just set states, which removes last col if "remove"
+		if (value === "add") {
+			this.setState({
+				addRemove: value,
+				modal: !this.state.modal
+			})	
+		} else {
+			this.setState({
+				addRemove: value
+			})				
+		}
 
-	somethingElse = () =>
-		<tbody>
-			<tr>
-				<td>
-					Nothing
-				</td>
-			</tr>
-		</tbody>
+	}
+	handleTimeChange = (a, date) => {
+		let hours = date.getHours().toString()
+		let minutes = date.getMinutes().toString()
+		if (hours < 10) {
+			hours = "0" + hours
+		}
+		if (minutes < 10) {
+			minutes = "0" + minutes
+		}
+		let start = hours + ":" + minutes
+
+		this.setState({
+			newTime: start
+		})
+	}
+// for toggling the modal buttons
+	toggle = () => {
+		this.setState({
+			modal: !this.state.modal
+		})
+	}
 
 	render() {
 		return (
 			<div style={style} >
-				<h1>{this.state.info.title ? this.state.info.title : 'Not Entered'}</h1>
+				<h1>{this.state.info.title ? this.state.info.title : 'No Title'}</h1>
 				<Link to="/newsmokeinfo" className="btn btn-primary">Back</Link>
 				<InfoBox 
-					animal={this.state.info.animal ? this.state.info.animal : 'Not Entered'}
-					meatCut={this.state.info.meatCut ? this.state.info.meatCut : 'Not Entered'}
-					ogWeight={this.state.info.ogWeight ? this.state.info.ogWeight : 'Not Entered'}
-					trimWeight={this.state.info.trimWeight ? this.state.info.trimWeight : 'Not Entered'}
-					smoker={this.state.info.smoker ? this.state.info.smoker : 'Not Entered'}
-					physDesc={this.state.info.physDesc ? this.state.info.physDesc : 'Not Entered'}
-					notes={this.state.info.notes ? this.state.info.notes : 'Not Entered'}
+					animal={this.state.info.animal}
+					meatCut={this.state.info.meatCut}
+					ogWeight={this.state.info.ogWeight}
+					trimWeight={this.state.info.trimWeight}
+					smoker={this.state.info.smoker}
+					physDesc={this.state.info.physDesc}
+					notes={this.state.info.notes}
 				/>
 				<Table 
 					typeOfSmoker={this.state.info.smoker}
-					startingTime={this.state.info.startingTime} 
-					interval={this.state.info.interval}
+					timeCols={this.state.timeCols}
+ 					interval={this.state.info.interval}
+ 					addRemoveCol={this.state.addRemove}
+ 					newTime={this.state.newTime}
 				/>
+
+				<CustomButton in="Add" value="add" handleAddRemove={this.handleAddRemove} />
+				{this.state.modal ? 
+					<BootModal 
+						modal={this.state.modal}
+						toggle={this.toggle}
+						handleTimeChange={this.handleTimeChange}
+					/> : null}
+				<CustomButton in="Remove" value="remove" handleAddRemove={this.handleAddRemove} />
+
 			</div>
 		)
 	}

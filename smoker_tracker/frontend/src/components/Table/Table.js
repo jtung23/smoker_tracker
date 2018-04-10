@@ -1,98 +1,117 @@
 import React, {Component} from 'react';
-import Col from '../Col'
-import ReactTable from 'react-table'
-import "react-table/react-table.css";
-//			<table>
-//				<tbody>
-//					<tr>
-//						<th>
-//							Time
-//						</th>
-//					</tr>
-//					<tr>
-//						<th>
-//							Internal Temp
-//						</th>
-//					</tr>
-//					<tr>
-//						<th>
-//							Grill Temp
-//						</th>
-//					</tr>
-//				</tbody>
-//					{this.props.children}
-//			</table>
+// import Col from '../Col'
+import BootstrapTable from 'react-bootstrap-table-next';
+import cellEditFactory from 'react-bootstrap-table2-editor';
+// import HeaderCol from '../HeaderCol';
 
 class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    	timeHeaders: [
-
+    	headerCol: ["Time", "Internal Temp", "Grill Temp"],
+    	timeCols: [],
+    	columns: [
+    		{
+    			dataField: 'time',
+    			text: 'Time',
+    		}
+    	],
+    	data: [
+    		{
+    			time: "Internal Temp"
+    		},
+    		{
+    			time: "Gril Temp"
+    		},
     	]
     };
-    this.renderEditable = this.renderEditable.bind(this);
   }
 
 	componentWillMount = () => {
-		// takes interval and startingTime prop to make col headers. makes a total of 8 hours
-		let allNewHeadersArr = [				
-			{
-				Header: "Time",
-				accessor: "time",
-				Cell: this.renderEditable
-			}
-		]
-		const numCols = Math.floor(480/this.props.interval)
-		let start = this.props.startingTime
-		let step = this.props.interval
-		for (var i = 0; i < numCols + 1; i++) {
-			// makes obj with Header as time, accessor as the time, both converted to string
-			let startString = start.toString()
-			let newHeader = startString
-			let newAccessor = startString
-			let newObj = {
-				Header: newHeader,
-				accessor: newAccessor,
-				Cell: this.renderEditable
-			}
-			start += step
-			allNewHeadersArr.push(newObj)
+		switch(this.props.typeOfSmoker) {
+			case "1":
+				this.addWSMRowHeaders()
+				break;
+			default:
+				break;
+		}
+		let start = this.props.timeCols[0]
+		let startingTimeCol = {
+			dataField: start,
+			text: start
 		}
 
-		console.log(allNewHeadersArr)
+		let newTimeCols= this.state.columns
+		newTimeCols.push(startingTimeCol)
+
+		let newData= this.state.data
+		newData.forEach(item => {
+			item[start] = ""
+		})
+		console.log(newData)
+
 		this.setState({
-			timeHeaders: allNewHeadersArr
+			columns: newTimeCols,
+			data: newData
 		})
 	}
 
+	componentWillUpdate =(nextProps, nextState) => {
+		console.log(nextProps, nextState)
+		let newColumns = this.state.columns
+		let newData = this.state.data
+		if (nextProps.addRemoveCol === "remove") {
+			newColumns.pop()
+			newData.pop()
+			this.setState({
+				columns: newColumns,
+				data: newData
+			})
+		}
+		if (nextProps.addRemoveCol === "add") {
+			console.log("TABLE NEWTIME", nextProps.newTime)
+			newColumns.push({
+  			dataField: nextProps.newTime,
+  			text: nextProps.newTime,
+    	})
+			newData.forEach(item => {
+				item[nextProps.newTime] = ""
+			})
+			this.setState({
+				columns: newColumns,
+				data: newData
+			})
+		}
+	}
 
-  renderEditable(cellInfo) {
-    return (
-      <div
-        style={{ backgroundColor: "#fafafa" }}
-        contentEditable
-        suppressContentEditableWarning
-        // onBlur={e => {
-        //   const data = [...this.state.data];
-        //   data[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
-        //   this.setState({ data });
-        // }}
-        // dangerouslySetInnerHTML={{
-        //   __html: this.state.data[cellInfo.index][cellInfo.column.id]
-        // }}
-      />
-    );
-  }
+	addWSMRowHeaders = () => {
+		let newData = this.state.data
+		let wsm = [
+    		{
+    			time: "Vent 1"
+    		},
+    		{
+    			time: "Vent 2"
+    		},
+    		{
+    			time: "Vent 3"
+    		}
+    	]
+		let newarr = newData.concat(wsm)
+		this.setState({
+			data: newarr
+		})
+	}
 
 	render() {
 		return (
-			<div>
-				<ReactTable
-					columns={this.state.timeHeaders}
-					className="-striped -highlight"
-				/>
-			</div>
+			<BootstrapTable 
+				keyField="time"
+				columns={this.state.columns}
+				data={this.state.data}
+				cellEdit={ cellEditFactory({ mode: 'click' }) }
+		 	/>
+
 		)
 	}
 }

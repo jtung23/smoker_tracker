@@ -1,37 +1,15 @@
 import React from 'react';
 
 const HeaderCol = props =>
-	<table>
-		<tr>
-			<th>
-				Time
-			</th>
-		</tr>
-		<tr>
-			<th>
-				Internal Temp
-			</th>
-		</tr>
-		<tr>
-			<th>
-				Grill Temp
-			</th>
-		</tr>
-		<tr>
-			<th>
-				Vent 1
-			</th>
-		</tr>
-		<tr>
-			<th>
-				Vent 2
-			</th>
-		</tr>
-		<tr>
-			<th>
-				Vent 3
-			</th>
-		</tr>
-	</table>
+	<tbody>
+		{props.col.map((item, i) => 
+			<tr key={i} index={i}>
+				<th>
+					{item}
+				</th>
+				{(i === 0) ? props.newTimeHeader : props.newTd}
+			</tr>
+		)}
+	</tbody>
 	
 export default HeaderCol
