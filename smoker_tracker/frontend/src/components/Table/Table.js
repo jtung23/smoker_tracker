@@ -28,48 +28,45 @@ class Table extends Component {
   }
 
 	componentWillMount = () => {
-		switch(this.props.typeOfSmoker) {
-			case "1":
-				this.addWSMRowHeaders()
-				break;
-			default:
-				break;
+		let headers
+		// headers becomes new array including all WSM vent rows
+		if (this.props.typeOfSmoker === "1") {
+				headers = this.addWSMRowHeaders()
 		}
-		let start = this.props.timeCols[0]
+		// creates startingTime column determined by user
 		let startingTimeCol = {
-			dataField: start,
-			text: start
+			dataField: this.props.timeCols[0],
+			text: this.props.timeCols[0]
 		}
-
+		// pushes startingtime column into current columns (only has header col)
 		let newTimeCols= this.state.columns
 		newTimeCols.push(startingTimeCol)
 
-		let newData= this.state.data
-		newData.forEach(item => {
-			item[start] = ""
+		// creates empty field for starting time col for each row
+		headers.forEach(item => {
+			item[this.props.timeCols[0]] = ""
 		})
-		console.log(newData)
 
 		this.setState({
 			columns: newTimeCols,
-			data: newData
+			data: headers
 		})
 	}
-
-	componentWillUpdate =(nextProps, nextState) => {
-		console.log(nextProps, nextState)
+	componentWillReceiveProps = (nextProps) => {
 		let newColumns = this.state.columns
 		let newData = this.state.data
-		if (nextProps.addRemoveCol === "remove") {
-			newColumns.pop()
-			newData.pop()
+		if (nextProps.addRemoveCol === "remove" && newColumns.length > 1) {
+			// removes last column and returns removed col
+			let poppedCol = newColumns.pop()
+			// deletes all object keys in data related to deleted col
+			newData.forEach((item) => delete item[poppedCol.text]);
+
 			this.setState({
 				columns: newColumns,
 				data: newData
 			})
 		}
-		if (nextProps.addRemoveCol === "add") {
-			console.log("TABLE NEWTIME", nextProps.newTime)
+		if (nextProps.addRemoveCol === "add") {		
 			newColumns.push({
   			dataField: nextProps.newTime,
   			text: nextProps.newTime,
@@ -81,7 +78,7 @@ class Table extends Component {
 				columns: newColumns,
 				data: newData
 			})
-		}
+		}		
 	}
 
 	addWSMRowHeaders = () => {
@@ -98,9 +95,7 @@ class Table extends Component {
     		}
     	]
 		let newarr = newData.concat(wsm)
-		this.setState({
-			data: newarr
-		})
+		return newarr
 	}
 
 	render() {

@@ -27,7 +27,8 @@ class NewSmoke extends Component {
 			timeCols: [],
 			addRemove: "",
 			modal: false,
-			newTime: ""
+			newTime: "",
+			newTimeCol: ""
 		}
 		this.handleAddRemove = this.handleAddRemove.bind(this);
 		this.toggle = this.toggle.bind(this);
@@ -53,18 +54,17 @@ class NewSmoke extends Component {
 			timeCols: newTimeCol
 		})
 	}
-	componentDidUpdate = () => {
-		console.log("updatedstate", this.state)
-	}
+
 	handleAddRemove = (event) => {
 		const value = event.target.value
 		// opens timepicker modal if "add" col,
 		// just set states, which removes last col if "remove"
 		if (value === "add") {
-			this.setState({
-				addRemove: value,
-				modal: !this.state.modal
-			})	
+			this.toggle()
+			// this.setState({
+			// 	addRemove: value,
+			// 	modal: !this.state.modal
+			// })	
 		} else {
 			this.setState({
 				addRemove: value
@@ -88,10 +88,19 @@ class NewSmoke extends Component {
 		})
 	}
 // for toggling the modal buttons
-	toggle = () => {
-		this.setState({
-			modal: !this.state.modal
-		})
+	toggle = (bool) => {
+		if (bool) {
+			this.setState({
+				modal: !this.state.modal,
+				newTimeCol: this.state.newTime,
+				addRemove: "add"
+			})
+		} else {
+			this.setState({
+				modal: !this.state.modal,
+				addRemove: "nothing"
+			})
+		}
 	}
 
 	render() {
@@ -113,7 +122,7 @@ class NewSmoke extends Component {
 					timeCols={this.state.timeCols}
  					interval={this.state.info.interval}
  					addRemoveCol={this.state.addRemove}
- 					newTime={this.state.newTime}
+ 					newTime={this.state.newTimeCol}
 				/>
 
 				<CustomButton in="Add" value="add" handleAddRemove={this.handleAddRemove} />
