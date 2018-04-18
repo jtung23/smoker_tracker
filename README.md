@@ -7,3 +7,5 @@ To go back and do:
 2. fuel source in form field
 
 3. newsmoke setup and input saves even if person leaves, refreshes, closes window
+
+4. When making new col, validator if same time, then reject
