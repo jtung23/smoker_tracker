@@ -21,7 +21,7 @@ const BootModal = props =>
 			  </MuiThemeProvider>
 	    </ModalBody>
 	    <ModalFooter>
-	      <Button color="primary" onClick={(true) => props.toggle(true)} >Create</Button>{' '}
+				<Button color="primary" onClick={() => props.toggle(true)} >Create</Button>
 	      <Button color="secondary" onClick={props.toggle}>Cancel</Button>
 	    </ModalFooter>
 	  </Modal>

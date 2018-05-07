@@ -14,15 +14,20 @@ class Table extends Component {
     		{
     			dataField: 'time',
     			text: 'Time',
+			},
+    		{
+    			dataField: 'int_temp',
+    			text: 'Internal Temp',
+			},
+    		{
+    			dataField: 'grill_temp',
+    			text: 'Grill Temp',
     		}
     	],
     	data: [
     		{
-    			time: "Internal Temp"
-    		},
-    		{
-    			time: "Gril Temp"
-    		},
+    			time: props.timeCols
+    		}
     	]
     };
   }
@@ -34,64 +39,57 @@ class Table extends Component {
 				headers = this.addWSMRowHeaders()
 		}
 		// creates startingTime column determined by user
-		let startingTimeCol = {
-			dataField: this.props.timeCols[0],
-			text: this.props.timeCols[0]
-		}
+		// let startingTimeCol = {
+		// 	dataField: this.props.timeCols[0],
+		// 	text: this.props.timeCols[0]
+		// }
 		// pushes startingtime column into current columns (only has header col)
-		let newTimeCols= this.state.columns
-		newTimeCols.push(startingTimeCol)
+		// let newTimeCols= this.state.columns
+		// newTimeCols.push(startingTimeCol)
 
-		// creates empty field for starting time col for each row
-		headers.forEach(item => {
-			item[this.props.timeCols[0]] = ""
-		})
+		// // creates empty field for starting time col for each row
+		// headers.forEach(item => {
+		// 	item[this.props.timeCols[0]] = ""
+		// })
 
 		this.setState({
-			columns: newTimeCols,
-			data: headers
+			columns: headers
+			
 		})
 	}
 	componentWillReceiveProps = (nextProps) => {
-		let newColumns = this.state.columns
 		let newData = this.state.data
-		if (nextProps.addRemoveCol === "remove" && newColumns.length > 1) {
-			// removes last column and returns removed col
-			let poppedCol = newColumns.pop()
-			// deletes all object keys in data related to deleted col
-			newData.forEach((item) => delete item[poppedCol.text]);
-
+		let newColumns = this.state.columns
+		if (nextProps.addRemoveCol === "remove" && newData.length > 1) {
+			newData.pop()
 			this.setState({
-				columns: newColumns,
 				data: newData
 			})
 		}
 		if (nextProps.addRemoveCol === "add") {		
-			newColumns.push({
-  			dataField: nextProps.newTime,
-  			text: nextProps.newTime,
-    	})
-			newData.forEach(item => {
-				item[nextProps.newTime] = ""
-			})
+			newData.push({
+  			time: nextProps.newTime
+    		})
 			this.setState({
-				columns: newColumns,
 				data: newData
 			})
 		}		
 	}
 
 	addWSMRowHeaders = () => {
-		let newData = this.state.data
+		let newData = this.state.columns
 		let wsm = [
     		{
-    			time: "Vent 1"
+    			dataField: 'vent1',
+    			text: 'Vent 1'
     		},
     		{
-    			time: "Vent 2"
+    			dataField: 'vent2',
+    			text: 'Vent 2'
     		},
     		{
-    			time: "Vent 3"
+    			dataField: 'vent3',
+    			text: 'Vent 3'
     		}
     	]
 		let newarr = newData.concat(wsm)

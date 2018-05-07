@@ -30,8 +30,7 @@ class NewSmoke extends Component {
 			newTime: "",
 			newTimeCol: ""
 		}
-		this.handleAddRemove = this.handleAddRemove.bind(this);
-		this.toggle = this.toggle.bind(this);
+
 	}
 
 	componentWillMount =()=>{
@@ -56,15 +55,16 @@ class NewSmoke extends Component {
 	}
 
 	handleAddRemove = (event) => {
+		console.log('cliced')
 		const value = event.target.value
 		// opens timepicker modal if "add" col,
 		// just set states, which removes last col if "remove"
 		if (value === "add") {
-			this.toggle()
-			// this.setState({
+			// this.toggle(true)
+			this.setState({
 			// 	addRemove: value,
-			// 	modal: !this.state.modal
-			// })	
+				modal: !this.state.modal
+			})	
 		} else {
 			this.setState({
 				addRemove: value
@@ -104,6 +104,7 @@ class NewSmoke extends Component {
 	}
 
 	render() {
+		console.log(this.state)
 		return (
 			<div style={style} >
 				<h1>{this.state.info.title ? this.state.info.title : 'No Title'}</h1>
