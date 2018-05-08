@@ -6,6 +6,7 @@ import Table from '../../components/Table';
 import {Link} from "react-router-dom";
 import CustomButton from '../../components/CustomButton';
 import BootModal from '../../components/BootModal';
+import API from '../../utils/API.js';
 
 const style = {
 	background: '#a5f3ff'
@@ -103,6 +104,11 @@ class NewSmoke extends Component {
 		}
 	}
 
+	submitData = (tableState) => {
+		console.log(tableState)
+		// API.postNewTable()
+	}
+
 	render() {
 		console.log(this.state)
 		return (
@@ -123,18 +129,18 @@ class NewSmoke extends Component {
 					timeCols={this.state.timeCols}
  					interval={this.state.info.interval}
  					addRemoveCol={this.state.addRemove}
- 					newTime={this.state.newTimeCol}
+					newTime={this.state.newTimeCol}
+					submitData={this.submitData}
 				/>
 
-				<CustomButton in="Add" value="add" handleAddRemove={this.handleAddRemove} />
+				<CustomButton in="Add" value="add" clickHandler={this.handleAddRemove} />
 				{this.state.modal ? 
 					<BootModal 
 						modal={this.state.modal}
 						toggle={this.toggle}
 						handleTimeChange={this.handleTimeChange}
 					/> : null}
-				<CustomButton in="Remove" value="remove" handleAddRemove={this.handleAddRemove} />
-
+				<CustomButton in="Remove" value="remove" clickHandler={this.handleAddRemove} />
 			</div>
 		)
 	}

@@ -3,13 +3,12 @@ import React, {Component} from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import cellEditFactory from 'react-bootstrap-table2-editor';
 // import HeaderCol from '../HeaderCol';
+import CustomButton from '../CustomButton';
 
 class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    	headerCol: ["Time", "Internal Temp", "Grill Temp"],
-    	timeCols: [],
     	columns: [
     		{
     			dataField: 'time',
@@ -26,7 +25,10 @@ class Table extends Component {
     	],
     	data: [
     		{
-    			time: props.timeCols
+				time: props.timeCols[0],
+				int_temp: '',
+				grill_temp: '',
+				index: 0
     		}
     	]
     };
@@ -38,28 +40,13 @@ class Table extends Component {
 		if (this.props.typeOfSmoker === "1") {
 				headers = this.addWSMRowHeaders()
 		}
-		// creates startingTime column determined by user
-		// let startingTimeCol = {
-		// 	dataField: this.props.timeCols[0],
-		// 	text: this.props.timeCols[0]
-		// }
-		// pushes startingtime column into current columns (only has header col)
-		// let newTimeCols= this.state.columns
-		// newTimeCols.push(startingTimeCol)
-
-		// // creates empty field for starting time col for each row
-		// headers.forEach(item => {
-		// 	item[this.props.timeCols[0]] = ""
-		// })
 
 		this.setState({
 			columns: headers
-			
 		})
 	}
 	componentWillReceiveProps = (nextProps) => {
 		let newData = this.state.data
-		let newColumns = this.state.columns
 		if (nextProps.addRemoveCol === "remove" && newData.length > 1) {
 			newData.pop()
 			this.setState({
@@ -68,7 +55,10 @@ class Table extends Component {
 		}
 		if (nextProps.addRemoveCol === "add") {		
 			newData.push({
-  			time: nextProps.newTime
+			  time: nextProps.newTime,
+			  int_temp: '',
+			  grill_temp: '',
+			  index: newData.length-1
     		})
 			this.setState({
 				data: newData
@@ -95,16 +85,41 @@ class Table extends Component {
 		let newarr = newData.concat(wsm)
 		return newarr
 	}
+	submit = () => {
+		console.log('submit on tablel click')
+		console.log(this.state.data)
+		this.props.submitData(this.state)
+	}
+
+	updateTableState = (oldValue, newValue, row, column) => {
+		const data = this.state.data
+		console.log(data)
+		const index = row.index
+		const fieldName = column.dataField
+		
+		// data[index][fieldName] = newValue
+		console.log(this.state.data)
+		// this.setState({
+		// 	data: data
+		// })
+	}
 
 	render() {
 		return (
-			<BootstrapTable 
-				keyField="time"
-				columns={this.state.columns}
-				data={this.state.data}
-				cellEdit={ cellEditFactory({ mode: 'click' }) }
-		 	/>
-
+			<div>
+				<BootstrapTable 
+					keyField="time"
+					columns={this.state.columns}
+					data={this.state.data}
+					cellEdit={ cellEditFactory({ 
+						mode: 'click',
+						afterSaveCell: this.updateTableState,
+						blurToSave: true
+						}) 
+					}
+				/>
+				<CustomButton in="Submit" value="submit" clickHandler={this.submit} />
+			</div>
 		)
 	}
 }
