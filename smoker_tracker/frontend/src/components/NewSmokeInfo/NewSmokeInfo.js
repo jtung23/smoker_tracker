@@ -9,15 +9,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const style = { margin: 12, };
 
-const int_temp = {
-	dataField: 'int_temp',
-	text: 'Internal Temp',
-}
-const grill_temp = {
-	dataField: 'grill_temp',
-	text: 'Grill Temp',
-}
-
 class NewSmokeInfo extends Component { 
 	state = {
 		title: "",
@@ -26,6 +17,7 @@ class NewSmokeInfo extends Component {
 		ogWeight: "",
 		trimWeight: "",
 		smoker: "",
+		headerSmoker: [],
 		startingTime: {},
 		interval: "",
 		physDesc: "",
@@ -34,14 +26,43 @@ class NewSmokeInfo extends Component {
 			dataField: 'time',
 			text: 'Time',
 		}],
+		
 		submit: false
 	}
 
 	handleFormChange= event => {
+		console.log(event.target)
 		const { name, value } = event.target;
-		this.setState({
-		  [name]: value
-		});
+		// if WSM option is clicked
+		if (name === "smoker" && value === "1") {
+			this.setState({
+				[name]: value,
+				headerSmoker: [
+					{
+						dataField: 'vent1',
+						text: 'Vent 1'
+					},
+					{
+						dataField: 'vent2',
+						text: 'Vent 2'
+					},
+					{
+						dataField: 'vent3',
+						text: 'Vent 3'
+					}
+				]
+			})
+		} else if (value === 'no smoker') {
+			this.setState({
+				[name]: value,
+				headerSmoker: []
+			})
+		} else {
+			this.setState({
+				[name]: value
+			  });
+		}
+
 	}
 
 	handleTimeChange = (a, date) => {
@@ -110,7 +131,7 @@ class NewSmokeInfo extends Component {
 					<FormGroup>
 						<Label>Smoker</Label>
 						<Input type="select" name="smoker" onChange={this.handleFormChange} value={this.state.smoker} id="smoker">
-							<option></option>
+							<option value='no smoker'></option>
 							<option value='1'>Weber Smokey Mountain</option>
 						</Input>
 					</FormGroup>

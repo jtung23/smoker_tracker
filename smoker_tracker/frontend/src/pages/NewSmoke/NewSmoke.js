@@ -37,7 +37,7 @@ class NewSmoke extends Component {
 
 	componentWillMount =()=>{
 		const location = this.props.location.state
-
+		console.log(location)
 		this.setState({
 			info: {
 				animal: location.animal ? location.animal : 'Not Entered',
