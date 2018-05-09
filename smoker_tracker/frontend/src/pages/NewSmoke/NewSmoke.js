@@ -25,21 +25,19 @@ class NewSmoke extends Component {
 				physDesc: '',
 				notes: ''
 			},
-			timeCols: [],
+			startingTime: '',
 			addRemove: "",
 			modal: false,
 			newTime: "",
-			newTimeCol: ""
+			newTimeCol: "",
+			headerCols: []
 		}
 
 	}
 
 	componentWillMount =()=>{
 		const location = this.props.location.state
-		const newTimeCol = this.state.timeCols
-		if (location.startingTime) {
-			newTimeCol.push(location.startingTime)
-		}
+
 		this.setState({
 			info: {
 				animal: location.animal ? location.animal : 'Not Entered',
@@ -51,12 +49,12 @@ class NewSmoke extends Component {
 				physDesc: location.physDesc ? location.physDesc : 'Not Entered',
 				notes: location.notes ? location.notes : 'Not Entered'
 			},
-			timeCols: newTimeCol
+			startingTime: location.startingTime
 		})
 	}
 
 	handleAddRemove = (event) => {
-		console.log('cliced')
+		console.log('clicked')
 		const value = event.target.value
 		// opens timepicker modal if "add" col,
 		// just set states, which removes last col if "remove"
@@ -126,11 +124,11 @@ class NewSmoke extends Component {
 				/>
 				<Table 
 					typeOfSmoker={this.state.info.smoker}
-					timeCols={this.state.timeCols}
- 					interval={this.state.info.interval}
+					startingTime={this.state.startingTime}
  					addRemoveCol={this.state.addRemove}
 					newTime={this.state.newTimeCol}
 					submitData={this.submitData}
+					headerCols={this.state.headerCols}
 				/>
 
 				<CustomButton in="Add" value="add" clickHandler={this.handleAddRemove} />

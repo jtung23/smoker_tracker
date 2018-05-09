@@ -25,7 +25,7 @@ class Table extends Component {
     	],
     	data: [
     		{
-				time: props.timeCols[0],
+				time: props.startingTime,
 				int_temp: '',
 				grill_temp: '',
 				index: 0
@@ -85,6 +85,7 @@ class Table extends Component {
 		let newarr = newData.concat(wsm)
 		return newarr
 	}
+
 	submit = () => {
 		console.log('submit on tablel click')
 		console.log(this.state.data)
@@ -99,9 +100,9 @@ class Table extends Component {
 		
 		// data[index][fieldName] = newValue
 		console.log(this.state.data)
-		// this.setState({
-		// 	data: data
-		// })
+		this.setState({
+			data: data
+		})
 	}
 
 	render() {
