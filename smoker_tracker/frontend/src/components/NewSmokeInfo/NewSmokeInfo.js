@@ -9,10 +9,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const style = { margin: 12, };
 
-const time = {
-	dataField: 'time',
-	text: 'Time',
-}
 const int_temp = {
 	dataField: 'int_temp',
 	text: 'Internal Temp',
@@ -34,6 +30,10 @@ class NewSmokeInfo extends Component {
 		interval: "",
 		physDesc: "",
 		notes: "",
+		headerCols: [{
+			dataField: 'time',
+			text: 'Time',
+		}],
 		submit: false
 	}
 
@@ -122,7 +122,7 @@ class NewSmokeInfo extends Component {
 						onChange={this.handleTimeChange}
 						id="startingTime"
 					/>
-					<RaisedButton label="Time" value={"time"} onClick={this.raisedBtnClick} style={style} />
+					<RaisedButton label="Time" value={"time"} primary={true} onClick={this.raisedBtnClick} style={style} />
 					<RaisedButton label="Internal Temp" value={"int_temp"} onClick={this.raisedBtnClick} style={style} />
 					<RaisedButton label="Grill Temp" value={"grill_temp"} onClick={this.raisedBtnClick} style={style} />
 					<FormGroup>
