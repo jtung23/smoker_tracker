@@ -45,7 +45,7 @@ class NewSmoke extends Component {
 				ogWeight: location.ogWeight ? location.ogWeight : 'Not Entered',
 				trimWeight: location.trimWeight ? location.trimWeight : 'Not Entered',
 				smoker: location.smoker ? location.smoker : 'Not Entered',
-				interval: location.interval ? location.interval : 'Not Entered',
+				// interval: location.interval ? location.interval : 'Not Entered',
 				physDesc: location.physDesc ? location.physDesc : 'Not Entered',
 				notes: location.notes ? location.notes : 'Not Entered'
 			},

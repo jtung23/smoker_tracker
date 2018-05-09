@@ -1,12 +1,26 @@
 import React, {Component} from 'react';
 // import CustomButton from '../CustomButton';
-
 import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Link} from 'react-router-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TimePicker from 'material-ui/TimePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const style = { margin: 12, };
+
+const time = {
+	dataField: 'time',
+	text: 'Time',
+}
+const int_temp = {
+	dataField: 'int_temp',
+	text: 'Internal Temp',
+}
+const grill_temp = {
+	dataField: 'grill_temp',
+	text: 'Grill Temp',
+}
 
 class NewSmokeInfo extends Component { 
 	state = {
@@ -47,8 +61,13 @@ class NewSmokeInfo extends Component {
 		})
 	}
 
-  handleChange = (event, index, value) => 
-  	this.setState({interval: value});
+	handleChange = (event, index, value) => 
+		this.setState({interval: value});
+
+	raisedBtnClick = (e) => {
+		console.log(e.target.value)
+		console.log(e.target.textContent)
+	}	
 
 	submitForm = (e)=> {
 		e.preventDefault()
@@ -96,29 +115,16 @@ class NewSmokeInfo extends Component {
 						</Input>
 					</FormGroup>
 					<Label>Starting Time</Label>
-					<MuiThemeProvider>
-						<TimePicker
-				      format="24hr"
-				      autoOk={true}
-							name="startingTime"
-							onChange={this.handleTimeChange}
-							id="startingTime"
-				    />
-				  </MuiThemeProvider>
-				  <MuiThemeProvider>
-          	
-		        	<SelectField
-			          floatingLabelText="Interval"
-			          value={this.state.interval}
-			          onChange={this.handleChange}
-			        >
-			          <MenuItem value={30} primaryText="30 minutes" />
-			          <MenuItem value={45} primaryText="45 miinutes" />
-			          <MenuItem value={60} primaryText="60 minutes" />
-			          <MenuItem value={90} primaryText="90 minutes" />
-			          <MenuItem value={120} primaryText="120 minutes" />
-			        </SelectField>
-  				</MuiThemeProvider>
+					<TimePicker
+						format="24hr"
+						autoOk={true}
+						name="startingTime"
+						onChange={this.handleTimeChange}
+						id="startingTime"
+					/>
+					<RaisedButton label="Time" value={"time"} onClick={this.raisedBtnClick} style={style} />
+					<RaisedButton label="Internal Temp" value={"int_temp"} onClick={this.raisedBtnClick} style={style} />
+					<RaisedButton label="Grill Temp" value={"grill_temp"} onClick={this.raisedBtnClick} style={style} />
 					<FormGroup>
 						<Label>Physical Description</Label>
 						<Input type="textarea" name="physDesc" onChange={this.handleFormChange} value={this.state.physDesc} id="physDesc" placeholder="ex. Thick cap, uneven fat on flat..." />
@@ -132,8 +138,7 @@ class NewSmokeInfo extends Component {
 					  pathname: '/newsmoke',
 					  state: this.state
 					}}
-					className="btn btn-primary"
-					>
+					className="btn btn-primary">
 						newSmoke
 					</Link>
 					<Button color="danger" href="/">Cancel</Button>
