@@ -9,20 +9,7 @@ class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    	columns: [
-    		{
-    			dataField: 'time',
-    			text: 'Time',
-			},
-    		{
-    			dataField: 'int_temp',
-    			text: 'Internal Temp',
-			},
-    		{
-    			dataField: 'grill_temp',
-    			text: 'Grill Temp',
-    		}
-    	],
+    	columns: [],
     	data: [
     		{
 				time: props.startingTime,
@@ -35,14 +22,14 @@ class Table extends Component {
   }
 
 	componentWillMount = () => {
-		let headers
+		// let headers
 		// headers becomes new array including all WSM vent rows
-		if (this.props.typeOfSmoker === "1") {
-				headers = this.addWSMRowHeaders()
-		}
+		// if (this.props.typeOfSmoker === "1") {
+		// 		headers = this.addWSMRowHeaders()
+		// }
 
 		this.setState({
-			columns: headers
+			columns: this.props.headerCols
 		})
 	}
 	componentWillReceiveProps = (nextProps) => {

@@ -38,6 +38,8 @@ class NewSmoke extends Component {
 	componentWillMount =()=>{
 		const location = this.props.location.state
 		console.log(location)
+		let headerCols = location.headerCols.concat(location.headerSmoker)
+		console.log(headerCols)
 		this.setState({
 			info: {
 				animal: location.animal ? location.animal : 'Not Entered',
@@ -49,7 +51,8 @@ class NewSmoke extends Component {
 				physDesc: location.physDesc ? location.physDesc : 'Not Entered',
 				notes: location.notes ? location.notes : 'Not Entered'
 			},
-			startingTime: location.startingTime
+			startingTime: location.startingTime,
+			headerCols: headerCols
 		})
 	}
 

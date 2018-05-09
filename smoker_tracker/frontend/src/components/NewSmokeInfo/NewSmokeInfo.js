@@ -9,6 +9,20 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 const style = { margin: 12, };
 
+const wsmCols = [
+	{
+		dataField: 'vent1',
+		text: 'Vent 1'
+	},
+	{
+		dataField: 'vent2',
+		text: 'Vent 2'
+	},
+	{
+		dataField: 'vent3',
+		text: 'Vent 3'
+	}
+]
 class NewSmokeInfo extends Component { 
 	state = {
 		title: "",
@@ -25,8 +39,15 @@ class NewSmokeInfo extends Component {
 		headerCols: [{
 			dataField: 'time',
 			text: 'Time',
+		},
+		{
+			dataField: 'int_temp',
+			text: 'Internal Temp',
+		},
+		{
+			dataField: 'grill_temp',
+			text: 'Grill Temp',
 		}],
-		
 		submit: false
 	}
 
@@ -37,20 +58,7 @@ class NewSmokeInfo extends Component {
 		if (name === "smoker" && value === "1") {
 			this.setState({
 				[name]: value,
-				headerSmoker: [
-					{
-						dataField: 'vent1',
-						text: 'Vent 1'
-					},
-					{
-						dataField: 'vent2',
-						text: 'Vent 2'
-					},
-					{
-						dataField: 'vent3',
-						text: 'Vent 3'
-					}
-				]
+				headerSmoker: wsmCols
 			})
 		} else if (value === 'no smoker') {
 			this.setState({
