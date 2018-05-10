@@ -52,7 +52,6 @@ class NewSmokeInfo extends Component {
 	}
 
 	handleFormChange= event => {
-		console.log(event.target)
 		const { name, value } = event.target;
 		// if WSM option is clicked
 		if (name === "smoker" && value === "1") {
@@ -76,7 +75,6 @@ class NewSmokeInfo extends Component {
 	handleTimeChange = (a, date) => {
 		let hours = date.getHours().toString()
 		let minutes = date.getMinutes().toString()
-		console.log(hours, minutes)
 		if (hours < 10) {
 			hours = "0" + hours
 		}

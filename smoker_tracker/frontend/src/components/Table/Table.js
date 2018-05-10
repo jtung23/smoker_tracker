@@ -5,31 +5,33 @@ import cellEditFactory from 'react-bootstrap-table2-editor';
 // import HeaderCol from '../HeaderCol';
 import CustomButton from '../CustomButton';
 
+const blankData = {}
 class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
     	columns: [],
-    	data: [
-    		{
-				time: props.startingTime,
-				int_temp: '',
-				grill_temp: '',
-				index: 0
-    		}
-    	]
+    	data: []
     };
   }
 
 	componentWillMount = () => {
-		// let headers
-		// headers becomes new array including all WSM vent rows
-		// if (this.props.typeOfSmoker === "1") {
-		// 		headers = this.addWSMRowHeaders()
-		// }
+		// sets up data template to be used further down
+		this.props.headerCols.forEach(item => {
+			blankData[item.dataField] = ''
+		})
+		// creates copy of blankData to be used
+		const data1 = Object.assign({},blankData)
+
+		data1.time = this.props.startingTime
+
+		data1.index = 0
+		const data = this.state.data
+		data.push(data1)
 
 		this.setState({
-			columns: this.props.headerCols
+			columns: this.props.headerCols,
+			data: data
 		})
 	}
 	componentWillReceiveProps = (nextProps) => {
@@ -40,37 +42,17 @@ class Table extends Component {
 				data: newData
 			})
 		}
-		if (nextProps.addRemoveCol === "add") {		
-			newData.push({
-			  time: nextProps.newTime,
-			  int_temp: '',
-			  grill_temp: '',
-			  index: newData.length-1
-    		})
+		if (nextProps.addRemoveCol === "add") {
+			console.log('blankDATA:', blankData)
+			blankData.time = nextProps.newTime	
+			blankData.index = newData.length-1
+			newData.push(blankData)
+			
+			console.log('newData', newData)
 			this.setState({
 				data: newData
 			})
 		}		
-	}
-
-	addWSMRowHeaders = () => {
-		let newData = this.state.columns
-		let wsm = [
-    		{
-    			dataField: 'vent1',
-    			text: 'Vent 1'
-    		},
-    		{
-    			dataField: 'vent2',
-    			text: 'Vent 2'
-    		},
-    		{
-    			dataField: 'vent3',
-    			text: 'Vent 3'
-    		}
-    	]
-		let newarr = newData.concat(wsm)
-		return newarr
 	}
 
 	submit = () => {
@@ -80,19 +62,24 @@ class Table extends Component {
 	}
 
 	updateTableState = (oldValue, newValue, row, column) => {
-		const data = this.state.data
-		console.log(data)
+		let data1 = Object.assign({}, this.state.data)
 		const index = row.index
 		const fieldName = column.dataField
-		
-		// data[index][fieldName] = newValue
+		data1[0]['int_temp'] = newValue
+
+		console.log(data1)
 		console.log(this.state.data)
-		this.setState({
-			data: data
-		})
+		// console.log(data[index][fieldName])
+		// console.log(newValue)
+		// console.log(data)
+		// console.log(this.state.data)
+		// this.setState({
+		// 	data: data
+		// })
 	}
 
 	render() {
+		
 		return (
 			<div>
 				<BootstrapTable 

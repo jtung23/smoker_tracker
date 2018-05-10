@@ -11,6 +11,8 @@ import API from '../../utils/API.js';
 const style = {
 	background: '#a5f3ff'
 }
+let newTime = "";
+
 class NewSmoke extends Component {
 	constructor(props) {
 		super(props);
@@ -37,9 +39,7 @@ class NewSmoke extends Component {
 
 	componentWillMount =()=>{
 		const location = this.props.location.state
-		console.log(location)
 		let headerCols = location.headerCols.concat(location.headerSmoker)
-		console.log(headerCols)
 		this.setState({
 			info: {
 				animal: location.animal ? location.animal : 'Not Entered',
@@ -56,7 +56,7 @@ class NewSmoke extends Component {
 		})
 	}
 
-	handleAddRemove = (event) => {
+	handleAdd = (event) => {
 		console.log('clicked')
 		const value = event.target.value
 		// opens timepicker modal if "add" col,
@@ -64,15 +64,17 @@ class NewSmoke extends Component {
 		if (value === "add") {
 			// this.toggle(true)
 			this.setState({
-			// 	addRemove: value,
+				// addRemove: value,
 				modal: !this.state.modal
 			})	
-		} else {
-			this.setState({
-				addRemove: value
-			})				
 		}
 
+	}
+	// if Remove button is clicked then sends "remove" to Table component and removes column
+	handleRemove = (event) => {
+		this.setState({
+			addRemove: event.target.value
+		})	
 	}
 	handleTimeChange = (a, date) => {
 		let hours = date.getHours().toString()
@@ -85,22 +87,23 @@ class NewSmoke extends Component {
 		}
 		let start = hours + ":" + minutes
 
-		this.setState({
-			newTime: start
-		})
+		newTime = start
+		// this.setState({
+		// 	newTime: start
+		// })
 	}
 // for toggling the modal buttons
 	toggle = (bool) => {
 		if (bool) {
 			this.setState({
 				modal: !this.state.modal,
-				newTimeCol: this.state.newTime,
+				newTimeCol: newTime,
 				addRemove: "add"
 			})
 		} else {
 			this.setState({
 				modal: !this.state.modal,
-				addRemove: "nothing"
+				addRemove: ""
 			})
 		}
 	}
@@ -134,14 +137,14 @@ class NewSmoke extends Component {
 					headerCols={this.state.headerCols}
 				/>
 
-				<CustomButton in="Add" value="add" clickHandler={this.handleAddRemove} />
+				<CustomButton in="Add" value="add" clickHandler={this.handleAdd} />
 				{this.state.modal ? 
 					<BootModal 
 						modal={this.state.modal}
 						toggle={this.toggle}
 						handleTimeChange={this.handleTimeChange}
 					/> : null}
-				<CustomButton in="Remove" value="remove" clickHandler={this.handleAddRemove} />
+				<CustomButton in="Remove" value="remove" clickHandler={this.handleRemove} />
 			</div>
 		)
 	}
