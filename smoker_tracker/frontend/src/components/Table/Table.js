@@ -14,18 +14,24 @@ class Table extends Component {
     	data: []
     };
   }
-
-	componentWillMount = () => {
-		// sets up data template to be used further down
-		this.props.headerCols.forEach(item => {
-			blankData[item.dataField] = ''
+  	// sets up data template based on Cols and returns object
+  	createDataObj = (arr) => {
+		let obj = {}
+		arr.forEach(item => {
+			obj[item.dataField] = ''
 		})
+		return obj
+	}
+	componentWillMount = () => {
+		// this.props.headerCols.forEach(item => {
+		// 	blankData[item.dataField] = ''
+		// })
 		// creates copy of blankData to be used
-		const data1 = Object.assign({},blankData)
+		const data1 = this.createDataObj(this.props.headerCols)
 
 		data1.time = this.props.startingTime
-
 		data1.index = 0
+
 		const data = this.state.data
 		data.push(data1)
 
@@ -43,16 +49,18 @@ class Table extends Component {
 			})
 		}
 		if (nextProps.addRemoveCol === "add") {
-			console.log('blankDATA:', blankData)
-			blankData.time = nextProps.newTime	
-			blankData.index = newData.length-1
-			newData.push(blankData)
-			
-			console.log('newData', newData)
+			let newData = this.createDataObj(this.props.headerCols)
+			let newArr = this.state.data.slice()
+
+			newData.time = nextProps.newTime	
+			newData.index = newArr.length
+			console.log(newData)
+			newArr.push(newData)
+			console.log(newArr)
 			this.setState({
-				data: newData
+				data: newArr
 			})
-		}		
+		}
 	}
 
 	submit = () => {
@@ -62,12 +70,11 @@ class Table extends Component {
 	}
 
 	updateTableState = (oldValue, newValue, row, column) => {
-		let data1 = Object.assign({}, this.state.data)
+		let data1 = this.state.data.slice()
 		const index = row.index
+		console.log(index)
 		const fieldName = column.dataField
-		data1[0]['int_temp'] = newValue
-
-		console.log(data1)
+		data1[index][fieldName] = newValue
 		console.log(this.state.data)
 		// console.log(data[index][fieldName])
 		// console.log(newValue)
