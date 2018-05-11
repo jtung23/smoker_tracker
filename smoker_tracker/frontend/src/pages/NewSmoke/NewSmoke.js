@@ -58,10 +58,11 @@ class NewSmoke extends Component {
 
 	handleAdd = (event) => {
 		console.log('clicked')
-		const value = event.target.value
+		console.log(event.target)
+		// console.log('VALUE', value)
 		// opens timepicker modal if "add" col,
 		// just set states, which removes last col if "remove"
-		if (value === "add") {
+		if (event.target.value === "add") {
 			// this.toggle(true)
 			this.setState({
 				// addRemove: value,
@@ -93,17 +94,18 @@ class NewSmoke extends Component {
 		// })
 	}
 // for toggling the modal buttons
-	toggle = (bool) => {
-		if (bool) {
+	toggle = (e) => {
+		if (e.target.dataset.add) {
+			console.log('CREATE runs')
 			this.setState({
 				modal: !this.state.modal,
 				newTimeCol: newTime,
 				addRemove: "add"
 			})
 		} else {
+			console.log('CANCEL runs')
 			this.setState({
-				modal: !this.state.modal,
-				addRemove: ""
+				modal: !this.state.modal
 			})
 		}
 	}
@@ -141,6 +143,7 @@ class NewSmoke extends Component {
 				{this.state.modal ? 
 					<BootModal 
 						modal={this.state.modal}
+						value={true}
 						toggle={this.toggle}
 						handleTimeChange={this.handleTimeChange}
 					/> : null}

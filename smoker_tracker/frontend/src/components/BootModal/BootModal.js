@@ -19,8 +19,12 @@ const BootModal = props =>
 				/>
 	    </ModalBody>
 	    <ModalFooter>
-				<Button color="primary" onClick={() => props.toggle(true)} >Create</Button>
-	      <Button color="secondary" onClick={props.toggle}>Cancel</Button>
+				<Button color="primary" data-add="true" onClick={props.toggle}>Create</Button>
+				<Button 
+					color="secondary"
+					onClick={props.toggle}>
+					Cancel
+				</Button>
 	    </ModalFooter>
 	  </Modal>
 	</div>
