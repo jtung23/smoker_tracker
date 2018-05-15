@@ -57,14 +57,13 @@ class NewSmoke extends Component {
 	}
 
 	handleAdd = (event) => {
-		console.log("STATE", this.state)
 		// console.log('VALUE', vt.target)
 		// console.log('VALUE', value)
 		// opens timepicker modal if "add" col,
 		// just set states, which removes last col if "remove"
 			// this.toggle(true)
 			this.setState({
-				// addRemove: value,
+				addRemove: event.target.value,
 				modal: !this.state.modal
 			})
 	}
@@ -112,7 +111,6 @@ class NewSmoke extends Component {
 	}
 
 	render() {
-		console.log(this.state)
 		return (
 			<div style={style} >
 				<h1>{this.state.info.title ? this.state.info.title : 'No Title'}</h1>

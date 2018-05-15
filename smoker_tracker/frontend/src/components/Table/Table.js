@@ -4,6 +4,7 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import cellEditFactory from 'react-bootstrap-table2-editor';
 // import HeaderCol from '../HeaderCol';
 import CustomButton from '../CustomButton';
+import TableFn from '../../utils/TableFn.js'
 
 const blankData = {}
 class Table extends Component {
@@ -11,57 +12,66 @@ class Table extends Component {
     super(props);
     this.state = {
     	columns: [],
-    	data: []
+		data: [],
+		init: false
     };
   }
-  	// sets up data template based on Cols and returns object
-  	createDataObj = (arr) => {
-		let obj = {}
-		arr.forEach(item => {
-			obj[item.dataField] = ''
-		})
-		return obj
-	}
-	componentWillMount = () => {
+
+	// componentWillMount = () => {
 		// this.props.headerCols.forEach(item => {
 		// 	blankData[item.dataField] = ''
 		// })
 		// creates copy of blankData to be used
-		const data1 = this.createDataObj(this.props.headerCols)
 
-		data1.time = this.props.startingTime
-		data1.index = 0
+	// }
+	
 
-		const data = this.state.data
-		data.push(data1)
+	static getDerivedStateFromProps = (nextProps, prevState) => {
+		console.log('nextProps', nextProps)
+		console.log('prevState', prevState)
 
-		this.setState({
-			columns: this.props.headerCols,
-			data: data
-		})
-	}
-	componentWillReceiveProps = (nextProps) => {
-		let newData = this.state.data
-		if (nextProps.addRemoveCol === "remove" && newData.length > 1) {
-			newData.pop()
-			this.setState({
-				data: newData
-			})
+		if (!prevState.init) {
+			const data1 = TableFn.createDataObj(nextProps.headerCols)
+			data1.time = nextProps.startingTime
+			data1.index = 0
+	
+			const data = prevState.data.slice()
+			data.push(data1)
+			console.log('DATA', data)
+			return {
+				columns: nextProps.headerCols,
+				data: data,
+				init: true
+			}
 		}
-		if (nextProps.addRemoveCol === "add") {
-			console.log('TABLE ADD RUNS DSLKJFLKJDSLKFDS')
-			let newData = this.createDataObj(this.props.headerCols)
-			let newArr = this.state.data.slice()
+		// creates copy, without reference to state of data array
+		// let newData = TableFn.createDataObj(this.state.data)
+		// console.log('STATE', this.state)
+		console.log('nextProps', nextProps)
+		console.log('nextState', prevState)
+		// if (nextProps.addRemoveCol === "remove" && newData.length > 1) {
+		// 	console.log('REMOVE RUNS')
+		// 	newData.pop()
+		// 	this.setState({
+		// 		addRemove: "",
+		// 		data: newData
+		// 	})
+		// }
+		// if (nextProps.addRemoveCol === "add") {
+		// 	console.log('TABLE ADD RUNS DSLKJFLKJDSLKFDS')
+		// 	let newHeaderCols = TableFn.createDataObj(this.props.headerCols)
+		// 	let newArr = this.state.data.slice()
+		// 	console.log('NEWARR BEFORE', newArr)
+		// 	newHeaderCols.time = this.state.newTime	
+		// 	newHeaderCols.index = newArr.length
 
-			newData.time = nextProps.newTime	
-			newData.index = newArr.length
-			console.log(newData)
-			newArr.push(newData)
-			console.log(newArr)
-			this.setState({
-				data: newArr
-			})
-		}
+		// 	newArr.push(newHeaderCols)
+		// 	console.log('NEWARR AFTER', newArr)
+		// 	this.setState({
+		// 		addRemove: "",
+		// 		data: newArr
+		// 	})
+		// }
 	}
 
 	submit = () => {
@@ -86,7 +96,6 @@ class Table extends Component {
 	}
 
 	render() {
-		
 		return (
 			<div>
 				<BootstrapTable 
