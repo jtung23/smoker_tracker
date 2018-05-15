@@ -49,6 +49,7 @@ class Table extends Component {
 			})
 		}
 		if (nextProps.addRemoveCol === "add") {
+			console.log('TABLE ADD RUNS DSLKJFLKJDSLKFDS')
 			let newData = this.createDataObj(this.props.headerCols)
 			let newArr = this.state.data.slice()
 
@@ -72,7 +73,6 @@ class Table extends Component {
 	updateTableState = (oldValue, newValue, row, column) => {
 		let data1 = this.state.data.slice()
 		const index = row.index
-		console.log(index)
 		const fieldName = column.dataField
 		data1[index][fieldName] = newValue
 		console.log(this.state.data)

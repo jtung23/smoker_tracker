@@ -57,19 +57,16 @@ class NewSmoke extends Component {
 	}
 
 	handleAdd = (event) => {
-		console.log('clicked')
-		console.log(event.target)
+		console.log("STATE", this.state)
+		// console.log('VALUE', vt.target)
 		// console.log('VALUE', value)
 		// opens timepicker modal if "add" col,
 		// just set states, which removes last col if "remove"
-		if (event.target.value === "add") {
 			// this.toggle(true)
 			this.setState({
 				// addRemove: value,
 				modal: !this.state.modal
-			})	
-		}
-
+			})
 	}
 	// if Remove button is clicked then sends "remove" to Table component and removes column
 	handleRemove = (event) => {
@@ -88,10 +85,9 @@ class NewSmoke extends Component {
 		}
 		let start = hours + ":" + minutes
 
-		newTime = start
-		// this.setState({
-		// 	newTime: start
-		// })
+		this.setState({
+			newTime: start
+		})
 	}
 // for toggling the modal buttons
 	toggle = (e) => {
@@ -99,13 +95,13 @@ class NewSmoke extends Component {
 			console.log('CREATE runs')
 			this.setState({
 				modal: !this.state.modal,
-				newTimeCol: newTime,
 				addRemove: "add"
 			})
 		} else {
 			console.log('CANCEL runs')
 			this.setState({
-				modal: !this.state.modal
+				modal: !this.state.modal,
+				newTimeCol: ""
 			})
 		}
 	}
@@ -134,7 +130,7 @@ class NewSmoke extends Component {
 					typeOfSmoker={this.state.info.smoker}
 					startingTime={this.state.startingTime}
  					addRemoveCol={this.state.addRemove}
-					newTime={this.state.newTimeCol}
+					newTime={this.state.newTime}
 					submitData={this.submitData}
 					headerCols={this.state.headerCols}
 				/>
