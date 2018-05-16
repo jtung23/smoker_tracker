@@ -32,40 +32,42 @@ class NewSmoke extends Component {
 			modal: false,
 			newTime: "",
 			newTimeCol: "",
-			headerCols: []
+			headerCols: [],
+			init: false,
 		}
 
 	}
 
-	componentWillMount =()=>{
-		const location = this.props.location.state
-		let headerCols = location.headerCols.concat(location.headerSmoker)
-		this.setState({
-			info: {
-				animal: location.animal ? location.animal : 'Not Entered',
-				meatCut: location.meatCut ? location.meatCut : 'Not Entered',
-				ogWeight: location.ogWeight ? location.ogWeight : 'Not Entered',
-				trimWeight: location.trimWeight ? location.trimWeight : 'Not Entered',
-				smoker: location.smoker ? location.smoker : 'Not Entered',
-				// interval: location.interval ? location.interval : 'Not Entered',
-				physDesc: location.physDesc ? location.physDesc : 'Not Entered',
-				notes: location.notes ? location.notes : 'Not Entered'
-			},
-			startingTime: location.startingTime,
-			headerCols: headerCols
-		})
+	static getDerivedStateFromProps = (nextProps, prevState) => {
+		if (!prevState.init) {
+			const location = nextProps.location.state
+			let headerCols = location.headerCols.concat(location.headerSmoker)
+			return {
+				init: true,
+				info: {
+					animal: location.animal ? location.animal : 'Not Entered',
+					meatCut: location.meatCut ? location.meatCut : 'Not Entered',
+					ogWeight: location.ogWeight ? location.ogWeight : 'Not Entered',
+					trimWeight: location.trimWeight ? location.trimWeight : 'Not Entered',
+					smoker: location.smoker ? location.smoker : 'Not Entered',
+					// interval: location.interval ? location.interval : 'Not Entered',
+					physDesc: location.physDesc ? location.physDesc : 'Not Entered',
+					notes: location.notes ? location.notes : 'Not Entered'
+				},
+				startingTime: location.startingTime,
+				headerCols: headerCols	
+			}
+		}
+
+		return null
 	}
 
 	handleAdd = (event) => {
-		// console.log('VALUE', vt.target)
-		// console.log('VALUE', value)
 		// opens timepicker modal if "add" col,
 		// just set states, which removes last col if "remove"
-			// this.toggle(true)
-			this.setState({
-				addRemove: event.target.value,
-				modal: !this.state.modal
-			})
+		this.setState({
+			modal: !this.state.modal
+		})
 	}
 	// if Remove button is clicked then sends "remove" to Table component and removes column
 	handleRemove = (event) => {
@@ -83,24 +85,21 @@ class NewSmoke extends Component {
 			minutes = "0" + minutes
 		}
 		let start = hours + ":" + minutes
-
-		this.setState({
-			newTime: start
-		})
+		newTime = start
 	}
+
 // for toggling the modal buttons
 	toggle = (e) => {
 		if (e.target.dataset.add) {
-			console.log('CREATE runs')
 			this.setState({
 				modal: !this.state.modal,
-				addRemove: "add"
+				addRemove: "add",
+				timeToSend: newTime
 			})
 		} else {
-			console.log('CANCEL runs')
 			this.setState({
-				modal: !this.state.modal,
-				newTimeCol: ""
+				modal: !this.state.modal
+				// newTimeCol: ""
 			})
 		}
 	}
@@ -110,6 +109,11 @@ class NewSmoke extends Component {
 		// API.postNewTable()
 	}
 
+	blankAddRemove = () => {
+		this.setState({
+			addRemove: ""
+		})
+	}
 	render() {
 		return (
 			<div style={style} >
@@ -128,9 +132,10 @@ class NewSmoke extends Component {
 					typeOfSmoker={this.state.info.smoker}
 					startingTime={this.state.startingTime}
  					addRemoveCol={this.state.addRemove}
-					newTime={this.state.newTime}
+					timeToSend={this.state.timeToSend}
 					submitData={this.submitData}
 					headerCols={this.state.headerCols}
+					blankAddRemove={this.blankAddRemove}
 				/>
 
 				<CustomButton in="Add" value="add" clickHandler={this.handleAdd} />

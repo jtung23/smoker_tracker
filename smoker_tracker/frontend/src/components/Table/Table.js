@@ -8,36 +8,24 @@ import TableFn from '../../utils/TableFn.js'
 
 const blankData = {}
 class Table extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    	columns: [],
-		data: [],
-		init: false
-    };
-  }
-
-	// componentWillMount = () => {
-		// this.props.headerCols.forEach(item => {
-		// 	blankData[item.dataField] = ''
-		// })
-		// creates copy of blankData to be used
-
-	// }
-	
+	constructor(props) {
+		super(props);
+		this.state = {
+			columns: [],
+			data: [],
+			init: false
+		};
+	}
 
 	static getDerivedStateFromProps = (nextProps, prevState) => {
-		console.log('nextProps', nextProps)
-		console.log('prevState', prevState)
-
+		// creates initial starting time row on component mount
 		if (!prevState.init) {
 			const data1 = TableFn.createDataObj(nextProps.headerCols)
 			data1.time = nextProps.startingTime
 			data1.index = 0
-	
+
 			const data = prevState.data.slice()
 			data.push(data1)
-			console.log('DATA', data)
 			return {
 				columns: nextProps.headerCols,
 				data: data,
@@ -46,32 +34,32 @@ class Table extends Component {
 		}
 		// creates copy, without reference to state of data array
 		// let newData = TableFn.createDataObj(this.state.data)
-		// console.log('STATE', this.state)
-		console.log('nextProps', nextProps)
-		console.log('nextState', prevState)
-		// if (nextProps.addRemoveCol === "remove" && newData.length > 1) {
-		// 	console.log('REMOVE RUNS')
-		// 	newData.pop()
-		// 	this.setState({
-		// 		addRemove: "",
-		// 		data: newData
-		// 	})
-		// }
-		// if (nextProps.addRemoveCol === "add") {
-		// 	console.log('TABLE ADD RUNS DSLKJFLKJDSLKFDS')
-		// 	let newHeaderCols = TableFn.createDataObj(this.props.headerCols)
-		// 	let newArr = this.state.data.slice()
-		// 	console.log('NEWARR BEFORE', newArr)
-		// 	newHeaderCols.time = this.state.newTime	
-		// 	newHeaderCols.index = newArr.length
-
-		// 	newArr.push(newHeaderCols)
-		// 	console.log('NEWARR AFTER', newArr)
-		// 	this.setState({
-		// 		addRemove: "",
-		// 		data: newArr
-		// 	})
-		// }
+		if (nextProps.addRemoveCol === "remove" && prevState.data.length > 1) {
+			prevState.data.pop()
+			return {
+				data: prevState.data
+			}
+		}
+		if (nextProps.addRemoveCol === "add") {
+			// creates blank object of column headers and modifies
+			// to insert into newArr
+			let newArr = prevState.data.slice()
+			let newHeaderCols = TableFn.createDataObj(nextProps.headerCols)
+			newHeaderCols.time = nextProps.timeToSend	
+			newHeaderCols.index = newArr.length
+			newArr.push(newHeaderCols)
+			return {
+				data: newArr
+			}
+		}
+		return null
+	}
+	
+	componentDidUpdate = () => {
+		// sets addRemove state in NewSmoke to ""
+		if (this.props.addRemoveCol === 'add' || this.props.addRemoveCol === 'remove') {
+			this.props.blankAddRemove()
+		}
 	}
 
 	submit = () => {
