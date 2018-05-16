@@ -67,7 +67,7 @@ class Table extends Component {
 		console.log(this.state.data)
 		this.props.submitData(this.state)
 	}
-
+	// updates table state when the cell is changed
 	updateTableState = (oldValue, newValue, row, column) => {
 		let data1 = this.state.data.slice()
 		const index = row.index

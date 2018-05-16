@@ -39,6 +39,7 @@ class NewSmoke extends Component {
 	}
 
 	static getDerivedStateFromProps = (nextProps, prevState) => {
+		// setsState on component mount then sets init to true
 		if (!prevState.init) {
 			const location = nextProps.location.state
 			let headerCols = location.headerCols.concat(location.headerSmoker)
@@ -75,6 +76,14 @@ class NewSmoke extends Component {
 			addRemove: event.target.value
 		})	
 	}
+	// setting addRemove state to blank from 
+	// componentDidUpdate in Table.js
+	blankAddRemove = () => {
+		this.setState({
+			addRemove: ""
+		})
+	}
+	// handling when a new time is picked in the modal
 	handleTimeChange = (a, date) => {
 		let hours = date.getHours().toString()
 		let minutes = date.getMinutes().toString()
@@ -88,7 +97,8 @@ class NewSmoke extends Component {
 		newTime = start
 	}
 
-// for toggling the modal buttons
+	// for toggling when the modal "Create" or "Cancel" buttons
+	// are clicked
 	toggle = (e) => {
 		if (e.target.dataset.add) {
 			this.setState({
@@ -109,11 +119,6 @@ class NewSmoke extends Component {
 		// API.postNewTable()
 	}
 
-	blankAddRemove = () => {
-		this.setState({
-			addRemove: ""
-		})
-	}
 	render() {
 		return (
 			<div style={style} >
