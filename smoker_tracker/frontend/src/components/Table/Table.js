@@ -63,31 +63,26 @@ class Table extends Component {
 	}
 
 	submit = () => {
-		console.log('submit on tablel click')
-		console.log(this.state.data)
 		this.props.submitData(this.state)
 	}
 	// updates table state when the cell is changed
 	updateTableState = (oldValue, newValue, row, column) => {
-		let data1 = this.state.data.slice()
+		// creates non reference clone of data array of objects
+		let data1 = JSON.parse(JSON.stringify(this.state.data))
 		const index = row.index
 		const fieldName = column.dataField
+		// modifies clone based on index and fieldName
 		data1[index][fieldName] = newValue
-		console.log(this.state.data)
-		// console.log(data[index][fieldName])
-		// console.log(newValue)
-		// console.log(data)
-		// console.log(this.state.data)
-		// this.setState({
-		// 	data: data
-		// })
+		this.setState({
+			data: data1
+		})
 	}
 
 	render() {
 		return (
 			<div>
 				<BootstrapTable 
-					keyField="time"
+					keyField="index"
 					columns={this.state.columns}
 					data={this.state.data}
 					cellEdit={ cellEditFactory({ 

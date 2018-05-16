@@ -115,7 +115,7 @@ class NewSmoke extends Component {
 	}
 
 	submitData = (tableState) => {
-		console.log(tableState)
+		console.log('newSmoke tableState', tableState)
 		// API.postNewTable()
 	}
 
