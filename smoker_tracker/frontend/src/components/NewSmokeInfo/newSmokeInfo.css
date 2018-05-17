@@ -10,3 +10,8 @@ form {
 label {
     color: purple;
 }
+
+select.animal {
+    width: 30%;
+}
+

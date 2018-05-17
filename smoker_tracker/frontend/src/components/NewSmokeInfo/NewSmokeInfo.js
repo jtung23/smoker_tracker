@@ -8,7 +8,15 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const style = { margin: 12, };
+const style = { 
+	button: {
+		margin: 12, 
+	},
+	inputWeight: {
+		width: '25%',
+		display: 'inlineBlock',
+	}
+}
 
 const wsmCols = [
 	{
@@ -109,11 +117,24 @@ class NewSmokeInfo extends Component {
 				<Form>
 					<FormGroup>
 						<Label>Title</Label>
-						<Input type="text" name="title" placeholder="Title" onChange={this.handleFormChange} value={this.state.title} id="title" />
+						<Input 
+							type="text"
+							name="title"
+							placeholder="Title"
+							onChange={this.handleFormChange}
+							value={this.state.title}
+							className="title"
+						/>
 					</FormGroup>
 					<FormGroup>
 						<Label>Animal</Label>
-						<Input type="select" name="animal" onChange={this.handleFormChange} value={this.state.animal} id="animal">
+						<Input
+							type="select"
+							name="animal"
+							onChange={this.handleFormChange}
+							value={this.state.animal}
+							className="animal"
+							>
 							<option></option>
 							<option>Cow</option>
 							<option>Pig</option>
@@ -125,19 +146,38 @@ class NewSmokeInfo extends Component {
 					</FormGroup>
 					<FormGroup>
 						<Label>Cut</Label>
-						<Input type="text" name="meatCut" onChange={this.handleFormChange} value={this.state.meatCut} id="meatCut" placeholder="ex. Brisket" />
+						<Input
+							type="text"
+							name="meatCut"
+							onChange={this.handleFormChange}
+							value={this.state.meatCut}
+							className="meatCut"
+							placeholder="ex. Brisket"
+						/>
 					</FormGroup>
-					<FormGroup>
+					<FormGroup style={style.inputWeight} >
 						<Label>Initial Weight (lb)</Label>
-						<Input type="number" name="ogWeight" onChange={this.handleFormChange} value={this.state.ogWeight} id="ogWeight" />
+						<Input
+							type="number"
+							name="ogWeight"
+							onChange={this.handleFormChange}
+							value={this.state.ogWeight}
+							className="ogWeight" 
+						/>
 					</FormGroup>
-					<FormGroup>
+					<FormGroup style={style.inputWeight} >
 						<Label>Post-Trim Weight</Label>
-						<Input type="number" name="trimWeight" onChange={this.handleFormChange} value={this.state.trimWeight} id="trimWeight" />
+						<Input 
+							type="number"
+							name="trimWeight"
+							onChange={this.handleFormChange}
+							value={this.state.trimWeight}
+							className="trimWeight" 
+						/>
 					</FormGroup>
 					<FormGroup>
 						<Label>Smoker</Label>
-						<Input type="select" name="smoker" onChange={this.handleFormChange} value={this.state.smoker} id="smoker">
+						<Input type="select" name="smoker" onChange={this.handleFormChange} value={this.state.smoker} className="smoker">
 							<option value='no smoker'></option>
 							<option value='1'>Weber Smokey Mountain</option>
 						</Input>
@@ -148,18 +188,18 @@ class NewSmokeInfo extends Component {
 						autoOk={true}
 						name="startingTime"
 						onChange={this.handleTimeChange}
-						id="startingTime"
+						className="startingTime"
 					/>
-					<RaisedButton label="Time" value={"time"} primary={true} onClick={this.raisedBtnClick} style={style} />
-					<RaisedButton label="Internal Temp" value={"int_temp"} onClick={this.raisedBtnClick} style={style} />
-					<RaisedButton label="Grill Temp" value={"grill_temp"} onClick={this.raisedBtnClick} style={style} />
+					<RaisedButton label="Time" value={"time"} primary={true} onClick={this.raisedBtnClick} style={style.button} />
+					<RaisedButton label="Internal Temp" value={"int_temp"} onClick={this.raisedBtnClick} style={style.button} />
+					<RaisedButton label="Grill Temp" value={"grill_temp"} onClick={this.raisedBtnClick} style={style.button} />
 					<FormGroup>
 						<Label>Physical Description</Label>
-						<Input type="textarea" name="physDesc" onChange={this.handleFormChange} value={this.state.physDesc} id="physDesc" placeholder="ex. Thick cap, uneven fat on flat..." />
+						<Input type="textarea" name="physDesc" onChange={this.handleFormChange} value={this.state.physDesc} className="physDesc" placeholder="ex. Thick cap, uneven fat on flat..." />
 					</FormGroup>
 					<FormGroup>
 						<Label>Notes</Label>
-						<Input type="textarea" name="notes" onChange={this.handleFormChange} value={this.state.notes} id="notes" placeholder="ex. Cold day, ~50F. strong winds..." />
+						<Input type="textarea" name="notes" onChange={this.handleFormChange} value={this.state.notes} className="notes" placeholder="ex. Cold day, ~50F. strong winds..." />
 					</FormGroup>
 
 					<Link to={{
