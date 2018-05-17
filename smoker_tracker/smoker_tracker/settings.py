@@ -82,8 +82,12 @@ WSGI_APPLICATION = 'smoker_tracker.wsgi.application'
 
 DATABASES = {
     'default': {
-      'ENGINE' : 'django_mongodb_engine',
-      'NAME' : 'smoker_db'
+      'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+      'NAME' : 'smoker_db',
+      'USER': 'smoker_admin',
+      'PASSWORD': 'smoker_password',
+      'HOST': 'localhost',
+      'PORT': ''
     }
 }
 
