@@ -1,0 +1,12 @@
+.main-body {
+    background: rgb(243, 233, 228);
+    width: 100%;
+}
+
+form {
+    width: 80%;
+    margin: auto;
+}
+label {
+    color: purple;
+}

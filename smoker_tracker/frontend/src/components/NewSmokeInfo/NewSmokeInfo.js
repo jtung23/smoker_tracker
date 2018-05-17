@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./newSmokeInfo.css";
 // import CustomButton from '../CustomButton';
 import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Link} from 'react-router-dom';
@@ -104,7 +105,7 @@ class NewSmokeInfo extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="main-body">
 				<Form>
 					<FormGroup>
 						<Label>Title</Label>
