@@ -1,108 +1,59 @@
 {
-	'mongoId': 312213
+	'key': 312213
 	'sessionID': 1,
-	'userID': 01,
-	'date': '03/27/2018',
+	'userID': 1,
+	'date': '05/18/2018',
 	'title': 'Brisket #1',
-	'information': {
-		'animal': 'cow',
-		'grade': 'USDA prime',
-		'weight': 16.1,
-		'after_trim_weight': 11.1,
-		'notes': 'lorem ipsum',
-		'description_notes': 'fatty point, solid thickness',
-		'interval': 30
-	},
-
-	'record': {
-		'time': ['Time', 600, 700, 800],
-		'internal_temp': ['Internal Temp',120, 120, 120],
-		'grill_temp': ['Grill Temp',250, 'empty', 250],
-		'vent1': ['Vent 1','50%', '50%', '50%'],
-		'vent2': ['Vent 2','50%', '50%', '50%'],
-		'vent3': ['Vent 3','50%', '50%', '50%']
-	}
-	'record': {
-		1: {
-			'time': 600,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
+	'animal': 'cow',
+	'grade': 'USDA prime',
+	'weight': 16.1,
+	'after_trim_weight': 11.1,
+	'notes': 'lorem ipsum',
+	'description_notes': 'fatty point, solid thickness',
+	"columns": [
+		{
+		"dataField": "time",
+		"text": "Time"
 		},
-		2: {
-			'time': 700,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
+		{
+		"dataField": "int_temp",
+		"text": "Internal Temp"
 		},
-		3: {
-			'time': 800,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
+		{
+		"dataField": "grill_temp",
+		"text": "Grill Temp"
 		},
-		4: {
-			'time': 900,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
+		{
+		"dataField": "vent1",
+		"text": "Vent 1"
 		},
-		5: {
-			'time': 1000,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
+		{
+		"dataField": "vent2",
+		"text": "Vent 2"
 		},
-		6: {
-			'time': 1100,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
+		{
+		"dataField": "vent3",
+		"text": "Vent 3"
+		}
+	],
+	"data": [
+		{
+		"time": "00:00",
+		"int_temp": "500",
+		"grill_temp": "200",
+		"vent1": "50",
+		"vent2": "30",
+		"vent3": "10",
+		"index": 0
 		},
-		7: {
-			'time': 1200,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
-		},
-		8: {
-			'time': 1300,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
-		},
-		9: {
-			'time': 1400,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
-		},
-		10: {
-			'time': 1500,
-			'internal_temp': 120,
-			'grill_temp': 250,
-			'vent_1': '50%',
-			'vent_2': '50%',
-			'vent_3': '50%'
-		},
-	}
-
+		{
+		"time": "02:10",
+		"int_temp": "400",
+		"grill_temp": "300",
+		"vent1": "60",
+		"vent2": "10",
+		"vent3": "20",
+		"index": 1
+		}
+	],
 }

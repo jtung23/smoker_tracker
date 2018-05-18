@@ -53,7 +53,8 @@ class NewSmoke extends Component {
 					smoker: location.smoker ? location.smoker : 'Not Entered',
 					// interval: location.interval ? location.interval : 'Not Entered',
 					physDesc: location.physDesc ? location.physDesc : 'Not Entered',
-					notes: location.notes ? location.notes : 'Not Entered'
+					notes: location.notes ? location.notes : 'Not Entered',
+					title: location.title ? location.title : 'Not Entered'
 				},
 				startingTime: location.startingTime,
 				headerCols: headerCols	
@@ -116,8 +117,28 @@ class NewSmoke extends Component {
 
 	submitData = (tableState) => {
 		console.log('newSmoke tableState', tableState)
+		console.log('newSMoke state', this.state)
+		const {columns , data} = tableState
+		const {title, animal, meatCut, ogWeight, trimWeight, smoker, physDesc, notes} = this.state.info
+		const d = new Date()
+		
+		const submitData = {
+			date: d.toDateString(),
+			title: title,
+			animal: animal,
+			meatCut: meatCut,
+			ogWeight: ogWeight,
+			trimWeight: trimWeight,
+			smoker: smoker,
+			physDesc: physDesc,
+			notes: notes,
+			columns: columns,
+			data: data
+		}
+		console.log(submitData)
 		// API.postNewTable()
 	}
+
 
 	render() {
 		return (
