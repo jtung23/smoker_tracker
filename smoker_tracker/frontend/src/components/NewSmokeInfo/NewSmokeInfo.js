@@ -15,6 +15,10 @@ const style = {
 	inputWeight: {
 		width: '25%',
 		display: 'inlineBlock',
+	},
+	timePicker: {
+		background: '#e2e2e2',
+		width:'25%'
 	}
 }
 
@@ -189,6 +193,7 @@ class NewSmokeInfo extends Component {
 						name="startingTime"
 						onChange={this.handleTimeChange}
 						className="startingTime"
+						style={style.timePicker}
 					/>
 					<RaisedButton label="Time" value={"time"} primary={true} onClick={this.raisedBtnClick} style={style.button} />
 					<RaisedButton label="Internal Temp" value={"int_temp"} onClick={this.raisedBtnClick} style={style.button} />

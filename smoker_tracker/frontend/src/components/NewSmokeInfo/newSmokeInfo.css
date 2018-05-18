@@ -1,6 +1,7 @@
 .main-body {
-    background: rgb(243, 233, 228);
+    background: rgb(251, 251, 251);
     width: 100%;
+    padding-top: 2em;
 }
 
 form {
