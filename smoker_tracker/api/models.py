@@ -5,9 +5,9 @@ from django.contrib.postgres.indexes import GinIndex
 # Create your models here.
 
 class SmokeSession(models.Model):
-    sessionId = Models.IntegerField()
+    sessionId = models.IntegerField()
     userId = models.IntegerField()
-    date = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
     title = models.CharField(max_length=100)
     animal = models.CharField(max_length=100)
     meatCut = models.CharField(max_length=100)
@@ -16,7 +16,7 @@ class SmokeSession(models.Model):
     trimWeight = models.IntegerField()
     physDesc = models.CharField(max_length=1000)
     notes = models.CharField(max_length=1000)
-    columns = ArrayField(JSONField())
-    data = ArrayField(JSONField())
+    # columns = ArrayField(JSONField())
+    # data = ArrayField(JSONField())
     # class Meta:
     #     indexes = [GinIndex(fields=[sv])]

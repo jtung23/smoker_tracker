@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import include, url
+from django.urls import path
 from django.contrib import admin
 from . import views
 
@@ -21,4 +22,5 @@ urlpatterns = [
 	# all other url patterns go here. react goes last, as catchall
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^', views.FrontendAppView.as_view()),
+    path('', include('api.urls')),
 ]
