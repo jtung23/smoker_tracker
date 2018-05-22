@@ -10,12 +10,12 @@ import {
 const style= {
 	headline: {
 		fontFamily: "'Shrikhand', cursive",
-		fontSize: '48px',
+		fontSize: '36px',
 		color: 'blue',
 		width: '20%'
 	},
 	nav: {
-		borderBottom: '4px double black',
+		borderBottom: '4px solid',
 		boxShadow: 'inset 0px 0px 10px rgba(0,0,0,0.3)'
 	}
 }

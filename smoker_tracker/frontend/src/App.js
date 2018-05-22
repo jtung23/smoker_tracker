@@ -16,7 +16,7 @@ import Background from './img/jumbotronmeat.jpg';
 
 const style = {
 	everything: {
-		backgroundImage: 'url('+Background+')',
+		// backgroundImage: 'url('+Background+')',
 		width: '100%',
 		height: '100%',
 	}
