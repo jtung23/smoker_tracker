@@ -15,8 +15,8 @@ class Landing extends Component {
 				<MiddleLanding>
 					<div>
 					<h1>Track your barbecues, share with the world, and learn from others </h1>
-					</div>
 					<Button color="success" href="/newsmokeinfo">Get Started</Button>
+					</div>
 				</MiddleLanding>
 				<div>
 					<h1>

@@ -15,7 +15,7 @@ const style= {
 		width: '20%'
 	},
 	nav: {
-		borderBottom: '4px solid',
+		borderBottom: '4px solid gray',
 		boxShadow: 'inset 0px 0px 10px rgba(0,0,0,0.3)'
 	}
 }
@@ -26,7 +26,7 @@ const BootNavBar = props =>
 		<NavbarBrand href ="/" style={style.headline} >Smoker Tracker</NavbarBrand>
 		<Nav className="ml-auto" navbar>
 			<NavItem>
-				<NavLink href="/login" style={style.headline}>Login</NavLink>
+				<NavLink href="/login">Login</NavLink>
 			</NavItem>
 		</Nav>
 	</Navbar>
