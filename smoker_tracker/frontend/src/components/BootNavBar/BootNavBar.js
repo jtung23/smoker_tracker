@@ -6,20 +6,9 @@ import {
 	NavItem,
 	NavLink
 	} from 'reactstrap';
-	
-const style= {
-	headline: {
-		fontFamily: "'Shrikhand', cursive",
-		fontSize: '36px',
-		color: 'blue',
-		width: '20%'
-	},
-
-}
-
 
 const BootNavBar = props => 
-	<div className="navbar customNavBar">
+	<div className="navbar">
 		<a href ="/" className="navbar-brand">
 			Smoker Tracker
 		</a>

@@ -18,7 +18,7 @@ const check =(props) => {
 const Jumbotron = props => 
 	<div className="jumbotron">
 		<div className="container">
-			<h1>Track your barbecues,<br />
+			<h1 className="jumbotron__h1">Track your barbecues,<br />
 				share with the world,<br />
 				and learn from others 
 			</h1>

@@ -1,5 +1,73 @@
+/* Main CSS file for all pages and components */
+
+/* ***** BEM naming convention ***** */
+/*       "Block Element Modifier"    */
+/* eg. "btn__text" refers to the text child element inside btn */
+/* "btn__text--green refers to same but green modified text    */
+/* BE MODULAR BE CONCISE */
+/* ********************************* */
+
+/* Table of Contents*********************** 
+    1. App.js
+        1a. BootNavBar
+    2.Landing Page
+        2a. Jumbotron
+    3.NewSmokeInfo
+    4.NewSmoke
+        4a. InfoBox
+        4b. Table
+        4b. BootModal
+    10. Miscellaneous
+        10a. CustomButton
+/* ****************************************** */
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+/* ************************* */
+/*    1. App.js      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*   
+    */
+.app {
+    width: 100%;
+    height: 100%
+}
+
+/* ************************* */
+/*    1a. BootNavBar      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  navbar
+        navbar-brand
+    */
+.navbar {
+    border-bottom: 4px solid gray;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3)
+}
+
+.navbar-brand {
+    font-family: 'Shrikhand', cursive;
+    font-size: 2.5rem;
+    color:blue;
+    width: 20%;
+}
+/* ************************* */
+/*    2a. Jumbotron      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  Grid layout
+        jumbotron 
+    */
+.jumbotron {
+    background-image: url("./img/jumbotronmeat.jpg");
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3)
+
+}
+
+.jumbotron__h1 {
+    color: blue;
 }

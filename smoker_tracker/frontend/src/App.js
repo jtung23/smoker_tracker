@@ -5,7 +5,7 @@ import BootNavBar from './components/BootNavBar';
 import NewSmokeInfo from './components/NewSmokeInfo';
 // materialui's timepicker and other styles
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import './main.css';
+// import './main.css';
 // for routing and links
 import {
   BrowserRouter as Router,
@@ -18,7 +18,7 @@ class App extends Component {
     return (
 			<MuiThemeProvider>
 				<Router>
-					<div className="appBody">
+					<div className="app">
 						<BootNavBar />
 						<Switch>
 							<Route exact path="/" component={Landing}/>
