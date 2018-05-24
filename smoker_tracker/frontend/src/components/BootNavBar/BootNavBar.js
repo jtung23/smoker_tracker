@@ -14,21 +14,20 @@ const style= {
 		color: 'blue',
 		width: '20%'
 	},
-	nav: {
-		borderBottom: '4px solid gray',
-		boxShadow: 'inset 0px 0px 10px rgba(0,0,0,0.3)'
-	}
+
 }
 
 
 const BootNavBar = props => 
-	<Navbar light expand="md" style={style.nav}>
-		<NavbarBrand href ="/" style={style.headline} >Smoker Tracker</NavbarBrand>
-		<Nav className="ml-auto" navbar>
-			<NavItem>
-				<NavLink href="/login">Login</NavLink>
-			</NavItem>
-		</Nav>
-	</Navbar>
+	<div className="navbar customNavBar">
+		<a href ="/" className="navbar-brand">
+			Smoker Tracker
+		</a>
+		<div className="nav-item my-2 my-lg-0">
+			<a className="nav-link" href="/login">
+				Login
+			</a>
+		</div>
+	</div>
 
 export default BootNavBar

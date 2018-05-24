@@ -1,0 +1,51 @@
+/* Main CSS file for all pages and components */
+/* **Table of Contents*********************** 
+    1. App.js
+        1a. BootNavBar
+    2.Landing Page
+        2a. Jumbotron
+*   3.NewSmokeInfo
+    4.NewSmoke
+        4a. InfoBox
+        4b. Table
+        4b. BootModal
+    10. Miscellaneous
+        10a. CustomButton
+/* ****************************************** */
+/* ************************* */
+/*    1. App.js      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*   
+    */
+.appBody {
+    width: 100%;
+    height: 100%
+}
+
+/* ************************* */
+/*    1a. BootNavBar      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*    
+    */
+.customNavBar {
+    border-bottom: 4px solid gray;
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3)
+}
+/* ************************* */
+/*    2a. Jumbotron      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  Grid layout
+        jumbotron 
+    */
+.jumbotron {
+    background-image: url("./img/jumbotronmeat.jpg");
+    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3)
+
+}
+
+.jumbotron h1 {
+    color: blue;
+}

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import MiddleLanding from '../../components/MiddleLanding';
-import {Button} from 'reactstrap';
+import Jumbotron from '../../components/Jumbotron';
+
 const style = {
 	body: {
 		width: '100%',
@@ -12,12 +12,7 @@ class Landing extends Component {
 	render() {
 		return (
 			<div style={style.body} >
-				<MiddleLanding>
-					<div>
-					<h1>Track your barbecues, share with the world, and learn from others </h1>
-					<Button color="success" href="/newsmokeinfo">Get Started</Button>
-					</div>
-				</MiddleLanding>
+				<Jumbotron />
 				<div>
 					<h1>
 						second part
