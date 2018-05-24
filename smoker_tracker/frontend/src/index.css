@@ -56,6 +56,31 @@ body {
     width: 20%;
 }
 /* ************************* */
+/*    2. Landing Page      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  Grid layout
+    */
+
+.allCards__card {
+    border: 2px solid gray;
+    margin-bottom: 10%;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.card_image {
+    width: 100%;
+}
+
+.card_text {
+
+}
+
+.allCards__card--margin {
+    /* margin-left: 5%;
+    margin-right: 5%; */
+}
+/* ************************* */
 /*    2a. Jumbotron      */
 /* ************************* */
     /* Bootstrap Classes Used*/

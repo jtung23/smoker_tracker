@@ -1,11 +1,4 @@
 import React from 'react';
-import {
-	Navbar,
-	NavbarBrand,
-	Nav,
-	NavItem,
-	NavLink
-	} from 'reactstrap';
 
 const BootNavBar = props => 
 	<div className="navbar">

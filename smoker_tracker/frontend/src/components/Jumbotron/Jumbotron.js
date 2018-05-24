@@ -22,7 +22,9 @@ const Jumbotron = props =>
 				share with the world,<br />
 				and learn from others 
 			</h1>
-			<Button color="success" href="/newsmokeinfo">Get Started</Button>
+			<button className="btn btn-success" href="/newsmokeinfo">
+				Get Started
+			</button>
 		</div>
 	</div>
 
