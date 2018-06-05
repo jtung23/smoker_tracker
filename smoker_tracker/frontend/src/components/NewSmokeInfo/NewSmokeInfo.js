@@ -214,7 +214,9 @@ class NewSmokeInfo extends Component {
 					className="btn btn-primary">
 						newSmoke
 					</Link>
-					<Button color="danger" href="/">Cancel</Button>
+					<Link className="btn btn-danger" to="/">
+						Cancel
+					</Link>
 				</Form>
 
 			</div>

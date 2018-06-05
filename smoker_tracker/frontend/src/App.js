@@ -3,6 +3,7 @@ import Landing from './pages/Landing';
 import NewSmoke from './pages/NewSmoke';
 import BootNavBar from './components/BootNavBar';
 import NewSmokeInfo from './components/NewSmokeInfo';
+import SearchResults from './pages/SearchResults';
 // materialui's timepicker and other styles
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 // import './main.css';
@@ -24,6 +25,7 @@ class App extends Component {
 							<Route exact path="/" component={Landing}/>
 							<Route path="/newsmoke" component={NewSmoke} />
 							<Route path="/newsmokeinfo" component={NewSmokeInfo} />
+							<Route path="/searchresults" component={SearchResults} />
 						</Switch>
 					</div>
 				</Router>

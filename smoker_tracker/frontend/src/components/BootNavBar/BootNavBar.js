@@ -1,14 +1,18 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const BootNavBar = props => 
 	<div className="navbar">
-		<a href ="/" className="navbar-brand">
+		<Link className="navbar-brand" to="/">
 			Smoker Tracker
-		</a>
+		</Link>
 		<div className="nav-item my-2 my-lg-0">
-			<a className="nav-link" href="/login">
+			<Link classname="nav-link" to="/searchresults">
+				Search
+			</Link>
+			<Link className="nav-link" to="/login">
 				Login
-			</a>
+			</Link>
 		</div>
 	</div>
 

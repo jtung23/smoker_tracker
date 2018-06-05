@@ -1,7 +1,7 @@
 import React from 'react';
 import Background from '../../img/jumbotronmeat.jpg';
 import {Button} from 'reactstrap';
-
+import {Link} from 'react-router-dom';
 const style = {
 	landing: {
 		width: '100%',
@@ -22,9 +22,9 @@ const Jumbotron = props =>
 				share with the world,<br />
 				and learn from others 
 			</h1>
-			<button className="btn btn-success" href="/newsmokeinfo">
+			<Link className="btn btn-success" to="/newsmokeinfo">
 				Get Started
-			</button>
+			</Link>
 		</div>
 	</div>
 
