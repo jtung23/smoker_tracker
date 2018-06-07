@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
+import SearchResult from '../../components/SearchResult';
 import API from '../../utils/API.js';
 
-class SearchResult extends Component {
+class SearchResults extends Component {
+    componentWillMount() {
+        
+    }
+    constructor(props) {
+        super(props)
+    }
     render() {
         return (
             <div>
@@ -16,4 +23,4 @@ class SearchResult extends Component {
     }
 }
 
-export default SearchResult;
+export default SearchResults;
