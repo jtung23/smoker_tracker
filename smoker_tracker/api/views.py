@@ -7,7 +7,7 @@ from .serializers import SessionSerializer
 
 # Create your views here.
 
-@api_view(['GET','POST','PUT'])
+@api_view(['GET','PUT','DELETE'])
 @permission_classes((permissions.AllowAny,))
 def get_delete_update_session(request, pk):
     try:
@@ -18,10 +18,17 @@ def get_delete_update_session(request, pk):
     if request.method=="GET":
         serializer = SessionSerializer(session)
         return Response(serializer.data)
-    elif request.method=="POST":
-        return Response({})
+    elif request.method=="DELETE":
+        session.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     elif request.method=="PUT":
-        return Response({})
+        serializer = SessionSerializer(session, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.AllowAny,))
