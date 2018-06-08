@@ -75,8 +75,8 @@ class GetSingleSessionTest(TestCase):
     def test_get_valid_single_session(self):
         response = client.get(
             reverse('get_delete_update_session',
-                kwargs={'pk': self.hello.pk}))
-        session = SmokeSession.objects.get(pk=self.hello.pk)
+                kwargs={'pk': self.bye.pk}))
+        session = SmokeSession.objects.get(pk=self.bye.pk)
         serializer = SessionSerializer(session)
         self.assertEqual(response.data, serializer.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -85,3 +85,37 @@ class GetSingleSessionTest(TestCase):
         response = client.get(
             reverse('get_delete_update_session', kwargs={'pk': 30}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+class CreateNewSessionTest(TestCase):
+    # test module for inserting a new session
+
+    def setUp(self):
+        self.valid_payload = {
+            'sessionId': 1,
+            'userId': 2,
+            'title': "no",
+            'smoker': "WSM"
+        }
+
+        self.invalid_payload = {
+            'sessionId': 1,
+            'userId': 2,
+            'title': '',
+            'smoker': "WSM"
+        }
+
+    def test_create_valid_session(self):
+        response = client.post(
+            reverse('get_post_session'),
+            data=json.dumps(self.valid_payload),
+            content_type='application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+    
+    def test_create_invalid_session(self):
+        response = client.post(
+            reverse('get_post_session'),
+            data = json.dumps(self.invalid_payload),
+            content_type = 'application/json'
+        )
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
