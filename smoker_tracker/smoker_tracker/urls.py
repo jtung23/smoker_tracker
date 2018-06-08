@@ -21,6 +21,12 @@ from . import views
 urlpatterns = [
 	# all other url patterns go here. react goes last, as catchall
     # url(r'^admin/', include(admin.site.urls)),
-    url(r'^', views.FrontendAppView.as_view()),
-    path('', include('api.urls')),
+    path('', include('api.urls'))
+    # url(
+    #     r'^api-auth/',
+    #     include('rest_framework.urls', namespace='rest_framework')
+    # ),
+    # url(r'^admin/', admin.site.urls),
+    # url(r'^', views.FrontendAppView.as_view()),
+
 ]
