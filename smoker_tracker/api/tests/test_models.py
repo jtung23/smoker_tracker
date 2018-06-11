@@ -23,7 +23,7 @@ class SmokeSessionTest(TestCase):
             sessionId=2,
             userId=1,
             created_at = '2018-06-09T10:21:22.635155',
-            title = 'hello',
+            title = 'bye',
             animal = 'cow',
             meatCut = 'brisket',
             smoker = 'WSM',
