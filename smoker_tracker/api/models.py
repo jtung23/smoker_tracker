@@ -10,15 +10,20 @@ class SmokeSession(models.Model):
     # time provided by frontend
     created_at = models.CharField(max_length=100)
     title = models.CharField(max_length=100)
-    animal = models.CharField(max_length=100)
-    meatCut = models.CharField(max_length=100)
+    animal = models.CharField(max_length=100, null=True)
+    meatCut = models.CharField(max_length=100, null=True)
     smoker = models.CharField(max_length=100)
-    ogWeight = models.IntegerField()
-    trimWeight = models.IntegerField()
-    physDesc = models.CharField(max_length=1000)
-    notes = models.CharField(max_length=1000)
+    ogWeight = models.IntegerField(null=True)
+    trimWeight = models.IntegerField(null=True)
+    physDesc = models.CharField(max_length=1000, null=True)
+    notes = models.CharField(max_length=1000, null=True)
     last_modified = models.DateTimeField(auto_now_add=True)
-    # columns = ArrayField(
+    columns = JSONField(
+        null=True,blank=True
+    )
+    data = JSONField(
+        null=True,blank=True
+    )
     # )
     # class Meta:
     #     indexes = [GinIndex(fields=[sv])]

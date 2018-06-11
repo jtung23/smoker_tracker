@@ -43,8 +43,18 @@ def get_post_session(request):
         data = {
             'sessionId': request.data.get('sessionId'),
             'userId': request.data.get('userId'),
+            'created_at': request.data.get('created_at'),
             'title': request.data.get('title'),
-            'smoker': request.data.get('smoker')
+            'animal': request.data.get('animal'),
+            'meatCut': request.data.get('meatCut'),
+            'smoker': request.data.get('smoker'),
+            'ogWeight': request.data.get('ogWeight'),
+            'trimWeight': request.data.get('trimWeight'),
+            'physDesc': request.data.get('physDesc'),
+            'notes': request.data.get('notes'),
+            'last_modified': request.data.get('last_modified'),
+            'columns': request.data.get('columns'),
+            'data': request.data.get('data')
         }
         serializer = SessionSerializer(data=data)
         if serializer.is_valid():
