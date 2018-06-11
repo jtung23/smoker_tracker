@@ -9,14 +9,28 @@ class SmokeSessionTest(TestCase):
         SmokeSession.objects.create(
             sessionId=1,
             userId=1,
-            title="hello",
-            smoker="WSM"
+            created_at = '2018-06-09T10:21:22.635155',
+            title = 'hello',
+            animal = 'cow',
+            meatCut = 'brisket',
+            smoker = 'WSM',
+            ogWeight = 12.5,
+            trimWeight = 10.3,
+            physDesc = 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum',
+            notes = 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
         )
         SmokeSession.objects.create(
             sessionId=2,
             userId=1,
-            title="bye",
-            smoker="MSW"
+            created_at = '2018-06-09T10:21:22.635155',
+            title = 'hello',
+            animal = 'cow',
+            meatCut = 'brisket',
+            smoker = 'WSM',
+            ogWeight = 12.5,
+            trimWeight = 10.3,
+            physDesc = 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum',
+            notes = 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
         )
 
     def test_smoke_session(self):
@@ -29,3 +43,4 @@ class SmokeSessionTest(TestCase):
         self.assertEqual(
             bye.get_session(), "bye"
         )
+    
