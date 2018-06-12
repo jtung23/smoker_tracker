@@ -5,19 +5,15 @@ import API from '../../utils/API.js';
 class SearchResults extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            
-        }
     }
+    
     componentDidMount() {
         API.getAllSessions()
             .then(res=> {
                 console.log(res.data)
             })
     }
-    constructor(props) {
-        super(props)
-    }
+
     render() {
         return (
             <div>

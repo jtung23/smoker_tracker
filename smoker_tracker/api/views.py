@@ -33,12 +33,12 @@ def get_delete_update_session(request, pk):
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.AllowAny,))
 def get_post_session(request):
-    # get all puppies
+    # get all sessions
     if request.method == 'GET':
         sessions = SmokeSession.objects.all()
         serializer = SessionSerializer(sessions, many=True)
         return Response(serializer.data)
-    # insert a new record for a puppy
+    # insert a new record for a sessions
     elif request.method == 'POST':
         data = {
             'sessionId': request.data.get('sessionId'),
@@ -56,6 +56,7 @@ def get_post_session(request):
             'columns': request.data.get('columns'),
             'data': request.data.get('data')
         }
+        print(data)
         serializer = SessionSerializer(data=data)
         if serializer.is_valid():
             serializer.save()

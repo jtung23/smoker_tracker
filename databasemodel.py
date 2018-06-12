@@ -1,17 +1,17 @@
 {
-	'key': 312213
-	'sessionID': 1,
-	'userID': 1,
-	'date': '05/18/2018',
-	'title': 'Brisket #1',
-	'animal': 'cow',
-	# 'grade': 'USDA prime',
-	'meat_cut': 'brisket'
-	'weight': 16.1,
-	'after_trim_weight': 11.1,
-	'smoker': 'WSM'
-	'notes': 'lorem ipsum',
-	'description_notes': 'fatty point, solid thickness',
+	"key": 312213
+	"sessionID": 1,
+	"userID": 1,
+	"date": "05/18/2018",
+	"title": "Brisket #1",
+	"animal": "cow",
+	# "grade": "USDA prime",
+	"meat_cut": "brisket"
+	"weight": 16.1,
+	"after_trim_weight": 11.1,
+	"smoker": "WSM"
+	"notes": "lorem ipsum",
+	"description_notes": "fatty point, solid thickness",
 	"columns": [
 		{
 		"dataField": "time",
