@@ -3,8 +3,17 @@ import SearchResult from '../../components/SearchResult';
 import API from '../../utils/API.js';
 
 class SearchResults extends Component {
-    componentWillMount() {
-        
+    constructor(props) {
+        super(props)
+        this.state = {
+            
+        }
+    }
+    componentDidMount() {
+        API.getAllSessions()
+            .then(res=> {
+                console.log(res.data)
+            })
     }
     constructor(props) {
         super(props)
