@@ -7,11 +7,11 @@ from .serializers import SessionSerializer
 
 # Create your views here.
 
+# gets/updates/deletes by primary key 
 @api_view(['GET','PUT','DELETE'])
 @permission_classes((permissions.AllowAny,))
 def get_delete_update_session(request, pk):
     try:
-        print(request)
         session = SmokeSession.objects.get(pk=pk)
     except SmokeSession.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
@@ -29,8 +29,19 @@ def get_delete_update_session(request, pk):
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+# for searching by title
+@api_view(['GET'])
+@permission_classes((permissions.AllowAny,))
+def get_search_session(request, title):
+    try:
+        session = SmokeSession.objects.get(title=title)
+    except SmokeSession.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    serializer = SessionSerializer(session)
+    return Response(serializer.data)
 
 
+# gets all and posts a session
 @api_view(['GET', 'POST'])
 @permission_classes((permissions.AllowAny,))
 def get_post_session(request):
@@ -63,9 +74,3 @@ def get_post_session(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-
-# class SessionListCreate(generics.ListCreateAPIView):
-#     queryset = SmokeSession.objects.all()
-#     serializer_class = SessionSerializer
