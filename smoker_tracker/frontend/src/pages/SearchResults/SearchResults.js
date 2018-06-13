@@ -6,11 +6,18 @@ class SearchResults extends Component {
     constructor(props) {
         super(props)
     }
-    
+
     componentDidMount() {
         API.getAllSessions()
             .then(res=> {
                 console.log(res.data)
+            })
+        const params = {
+            userId: 1
+        }
+        API.searchSessions(params)
+            .then(res => {
+                console.log('search result:', res)
             })
     }
 
