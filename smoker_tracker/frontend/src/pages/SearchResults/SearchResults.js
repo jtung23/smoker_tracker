@@ -3,12 +3,24 @@ import SearchResult from '../../components/SearchResult';
 import API from '../../utils/API.js';
 
 class SearchResults extends Component {
-    componentWillMount() {
-        
-    }
     constructor(props) {
         super(props)
     }
+
+    componentDidMount() {
+        API.getAllSessions()
+            .then(res=> {
+                console.log(res.data)
+            })
+        const params = {
+            userId: 1
+        }
+        API.searchSessions(params)
+            .then(res => {
+                console.log('search result:', res)
+            })
+    }
+
     render() {
         return (
             <div>

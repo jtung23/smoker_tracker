@@ -17,25 +17,113 @@ class GetAllSessionsTest(TestCase):
             sessionId=1,
             userId=1,
             title="hello",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
         SmokeSession.objects.create(
             sessionId=2,
             userId=1,
             title="bye",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
         SmokeSession.objects.create(
             sessionId=1,
             userId=2,
             title="yes",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
         SmokeSession.objects.create(
             sessionId=1,
             userId=2,
             title="no",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
     def test_get_all_sessions(self):
         # tests by grabbing url link using reverse() then the respnose is returned
@@ -52,25 +140,113 @@ class GetSingleSessionTest(TestCase):
             sessionId=1,
             userId=1,
             title="hello",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
         self.bye = SmokeSession.objects.create(
             sessionId=2,
             userId=1,
             title="bye",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
         self.yes = SmokeSession.objects.create(
             sessionId=1,
             userId=2,
             title="yes",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
         self.no = SmokeSession.objects.create(
             sessionId=1,
             userId=2,
             title="no",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
 
         
@@ -95,15 +271,37 @@ class CreateNewSessionTest(TestCase):
         self.valid_payload = {
             'sessionId': 1,
             'userId': 2,
-            'title': "no",
-            'smoker': "WSM"
+            'title': 'no',
+            'smoker': 'WSM',
+            'created_at': 'timestamp',
+            'last_modified': 'datetimefield',
+            'columns': [
+                {
+                    'column1': 'col1',
+                    'col2': 'col2'
+                },
+                {
+                    'column1': 'col3',
+                    'col2': 'col4'
+                }
+            ],
+            'data': [
+                {
+                    'column1': 'col1',
+                    'col2': 'col2'
+                },
+                {
+                    'column1': 'col1',
+                    'col2': 'col2'
+                }
+            ]
         }
 
         self.invalid_payload = {
             'sessionId': 1,
             'userId': 2,
             'title': '',
-            'smoker': "WSM"
+            'smoker': 'WSM'
         }
 
     def test_create_valid_session(self):
@@ -132,20 +330,86 @@ class UpdateSingleSessionTest(TestCase):
             sessionId=1,
             userId=1,
             title="hello",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
         self.bye = SmokeSession.objects.create(
             sessionId=2,
             userId=1,
             title="bye",
-            smoker="WSM"
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
         # test objects for valid and invalid updated info
         self.valid_payload = {
             'sessionId': 2,
             'userId': 1,
             'title': "not hello",
-            'smoker': "WSM"
+            'smoker': "WSM",
+            'created_at': 'timestamp',
+            'last_modified': 'datetimefield',
+            'columns': [
+                {
+                    'column1': 'col1',
+                    'col2': 'col2'
+                },
+                {
+                    'column1': 'col3',
+                    'col2': 'col4'
+                }
+            ],
+            'data': [
+                {
+                    'column1': 'col1',
+                    'col2': 'col2'
+                },
+                {
+                    'column1': 'col1',
+                    'col2': 'col2'
+                }
+            ]
         }
         self.invalid_payload = {
             'sessionId': 2,
@@ -179,13 +443,57 @@ class DeleteSingleSessionTest(TestCase):
             sessionId=1,
             userId=1,
             title="hello",
-            smoker="WSM"  
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]  
         )
         self.bye = SmokeSession.objects.create(
             sessionId=2,
             userId=2,
             title="bye",
-            smoker="WSM"  
+            smoker="WSM",
+            created_at="timestamp",
+            last_modified="datetimefield",
+            columns=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col3",
+                    "col2": "col4"
+                }
+            ],
+            data=[
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                },
+                {
+                    "column1": "col1",
+                    "col2": "col2"
+                }
+            ]
         )
 
     def test_valid_delete_session(self):
