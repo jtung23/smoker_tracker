@@ -11,32 +11,30 @@ This app allows the user to track their BBQ sessions and share their sessions wi
 
 * A Smoker ex. [18" Weber Smokey Mountain](https://www.amazon.com/Weber-721001-Mountain-18-Inch-Charcoal/dp/B001I8ZTJ0)
 
-
-```
-Give examples
-```
+To contribute:
+* Understanding of Python, Django, and/or React
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+1. Fork or Clone
 
-Say what the step will be
-
+2. Installing dependancies
+`/smoker_tracker/smoker_tracker`
 ```
-Give the example
-```
-
-And repeat
-
-```
-until finished
+pip install -r requirements.txt
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+* on `smoker_tracker/smoker_tracker/`
+```
+python manage.py test
+```
+
+*on `smoker_tracker/smoker_Tracker/frontend/`
+
 
 ### Break down into end to end tests
 
@@ -66,7 +64,7 @@ Add additional notes about how to deploy this on a live system
 * [PostgreSQL](https://www.postgresql.org/docs/) - Database
 
 ## Contributing
-
+* Fork/Clone and contact me if you'd like to add features to the project
 
 ## Authors
 
@@ -74,7 +72,7 @@ Add additional notes about how to deploy this on a live system
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+Unlicensed
 
 ## Dev Notes
 
