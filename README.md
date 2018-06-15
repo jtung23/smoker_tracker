@@ -7,6 +7,17 @@ This app allows the user to track their BBQ sessions and share their sessions wi
 
 *Has not been deployed*
 
+* Starting development server
+```python
+# smoker_tracker/smoker_tracker/
+python manage.py runserver
+```
+* Starting front-end
+```javascript
+// /smoker_tracker/smoker_tracker/frontend/src/
+yarn start
+```
+
 ### Prerequisites
 
 * A Smoker ex. [18" Weber Smokey Mountain](https://www.amazon.com/Weber-721001-Mountain-18-Inch-Charcoal/dp/B001I8ZTJ0)
@@ -18,9 +29,11 @@ To contribute:
 
 1. Fork or Clone
 
+3. Start your virtual environment
+
 2. Installing dependancies
-`/smoker_tracker/smoker_tracker`
-```
+```python
+# /smoker_tracker/smoker_tracker
 pip install -r requirements.txt
 ```
 
@@ -28,8 +41,8 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-* on `smoker_tracker/smoker_tracker/`
-```
+```python
+# smoker_tracker/smoker_tracker/
 python manage.py test
 ```
 
