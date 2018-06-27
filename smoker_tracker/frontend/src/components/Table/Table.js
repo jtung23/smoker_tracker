@@ -6,6 +6,9 @@ import cellEditFactory from 'react-bootstrap-table2-editor';
 import CustomButton from '../CustomButton';
 import TableFn from '../../utils/TableFn.js'
 
+import ReactTable from "react-table";
+import "react-table/react-table.css";
+
 const blankData = {}
 class Table extends Component {
 	constructor(props) {
@@ -16,18 +19,47 @@ class Table extends Component {
 			init: false
 		};
 	}
+	
+	componentDidMount = () => {
+		// creates data and col obj then updates state
+		const data = TableFn.createDataObj(this.props.headerCols)
+		data.time = this.props.startingTime
+		data.index = 0
+		// const data = this.state.data.slice()
+		// data.push(data1)
+		const editableCols = TableFn.addEditable(this.props.headerCols, this.renderEditable)
+		console.log(editableCols)
+		this.setState({
+			data: data,
+			columns: editableCols
+		})
+		// return {
+		// 	columns: editableCols,
+		// 	data: data,
+		// 	init: true
+		// }
+	}
+
+	componentDidUpdate = () => {
+		// sets addRemove state in NewSmoke to ""
+		if (this.props.addRemoveCol === 'add' || this.props.addRemoveCol === 'remove') {
+			this.props.blankAddRemove()
+		}
+	}
 
 	static getDerivedStateFromProps = (nextProps, prevState) => {
 		// creates initial starting time row on component mount
 		if (!prevState.init) {
+			// runs in utils/TableFn to push appropriate data accessors for each value in the array
 			const data1 = TableFn.createDataObj(nextProps.headerCols)
 			data1.time = nextProps.startingTime
 			data1.index = 0
-
 			const data = prevState.data.slice()
 			data.push(data1)
+			const editableCols = TableFn.addEditable(nextProps.headerCols)
+			console.log(editableCols)
 			return {
-				columns: nextProps.headerCols,
+				columns: editableCols,
 				data: data,
 				init: true
 			}
@@ -54,49 +86,59 @@ class Table extends Component {
 		}
 		return null
 	}
-	
-	componentDidUpdate = () => {
-		// sets addRemove state in NewSmoke to ""
-		if (this.props.addRemoveCol === 'add' || this.props.addRemoveCol === 'remove') {
-			this.props.blankAddRemove()
-		}
-	}
 
 	submit = () => {
 		this.props.submitData(this.state)
+		
 	}
-	// updates table state when the cell is changed
-	updateTableState = (oldValue, newValue, row, column) => {
-		// creates non reference clone of data array of objects
-		let data1 = JSON.parse(JSON.stringify(this.state.data))
-		const index = row.index
-		const fieldName = column.dataField
-		// modifies clone based on index and fieldName
-		data1[index][fieldName] = newValue
-		this.setState({
-			data: data1
-		})
+
+	renderEditable = cellInfo => {
+		return (
+			<div
+				style={{ backgroundColor: "#fafafa" }}
+				contentEditable
+				suppressContentEditableWarning
+				onBlur={e => {
+					const data = [...this.state.data];
+					data[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
+					this.setState({ data });
+				}}
+				dangerouslySetInnerHTML={{
+				__html: this.state.data[cellInfo.index][cellInfo.column.id]
+				}}
+			/>
+		);
 	}
+
+	// Editable cells for react bootstrap table
+	// // updates table state when the cell is changed
+	// updateTableState = (oldValue, newValue, row, column) => {
+	// 	// creates non reference clone of data array of objects
+	// 	let data1 = JSON.parse(JSON.stringify(this.state.data))
+	// 	const index = row.index
+	// 	const fieldName = column.dataField
+	// 	// modifies clone based on index and fieldName
+	// 	data1[index][fieldName] = newValue
+	// 	this.setState({
+	// 		data: data1
+	// 	})
+	// }
 
 	render() {
 		return (
 			<div>
-				<BootstrapTable 
-					keyField="index"
-					columns={this.state.columns}
+				<ReactTable
 					data={this.state.data}
-					cellEdit={ cellEditFactory({ 
-						mode: 'click',
-						afterSaveCell: this.updateTableState,
-						blurToSave: true
-						}) 
-					}
+					columns={this.state.columns}
+					className="-striped -highlight"
 				/>
 				<CustomButton in="Submit" value="submit" clickHandler={this.submit} />
 			</div>
 		)
 	}
 }
+
+console.log(Table.constructor)
 
 
 export default Table;

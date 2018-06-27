@@ -71,3 +71,17 @@ body {
 .jumbotron__h1 {
     color: blue;
 }
+
+/* ************************* */
+/*    3. newSmokeInfo      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  
+    */
+.newSmoke__input {
+    width: 50%
+}
+
+.form-control {
+    width:50%
+}

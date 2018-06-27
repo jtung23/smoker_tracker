@@ -24,18 +24,61 @@ const style = {
 
 const wsmCols = [
 	{
-		dataField: 'vent1',
-		text: 'Vent 1'
+		accessor: 'vent1',
+		Header: 'Vent 1'
 	},
 	{
-		dataField: 'vent2',
-		text: 'Vent 2'
+		accessor: 'vent2',
+		Header: 'Vent 2'
 	},
 	{
-		dataField: 'vent3',
-		text: 'Vent 3'
+		accessor: 'vent3',
+		Header: 'Vent 3'
 	}
 ]
+const mainCols = [{
+		accessor: 'time',
+		Header: 'Time',
+	},
+	{
+		accessor: 'int_temp',
+		Header: 'Internal Temp',
+	},
+	{
+		accessor: 'grill_temp',
+		Header: 'Grill Temp',
+	}
+]
+// for bootstrap react table /////////////////////////////
+// const wsmCols = [
+// 	{
+// 		dataField: 'vent1',
+// 		text: 'Vent 1'
+// 	},
+// 	{
+// 		dataField: 'vent2',
+// 		text: 'Vent 2'
+// 	},
+// 	{
+// 		dataField: 'vent3',
+// 		text: 'Vent 3'
+// 	}
+// ]
+// const mainCols = [{
+// 		dataField: 'time',
+// 		text: 'Time',
+// 	},
+// 	{
+// 		dataField: 'int_temp',
+// 		text: 'Internal Temp',
+// 	},
+// 	{
+// 		dataField: 'grill_temp',
+// 		text: 'Grill Temp',
+// 	}
+// ]
+// //////////////////////////////////////////////////
+
 class NewSmokeInfo extends Component { 
 	state = {
 		title: "",
@@ -49,18 +92,7 @@ class NewSmokeInfo extends Component {
 		interval: "",
 		physDesc: "",
 		notes: "",
-		headerCols: [{
-			dataField: 'time',
-			text: 'Time',
-		},
-		{
-			dataField: 'int_temp',
-			text: 'Internal Temp',
-		},
-		{
-			dataField: 'grill_temp',
-			text: 'Grill Temp',
-		}],
+		headerCols: mainCols,
 		submit: false
 	}
 
@@ -127,7 +159,7 @@ class NewSmokeInfo extends Component {
 							placeholder="Title"
 							onChange={this.handleFormChange}
 							value={this.state.title}
-							className="title"
+							className="title newSmoke__input"
 						/>
 					</FormGroup>
 					<FormGroup>
@@ -155,7 +187,7 @@ class NewSmokeInfo extends Component {
 							name="meatCut"
 							onChange={this.handleFormChange}
 							value={this.state.meatCut}
-							className="meatCut"
+							className="meatCut newSmoke__input"
 							placeholder="ex. Brisket"
 						/>
 					</FormGroup>
@@ -181,7 +213,13 @@ class NewSmokeInfo extends Component {
 					</FormGroup>
 					<FormGroup>
 						<Label>Smoker</Label>
-						<Input type="select" name="smoker" onChange={this.handleFormChange} value={this.state.smoker} className="smoker">
+						<Input 
+							type="select"
+							name="smoker"
+							onChange={this.handleFormChange}
+							value={this.state.smoker}
+							className="smoker newSmoke__input"
+						>
 							<option value='no smoker'></option>
 							<option value='1'>Weber Smokey Mountain</option>
 						</Input>
@@ -200,11 +238,25 @@ class NewSmokeInfo extends Component {
 					<RaisedButton label="Grill Temp" value={"grill_temp"} onClick={this.raisedBtnClick} style={style.button} />
 					<FormGroup>
 						<Label>Physical Description</Label>
-						<Input type="textarea" name="physDesc" onChange={this.handleFormChange} value={this.state.physDesc} className="physDesc" placeholder="ex. Thick cap, uneven fat on flat..." />
+						<Input
+							type="textarea"
+							name="physDesc"
+							onChange={this.handleFormChange}
+							value={this.state.physDesc}
+							className="physDesc newSmoke__input"
+							placeholder="ex. Thick cap, uneven fat on flat..."
+						/>
 					</FormGroup>
 					<FormGroup>
 						<Label>Notes</Label>
-						<Input type="textarea" name="notes" onChange={this.handleFormChange} value={this.state.notes} className="notes" placeholder="ex. Cold day, ~50F. strong winds..." />
+						<Input 
+							type="textarea"
+							name="notes"
+							onChange={this.handleFormChange}
+							value={this.state.notes}
+							className="notes newSmoke__input"
+							placeholder="ex. Cold day, ~50F. strong winds..."
+						/>
 					</FormGroup>
 
 					<Link to={{
