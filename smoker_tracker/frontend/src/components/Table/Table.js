@@ -22,12 +22,14 @@ class Table extends Component {
 	
 	componentDidMount = () => {
 		// creates data and col obj then updates state
-		const data = TableFn.createDataObj(this.props.headerCols)
+		// as array with 1 object
+		let data = [TableFn.createDataObj(this.props.headerCols)]
 		data.time = this.props.startingTime
 		data.index = 0
 		// const data = this.state.data.slice()
 		// data.push(data1)
-		const editableCols = TableFn.addEditable(this.props.headerCols, this.renderEditable)
+		console.log(data)
+		const editableCols = TableFn.addEditable(this.props.headerCols, 'default')
 		console.log(editableCols)
 		this.setState({
 			data: data,
@@ -45,6 +47,7 @@ class Table extends Component {
 		if (this.props.addRemoveCol === 'add' || this.props.addRemoveCol === 'remove') {
 			this.props.blankAddRemove()
 		}
+
 	}
 
 	static getDerivedStateFromProps = (nextProps, prevState) => {
