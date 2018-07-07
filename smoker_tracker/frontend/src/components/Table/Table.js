@@ -24,12 +24,12 @@ class Table extends Component {
 		// creates data and col obj then updates state
 		// as array with 1 object
 		let data = [TableFn.createDataObj(this.props.headerCols)]
-		data.time = this.props.startingTime
-		data.index = 0
+		data[0].time = this.props.startingTime
+		data[0].index = 0
 		// const data = this.state.data.slice()
 		// data.push(data1)
 		console.log(data)
-		const editableCols = TableFn.addEditable(this.props.headerCols, 'default')
+		const editableCols = TableFn.addEditable(this.props.headerCols, this.renderEditable)
 		console.log(editableCols)
 		this.setState({
 			data: data,
