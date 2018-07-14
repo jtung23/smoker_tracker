@@ -1,0 +1,21 @@
+.main-body {
+    background: rgba(0, 0, 0, 0.21);
+    width: 100%;
+    padding-top: 2em;
+}
+
+form {
+    width: 80%;
+    margin: auto;
+}
+label {
+    color: purple;
+}
+
+select.animal {
+    width: 30%;
+}
+
+div.startingTime {
+    width: 100%;
+}
