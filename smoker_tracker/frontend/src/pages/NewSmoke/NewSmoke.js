@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import InfoBox from '../../components/InfoBox';
+// import InfoBox from '../../components/InfoBox';
 // import HeaderCol from '../../components/HeaderCol';
 import Table from '../../components/Table';
 // import CustomButton from '../../components/CustomButton';
@@ -38,31 +38,31 @@ class NewSmoke extends Component {
 
 	}
 
-	static getDerivedStateFromProps = (nextProps, prevState) => {
-		// setsState on component mount then sets init to true
-		if (!prevState.init) {
-			const location = nextProps.location.state
-			let headerCols = location.headerCols.concat(location.headerSmoker)
-			return {
-				init: true,
-				info: {
-					animal: location.animal ? location.animal : 'Not Entered',
-					meatCut: location.meatCut ? location.meatCut : 'Not Entered',
-					ogWeight: location.ogWeight ? location.ogWeight : 'Not Entered',
-					trimWeight: location.trimWeight ? location.trimWeight : 'Not Entered',
-					smoker: location.smoker ? location.smoker : 'Not Entered',
-					// interval: location.interval ? location.interval : 'Not Entered',
-					physDesc: location.physDesc ? location.physDesc : 'Not Entered',
-					notes: location.notes ? location.notes : 'Not Entered',
-					title: location.title ? location.title : 'Not Entered'
-				},
-				startingTime: location.startingTime,
-				headerCols: headerCols	
-			}
-		}
+	// static getDerivedStateFromProps = (nextProps, prevState) => {
+	// 	// setsState on component mount then sets init to true
+	// 	if (!prevState.init) {
+	// 		const location = nextProps.location.state
+	// 		let headerCols = location.headerCols.concat(location.headerSmoker)
+	// 		return {
+	// 			init: true,
+	// 			info: {
+	// 				animal: location.animal ? location.animal : 'Not Entered',
+	// 				meatCut: location.meatCut ? location.meatCut : 'Not Entered',
+	// 				ogWeight: location.ogWeight ? location.ogWeight : 'Not Entered',
+	// 				trimWeight: location.trimWeight ? location.trimWeight : 'Not Entered',
+	// 				smoker: location.smoker ? location.smoker : 'Not Entered',
+	// 				// interval: location.interval ? location.interval : 'Not Entered',
+	// 				physDesc: location.physDesc ? location.physDesc : 'Not Entered',
+	// 				notes: location.notes ? location.notes : 'Not Entered',
+	// 				title: location.title ? location.title : 'Not Entered'
+	// 			},
+	// 			startingTime: location.startingTime,
+	// 			headerCols: headerCols	
+	// 		}
+	// 	}
 
-		return null
-	}
+	// 	return null
+	// }
 
 	handleAdd = (event) => {
 		// opens timepicker modal if "add" col,
@@ -145,15 +145,6 @@ class NewSmoke extends Component {
 			<div style={style} >
 				<h1>{this.state.info.title ? this.state.info.title : 'No Title'}</h1>
 				<Link to="/newsmokeinfo" className="btn btn-primary">Back</Link>
-				<InfoBox 
-					animal={this.state.info.animal}
-					meatCut={this.state.info.meatCut}
-					ogWeight={this.state.info.ogWeight}
-					trimWeight={this.state.info.trimWeight}
-					smoker={this.state.info.smoker}
-					physDesc={this.state.info.physDesc}
-					notes={this.state.info.notes}
-				/>
 				<Table 
 					typeOfSmoker={this.state.info.smoker}
 					startingTime={this.state.startingTime}
