@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import SearchResult from '../../components/SearchResult';
+// import SearchResult from '../../components/SearchResult';
 import API from '../../utils/API.js';
 
 class SearchResults extends Component {
-    constructor(props) {
-        super(props)
-    }
+    // constructor(props) {
+    //     super(props)
+    // }
 
     componentDidMount() {
         API.getAllSessions()

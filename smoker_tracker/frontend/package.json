@@ -8,18 +8,19 @@
     "bootstrap3": "^3.3.5",
     "classnames": "^2.2.5",
     "css-vendor": "^1.0.3",
+    "immutability-helper": "^2.7.1",
     "jquery": "^3.3.1",
     "material-ui": "^0.20.0",
     "popper.js": "^1.14.3",
     "prop-types": "^15.6.1",
     "react": "^16.3.0",
-    "react-bootstrap-table-next": "^0.1.7",
-    "react-bootstrap-table2-editor": "^0.1.5",
+    "react-data-grid": "^4.0.7",
     "react-dom": "^16.3.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
-    "react-table": "^6.8.0",
-    "reactstrap": "^5.0.0-beta.3"
+    "reactstrap": "^5.0.0-beta.3",
+    "sweetalert2": "^7.25.6",
+    "sweetalert2-react-content": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

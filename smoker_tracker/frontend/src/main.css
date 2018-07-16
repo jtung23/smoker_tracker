@@ -15,8 +15,8 @@
     3.NewSmokeInfo
     4.NewSmoke
         4a. InfoBox
-        4b. Table
-        4b. BootModal
+        4b. DataGrid
+        4c. BootModal
     10. Miscellaneous
         10a. CustomButton
 /* ****************************************** */
@@ -85,3 +85,4 @@ body {
 .form-control {
     width:50%
 }
+
