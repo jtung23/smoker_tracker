@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import InfoBox from '../../components/InfoBox';
+// import InfoBox from '../../components/InfoBox';
 // import HeaderCol from '../../components/HeaderCol';
-import Table from '../../components/Table';
+import DataGrid from '../../components/DataGrid';
 // import CustomButton from '../../components/CustomButton';
 import {Link} from "react-router-dom";
 import CustomButton from '../../components/CustomButton';
 import BootModal from '../../components/BootModal';
 import API from '../../utils/API.js';
+import ReactDataGrid from 'react-data-grid';
+import update from 'immutability-helper';
 
 const style = {
 	background: '#a5f3ff'
@@ -27,6 +29,7 @@ class NewSmoke extends Component {
 				physDesc: '',
 				notes: ''
 			},
+			
 			startingTime: '',
 			addRemove: "",
 			modal: false,
@@ -34,34 +37,31 @@ class NewSmoke extends Component {
 			newTimeCol: "",
 			headerCols: [],
 			init: false,
-		}
-
-	}
-
-	static getDerivedStateFromProps = (nextProps, prevState) => {
-		// setsState on component mount then sets init to true
-		if (!prevState.init) {
-			const location = nextProps.location.state
-			let headerCols = location.headerCols.concat(location.headerSmoker)
-			return {
-				init: true,
-				info: {
-					animal: location.animal ? location.animal : 'Not Entered',
-					meatCut: location.meatCut ? location.meatCut : 'Not Entered',
-					ogWeight: location.ogWeight ? location.ogWeight : 'Not Entered',
-					trimWeight: location.trimWeight ? location.trimWeight : 'Not Entered',
-					smoker: location.smoker ? location.smoker : 'Not Entered',
-					// interval: location.interval ? location.interval : 'Not Entered',
-					physDesc: location.physDesc ? location.physDesc : 'Not Entered',
-					notes: location.notes ? location.notes : 'Not Entered',
-					title: location.title ? location.title : 'Not Entered'
+			columns: [
+				{
+				  key: 'id',
+				  name: 'ID',
+				  width: 80
 				},
-				startingTime: location.startingTime,
-				headerCols: headerCols	
-			}
+				{
+				  key: 'time',
+				  name: 'Time (HhMm)',
+				  editable: true
+				},
+				{
+				  key: 'internalTemp',
+				  name: 'Internal Temp (F)',
+				  editable: true
+				},
+				{
+				  key: 'grillTemp',
+				  name: 'Grill Temp (F)',
+				  editable: true
+				}
+			  ],
+			rows: this.createRows(10)
 		}
 
-		return null
 	}
 
 	handleAdd = (event) => {
@@ -115,6 +115,39 @@ class NewSmoke extends Component {
 		}
 	}
 
+	getRandomDate = (start, end) => {
+		return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime())).toLocaleDateString();
+	};
+	
+	createRows = (numberOfRows) => {
+		let rows = [];
+		for (let i = 1; i < numberOfRows; i++) {
+			rows.push({
+			id: i,
+			// time: "",
+			// internalTemp: "",
+			// grillTemp: ""
+			});
+		}
+		return rows;
+	};
+	
+	rowGetter = (i) => {
+		return this.state.rows[i];
+	};
+	
+	handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+		let rows = this.state.rows.slice();
+
+		for (let i = fromRow; i <= toRow; i++) {
+			let rowToUpdate = rows[i];
+			let updatedRow = update(rowToUpdate, {$merge: updated});
+			rows[i] = updatedRow;
+		}
+
+		this.setState({ rows });
+	};
+
 	submitData = (tableState) => {
 		console.log('newSmoke tableState', tableState)
 		console.log('newSMoke state', this.state)
@@ -143,27 +176,20 @@ class NewSmoke extends Component {
 	render() {
 		return (
 			<div style={style} >
-				<h1>{this.state.info.title ? this.state.info.title : 'No Title'}</h1>
+				<h1>Title</h1>
 				<Link to="/newsmokeinfo" className="btn btn-primary">Back</Link>
-				<InfoBox 
-					animal={this.state.info.animal}
-					meatCut={this.state.info.meatCut}
-					ogWeight={this.state.info.ogWeight}
-					trimWeight={this.state.info.trimWeight}
-					smoker={this.state.info.smoker}
-					physDesc={this.state.info.physDesc}
-					notes={this.state.info.notes}
-				/>
-				<Table 
-					typeOfSmoker={this.state.info.smoker}
-					startingTime={this.state.startingTime}
- 					addRemoveCol={this.state.addRemove}
-					timeToSend={this.state.timeToSend}
-					submitData={this.submitData}
-					headerCols={this.state.headerCols}
-					blankAddRemove={this.blankAddRemove}
-				/>
 
+				<DataGrid>
+					<ReactDataGrid
+						enableCellSelect={true}
+						columns={this.state.columns}
+						rowGetter={this.rowGetter}
+						rowsCount={this.state.rows.length}
+						onGridRowsUpdated={this.handleGridRowsUpdated} 
+					/>
+				</DataGrid>
+
+				<CustomButton in="Submit" value="submit" clickHandler={this.submit} />
 				<CustomButton in="Add" value="add" clickHandler={this.handleAdd} />
 				{this.state.modal ? 
 					<BootModal 
