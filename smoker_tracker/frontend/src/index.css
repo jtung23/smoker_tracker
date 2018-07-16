@@ -96,3 +96,25 @@ body {
 .jumbotron__h1 {
     color: blue;
 }
+
+/* ************************* */
+/*    4. NewSmoke      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  
+    */
+
+/* ************************* */
+/*    4b. DataGrid      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  
+    */
+
+    .noMargLeft {
+        margin-left: 0px
+    }
+    .bottom-right {
+        float: right;
+        vertical-align: bottom;
+    }

@@ -17,7 +17,7 @@ class Landing extends Component {
 					<div className="row justify-content-center allCards">
 						<div className="col-md-3 allCards__card">
 							<div className="card__image">
-								<img src="http://via.placeholder.com/200x200"/>
+								<img  alt="placeholder" src="http://via.placeholder.com/200x200"/>
 							</div>
 							<div className="card__text">
 								<p>Hello</p>
@@ -25,7 +25,7 @@ class Landing extends Component {
 						</div>
 						<div className="col-md-3 allCards__card allCards__card--margin">
 							<div className="card__image">
-								<img src="http://via.placeholder.com/200x200"/>
+								<img  alt="placeholder" src="http://via.placeholder.com/200x200"/>
 							</div>
 							<div className="card__text">
 								<p>Hello</p>
@@ -33,7 +33,7 @@ class Landing extends Component {
 						</div>
 						<div className="col-md-3 allCards__card">
 							<div className="card__image">
-								<img src="http://via.placeholder.com/200x200"/>
+								<img  alt="placeholder" src="http://via.placeholder.com/200x200"/>
 							</div>
 							<div className="card__text">
 								<p>Hello</p>

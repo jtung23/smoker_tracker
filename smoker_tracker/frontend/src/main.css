@@ -15,8 +15,8 @@
     3.NewSmokeInfo
     4.NewSmoke
         4a. InfoBox
-        4b. Table
-        4b. BootModal
+        4b. DataGrid
+        4c. BootModal
     10. Miscellaneous
         10a. CustomButton
 /* ****************************************** */
@@ -71,3 +71,18 @@ body {
 .jumbotron__h1 {
     color: blue;
 }
+
+/* ************************* */
+/*    3. newSmokeInfo      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  
+    */
+.newSmoke__input {
+    width: 50%
+}
+
+.form-control {
+    width:50%
+}
+
