@@ -11,6 +11,8 @@ import ReactDataGrid from 'react-data-grid';
 import update from 'immutability-helper';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import TextField from '@material-ui/core/TextField';
+
 
 const MySwal = withReactContent(Swal)
 
@@ -23,17 +25,14 @@ class NewSmoke extends Component {
 	constructor(props) {
 		super(props);
 		this.state= {
-			info: {
-				title: '',
-				animal: '',
-				meatCut: '',
-				ogWeight: '',
-				trimWeight: '',
-				smoker: '',
-				interval: '',
-				physDesc: '',
-				notes: ''
-			},
+			title: '',
+			animal: '',
+			meatCut: '',
+			ogWeight: '',
+			trimWeight: '',
+			smoker: '',
+			physDesc: '',
+			notes: '',
 			columns: [
 				{
 				  key: 'id',
@@ -56,7 +55,7 @@ class NewSmoke extends Component {
 				  editable: true
 				}
 			  ],
-			rows: this.createRows(6)
+			rows: this.createRows(2)
 		}
 
 	}
@@ -64,9 +63,7 @@ class NewSmoke extends Component {
 	handleInfoOnChange = e => {
 		const {name, value} = e.target
 		this.setState({
-			info: {
-				[name]: value
-			}
+			[name]: value
 		})
 	}
 	// Adding and Removing Columns *************************************************
@@ -124,9 +121,9 @@ class NewSmoke extends Component {
 		for (let i = 1; i < numberOfRows; i++) {
 			rows.push({
 			id: i,
-			// time: "",
-			// internalTemp: "",
-			// grillTemp: ""
+			time: "",
+			internalTemp: "",
+			grillTemp: ""
 			});
 		}
 		return rows;
@@ -151,7 +148,7 @@ class NewSmoke extends Component {
 // 
 //
 	submitData = () => {
-		const {title, animal, meatCut, ogWeight, trimWeight, smoker, physDesc, notes} = this.state.info
+		const {title, animal, meatCut, ogWeight, trimWeight, smoker, physDesc, notes} = this.state
 		const d = new Date()
 		
 		const submitData = {
@@ -179,18 +176,20 @@ class NewSmoke extends Component {
 					<Link to="/newsmokeinfo" className="btn btn-primary">Back</Link>
 				</div>
 				<div className="row">
-					<div className="col-md-4">
+					<div className="col-md-6">
 						<h4>
-							<input
+							<TextField
 								name="title"
-								value={this.state.info.title}
-								type="text"
-								placeholder="Title"
+								margin="dense"
+								fullWidth
+								required
+								value={this.state.title}
+								label="Title"
 								onChange={this.handleInfoOnChange} 
 							/>
 						</h4>
 					</div>
-					<div className="col-md-4 offset-md-4">
+					<div className="col-md-3 offset-md-3">
 						<CustomButton className="bottom-right align-bottom" in="Add Column" value="add" clickHandler={this.handleAddCol} />
 						<CustomButton className="bottom-right align-bottom" in="Remove Column" value="remove" clickHandler={this.handleRemoveCol} />
 					</div>
@@ -216,8 +215,61 @@ class NewSmoke extends Component {
 						value="remove"
 						clickHandler={this.handleRemove} />
 				</div>
-				<div className="row noMargLeft">
-					<CustomButton in="Submit" value="submit" clickHandler={this.submitData} />
+				<div className="row noMargeLeft row--marginTop" >
+					<div className="col-md-6">
+						<TextField
+							className="textField--padding"
+							label="What animal?"
+							name="animal"
+							value={this.state.animal}
+							onChange={this.handleInfoOnChange} />
+						<TextField
+							className="textField--padding" 
+							style={{marginLeft: "20px"}}
+							label="What cut?"
+							name="meatCut"
+							value={this.state.meatCut}
+							onChange={this.handleInfoOnChange} />
+						<TextField
+							className="textField--padding textField--marginTop" 
+							label="Net Weight? (lbs)"
+							margin="dense"
+							name="ogWeight"
+							value={this.state.ogWeight}
+							onChange={this.handleInfoOnChange} />
+						<TextField
+							className="textField--padding textField--marginTop"
+							style={{marginLeft: "20px"}}
+							margin="dense"
+							label="Smoker?"
+							name="smoker"
+							value={this.state.smoker}
+							onChange={this.handleInfoOnChange} />
+					</div>
+					<div className="col-md-6">
+						<TextField
+							multiline
+							fullWidth
+							rows="2"
+							label="Description"
+							name="physDesc"
+							value={this.state.physDesc}
+							onChange={this.handleInfoOnChange} />
+						<TextField
+							multiline
+							fullWidth
+							rows="2"
+							margin="dense"
+							label="Results/Notes"
+							name="notes"
+							value={this.state.notes}
+							onChange={this.handleInfoOnChange} />
+					</div>
+				</div>
+				<div className="row noMargLeft align-right">
+					<div className="col-md-6">
+						<CustomButton in="Submit" value="submit" clickHandler={this.submitData} />
+					</div>
 				</div>
 			</div>
 		)

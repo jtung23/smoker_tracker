@@ -118,3 +118,15 @@ body {
         float: right;
         vertical-align: bottom;
     }
+
+    .form__textArea {
+        width: 100%;
+    }
+
+    .row--marginTop {
+        margin-top: 20px;
+    }
+
+    .textField--marginTop {
+        margin-top: 20px;
+    }
