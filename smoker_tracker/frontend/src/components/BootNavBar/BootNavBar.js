@@ -13,10 +13,18 @@ const BootNavBar = props =>
 					Search
 				</Link>
 			</form>
-			<button onClick={props.loginClick}>GO!</button>
-			<Link className="nav-link" to="/login">
+		</div>
+		<div className="nav-item">
+			<button 
+				className="btn btn-primary nav-link" 
+				onClick={props.loginClick}>
 				Login
-			</Link>
+			</button>
+			<button 
+				className="btn btn-danger nav-link" 
+				onClick={props.registerClick}>
+				Register
+			</button>
 		</div>
 	</div>
 

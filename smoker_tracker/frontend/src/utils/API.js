@@ -23,6 +23,10 @@ export default {
     // updates a session
     updateSession: function(id) {
         return axios.update('api/sessions/'+id)
+    },
+
+    loginUser: function(requestObj) {
+        return axios.post(requestObj)
     }
 
 }
