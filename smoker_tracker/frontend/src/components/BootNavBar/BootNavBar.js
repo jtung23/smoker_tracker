@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-
+import { Auth } from "aws-amplify";
 const BootNavBar = props => 
 	<div className="navbar">
 		<Link className="navbar-brand" to="/">

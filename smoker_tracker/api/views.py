@@ -64,13 +64,14 @@ def get_post_session(request):
             'trimWeight': request.data.get('trimWeight'),
             'physDesc': request.data.get('physDesc'),
             'notes': request.data.get('notes'),
-            'last_modified': request.data.get('last_modified'),
             'columns': request.data.get('columns'),
             'data': request.data.get('data')
         }
         print(data)
         serializer = SessionSerializer(data=data)
+        print("SERIALIZER:", serializer)
         if serializer.is_valid():
+            print('VALID SERIALIZER')
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -148,24 +148,37 @@ class NewSmoke extends Component {
 // 
 //
 	submitData = () => {
-		const {title, animal, meatCut, ogWeight, trimWeight, smoker, physDesc, notes} = this.state
+		const {title, animal, meatCut, ogWeight, trimWeight, smoker, physDesc, notes, rows, columns} = this.state
 		const d = new Date()
-		
+		columns.forEach((val, i) => {
+			if (val.editable) {
+				columns[i].editable = val.editable.toString()
+			}
+		})
 		const submitData = {
-			date: d.toDateString(),
+			sessionId: 1,
+			userId: 1,
+			created_at: d.toDateString(),
 			title: title,
 			animal: animal,
 			meatCut: meatCut,
-			ogWeight: ogWeight,
-			trimWeight: trimWeight,
+			ogWeight: parseFloat(ogWeight),
 			smoker: smoker,
 			physDesc: physDesc,
 			notes: notes,
-			rows: this.state.rows,
-			columns: this.state.columns
+			data: rows,
+			columns: columns
 		}
-		console.log(submitData)
-		// API.postNewTable()
+
+		API.postNewTable(submitData)
+			.then(res => {
+				console.log(res)
+			})
+			.catch(err => {console.log('error', err)})
+		API.getAllSessions()
+			.then(res => {
+				console.log(res)
+			})
 	}
 
 
