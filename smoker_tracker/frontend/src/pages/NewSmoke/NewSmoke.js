@@ -9,11 +9,11 @@ import API from '../../utils/API';
 import TableFn from '../../utils/TableFn'
 import ReactDataGrid from 'react-data-grid';
 import update from 'immutability-helper';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import TextField from '@material-ui/core/TextField';
 
-
+// sweet alert set up
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 
 const style = {
