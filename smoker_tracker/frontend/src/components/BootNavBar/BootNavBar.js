@@ -22,6 +22,11 @@ const BootNavBar = props =>
 			</button>
 			<button 
 				className="btn btn-danger nav-link" 
+				onClick={props.logoutClick}>
+				Log Out
+			</button>
+			<button 
+				className="btn btn-danger nav-link" 
 				onClick={props.registerClick}>
 				Register
 			</button>

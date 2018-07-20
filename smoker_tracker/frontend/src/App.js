@@ -28,11 +28,34 @@ class App extends Component {
 		this.state = {
 		  displayed_form: '',
 		  logged_in: localStorage.getItem('token') ? true : false,
-		  username: '',
+		//   username: '',
 		  email: '',
-		  password: ''
 		};
 	}
+
+
+	componentDidMount() {
+		if (this.state.logged_in) {
+			const header = {
+				auth: `JWT ${localStorage.getItem('token')}`
+			  }
+			  console.log(this.state.logged_in)
+			  console.log(header)
+			API.getUser('current_user/', header)
+		 		.then(res => {
+					 console.log(res)
+					 this.setState({ username: res.data.username });
+
+				 })
+				 .catch(err => {console.log(err)})
+		}
+	}
+
+	logoutClick = () => {
+		console.log('logout')
+		localStorage.removeItem('token');
+		this.setState({ logged_in: false, username: '' });
+	};
 
 	loginClick = () => {
 		MySwal.mixin({
@@ -68,42 +91,20 @@ class App extends Component {
 		]).then((result) => {
 			if (result.value) {
 				const requestObj = {
-					url: 'auth/current_user/',
-					data: JSON.stringify({
-						username: result.value[0],
-						password: result.value[1]
-					}),
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					}
+					email: result.value[0],
+					password: result.value[1]
 				}
-
-				fetch('http://localhost:8000/auth/users', {
-					method: 'POST',
-					headers: {
-					  'Content-Type': 'application/json'
-					},
-					body: requestObj.data
-				  })
-					.then(res => res.json())
-					.then(json => {
-					  localStorage.setItem('token', json.token);
-					  console.log(json.token)
+				const url = 'token-auth/'
+				API.loginRegUser(url, requestObj)
+					.then(res => {
+					  localStorage.setItem('token', res.data.token);
+					  console.log(res.token)
 					  this.setState({
 						logged_in: true,
 						displayed_form: '',
-						username: json.user.username
+						username: res.data.username
 					  });
 					});
-				// API.loginUser(requestObj)
-				// 	.then(res => res.json())
-				// 	.then(json => {
-				// 		console.log(json)	
-				// this.handleSubmit(result.value[0], result.value[1])
-				// this.setState({
-				// 	email: result.value[0],
-				// 	password: result.value[1]
-					// })
 			}
 		})
 	}
@@ -141,27 +142,22 @@ class App extends Component {
 			}
 		]).then((result) => {
 			if (result.value) {
-				const url = 'auth/users/'
+				const url = 'users/'
 				const userData = {
 					username: result.value[0],
 					password: result.value[1]
 				}
-				fetch('http://localhost:8000/auth/users', {
-					method: 'POST',
-					headers: {
-					  'Content-Type': 'application/x-www-form-urlencoded'
-					},
-					body: JSON.stringify(userData)
-				  })
-					.then(res => res.json())
-					.then(json => {
-						console.log(json.token)
+				API.loginRegUser(url, userData)
+					.then(res => {
+						console.log(res)
+						localStorage.setItem('token', res.data.token)
+
+						this.setState({
+							logged_in: true,
+							displayed_form: '',
+							username: res.data.username
+				  });
 					})
-				// this.handleSubmit(result.value[0], result.value[1])
-				// this.setState({
-				// 	email: result.value[0],
-				// 	password: result.value[1]
-				// })
 			}
 		})
 	}
@@ -182,6 +178,7 @@ class App extends Component {
 					<div className="app">
 						<BootNavBar
 							loginClick={this.loginClick}
+							logoutClick={this.logoutClick}
 							registerClick={this.registerClick} />
 						<Switch>
 							<Route exact path="/" component={Landing}/>

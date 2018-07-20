@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import current_user, user_list
-from django.views.decorators.csrf import csrf_exempt
+from .views import current_user, UserList
 
 urlpatterns = [
     path('current_user/', current_user),
-    path('users/', user_list)
+    path('users/', UserList.as_view())
 ]

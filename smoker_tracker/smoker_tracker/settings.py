@@ -127,9 +127,11 @@ REST_FRAMEWORK = {
     )
 }
 
+CSRF_COOKIE_NAME = "csrftoken"
+
 CORS_ORIGIN_WHITELIST = (
     'localhost:3000',
-    'localhost:8000'
+    # 'localhost:8000'
 )
 
 JWT_AUTH = {

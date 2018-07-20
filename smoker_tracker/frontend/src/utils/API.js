@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+axios.defaults.xsrfCookieName = 'csrftoken'
+axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+
 export default {
     // retrieves all sessions
     getAllSessions: function() {
@@ -25,8 +28,11 @@ export default {
         return axios.update('api/sessions/'+id)
     },
 
-    loginUser: function(requestObj) {
-        return axios.post(requestObj)
-    }
+    loginRegUser: function(url, requestObj) {
+        return axios.post(url, requestObj)
+    },
 
+    getUser: function(url, requestObj) {
+        return axios.get(url, requestObj)
+    }
 }

@@ -11,7 +11,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
-
     token = serializers.SerializerMethodField()
     password = serializers.CharField(write_only=True)
 

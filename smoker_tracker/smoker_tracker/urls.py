@@ -25,7 +25,7 @@ urlpatterns = [
     # url(r'^admin/', include(admin.site.urls)),
     path('', include('api.urls')),
     path('token-auth/', obtain_jwt_token),
-    path('auth/', include('userAuth.urls')),
+    path('', include('userAuth.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', views.FrontendAppView.as_view(), name='home'),
     # url(r'^obtain-auth-token/$', obtain_auth_token)
