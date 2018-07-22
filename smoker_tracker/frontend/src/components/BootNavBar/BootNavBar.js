@@ -15,21 +15,33 @@ const BootNavBar = props =>
 			</form>
 		</div>
 		<div className="nav-item">
-			<button 
-				className="btn btn-primary nav-link" 
-				onClick={props.loginClick}>
-				Login
-			</button>
-			<button 
-				className="btn btn-danger nav-link" 
-				onClick={props.logoutClick}>
-				Log Out
-			</button>
-			<button 
-				className="btn btn-danger nav-link" 
-				onClick={props.registerClick}>
-				Register
-			</button>
+			 
+			{props.logged_in ? 
+				<div>
+					<h1>`Hi ${props.username}` </h1>
+					<button 
+						className="btn btn-danger nav-link" 
+						onClick={props.logoutClick}>
+						Log Out
+					</button> 
+				</div>
+				: 	
+				<div>		
+					<button 
+						className="btn btn-primary nav-link" 
+						onClick={props.loginClick}>
+						Login
+					</button>
+					<button 
+						className="btn btn-danger nav-link" 
+						onClick={props.registerClick}>
+						Register
+					</button>
+				</div>
+			} 
+
+
+
 		</div>
 	</div>
 

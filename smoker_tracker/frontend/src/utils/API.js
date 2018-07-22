@@ -28,8 +28,8 @@ export default {
         return axios.update('api/sessions/'+id)
     },
 
-    loginRegUser: function(url, requestObj) {
-        return axios.post(url, requestObj)
+    loginRegUser: function(url, requestObj, headers) {
+        return axios.post(url, requestObj, headers)
     },
 
     getUser: function(url, requestObj) {

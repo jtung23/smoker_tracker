@@ -6,7 +6,6 @@ import NewSmokeInfo from './components/NewSmokeInfo';
 import SearchResults from './pages/SearchResults';
 // materialui's timepicker and other styles
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { Auth } from "aws-amplify";
 import NotFound from './components/NotFound';
 // sweet alert set up
 import Swal from 'sweetalert2'
@@ -28,26 +27,24 @@ class App extends Component {
 		this.state = {
 		  displayed_form: '',
 		  logged_in: localStorage.getItem('token') ? true : false,
-		//   username: '',
-		  email: '',
+		  username: '',
+		//   email: '',
 		};
 	}
 
 
 	componentDidMount() {
 		if (this.state.logged_in) {
-			const header = {
-				auth: `JWT ${localStorage.getItem('token')}`
-			  }
-			  console.log(this.state.logged_in)
-			  console.log(header)
-			API.getUser('current_user/', header)
-		 		.then(res => {
-					 console.log(res)
-					 this.setState({ username: res.data.username });
-
-				 })
-				 .catch(err => {console.log(err)})
+			fetch('http://localhost:3000/current_user/', {
+				headers: {
+				  Authorization: `JWT ${localStorage.getItem('token')}`
+				}
+			  })
+				.then(res => res.json())
+				.then(json => {
+				  this.setState({ username: json.username });
+				})
+				.catch(err => {console.log(err)})
 		}
 	}
 
@@ -177,6 +174,8 @@ class App extends Component {
 				<Router>
 					<div className="app">
 						<BootNavBar
+							logged_in={this.state.logged_in}
+							username={this.state.username}
 							loginClick={this.loginClick}
 							logoutClick={this.logoutClick}
 							registerClick={this.registerClick} />
