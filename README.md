@@ -3,6 +3,11 @@
 As an avid BBQer I realized I needed a way other than google sheets or excel to track all my smoke sessions. I frequently found myself caught up in the maintenance during a session to remember to record.
 This app allows the user to track their BBQ sessions and share their sessions with everyone else. Allowing anyone to get into the hobby/industry, emulate a session, and deliver delicious meat.
 
+## MVP
+- [x] save BBQ sessions
+- [ ] Authentication/users
+- [ ] Profile to view all sessions
+- [ ] Search
 ## Getting Started
 
 *Has not been deployed*
@@ -100,3 +105,4 @@ Unlicensed
 4. When making new col, validator if same time, then reject
 
 5. newSmokeInfo Timepicker child div.timePicker needs to have width 100%. Have to style in child element, potentially use radium.
+  
