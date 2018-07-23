@@ -14,6 +14,7 @@ const BootNavBar = props =>
 				</Link>
 			</form>
 		</div>
+		<button onClick={props.handleClose}> GO </button>
 		<div className="nav-item">
 			 
 			{props.logged_in ? 
@@ -29,18 +30,18 @@ const BootNavBar = props =>
 				<div>		
 					<button 
 						className="btn btn-primary nav-link" 
-						onClick={props.loginClick}>
+						onClick={props.handleLoginRegBtnClick}
+						value="login">
 						Login
 					</button>
 					<button 
 						className="btn btn-danger nav-link" 
-						onClick={props.registerClick}>
+						onClick={props.handleLoginRegBtnClick}
+						value="reg">
 						Register
 					</button>
 				</div>
 			} 
-
-
 
 		</div>
 	</div>

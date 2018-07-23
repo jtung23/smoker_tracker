@@ -7,6 +7,9 @@ import SearchResults from './pages/SearchResults';
 // materialui's timepicker and other styles
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import NotFound from './components/NotFound';
+import LoginDialog from './components/LoginDialog';
+import RegisterDialog from './components/RegisterDialog';
+
 // sweet alert set up
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -25,13 +28,14 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-		  displayed_form: '',
-		  logged_in: localStorage.getItem('token') ? true : false,
-		  username: '',
-		//   email: '',
+			displayed_form: '',
+			logged_in: localStorage.getItem('token') ? true : false,
+			name: '',
+			email: '',
+			password: '',
+			open: false
 		};
 	}
-
 
 	componentDidMount() {
 		if (this.state.logged_in) {
@@ -167,13 +171,56 @@ class App extends Component {
 	// 		alert(e.message);
 	// 	}
 	// }
+	// sets displayed_form to either 'login' or 'reg
+	handleLoginRegBtnClick = (e) => {
+		this.setState({
+			displayed_form: e.target.value,
+			open: true
+		})
+	}
+	handleFormChange = (e) => {
+		const {name, value} = e.target
+		this.setState({
+			[name]: value
+		})
+	}
+	handleClose = (e) => {
+		if (e.target.value) { // if value is completed
+			console.log(this.state.email, this.state.password)
+		}
+		// console.log('close!!!')
+		this.setState({ open: false });
+	}
 	
   render() {
+	let form;
+    switch (this.state.displayed_form) {
+      case 'login':
+		form = <LoginDialog 
+			open={this.state.open} 
+			handleClose={this.handleClose} 
+			handleFormChange={this.handleFormChange}
+			email={this.state.email}
+			password={this.state.password} />;
+        break;
+      case 'reg':
+		form = <RegisterDialog 
+			open={this.state.open} 
+			handleClose={this.handleClose}
+			handleFormChange={this.handleFormChange}
+			username={this.state.username}
+			email={this.state.email}
+			password={this.state.password} />;
+        break;
+      default:
+        form = null;
+}
     return (
 			<MuiThemeProvider>
 				<Router>
 					<div className="app">
 						<BootNavBar
+							handleLoginRegBtnClick={this.handleLoginRegBtnClick}
 							logged_in={this.state.logged_in}
 							username={this.state.username}
 							loginClick={this.loginClick}
@@ -186,6 +233,9 @@ class App extends Component {
 							<Route path="/searchresults" component={SearchResults} />
 							<Route component={NotFound} />
 						</Switch>
+
+=						{form}
+
 					</div>
 				</Router>
 			</MuiThemeProvider>
