@@ -12,7 +12,11 @@ class Landing extends Component {
 	render() {
 		return (
 			<div style={style.body} >
+
+			
 				<Jumbotron />
+
+
 				<div className="container">
 					<div className="row justify-content-center allCards">
 						<div className="col-md-3 allCards__card">

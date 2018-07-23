@@ -16,17 +16,21 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.urls import path
 from django.contrib import admin
+from rest_framework_jwt.views import obtain_jwt_token
+
 from . import views
 
 urlpatterns = [
 	# all other url patterns go here. react goes last, as catchall
     # url(r'^admin/', include(admin.site.urls)),
     path('', include('api.urls')),
-    # url(
-    #     r'^api-auth/',
-    #     include('rest_framework.urls', namespace='rest_framework')
-    # ),
+    path('token-auth/', obtain_jwt_token),
+    path('', include('userAuth.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^', views.FrontendAppView.as_view(), name='home')
-
+    url(r'^', views.FrontendAppView.as_view(), name='home'),
+    # url(r'^obtain-auth-token/$', obtain_auth_token)
 ]
+
+
+
+urlpatterns += [  ]

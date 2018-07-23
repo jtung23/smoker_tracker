@@ -9,11 +9,11 @@ import API from '../../utils/API';
 import TableFn from '../../utils/TableFn'
 import ReactDataGrid from 'react-data-grid';
 import update from 'immutability-helper';
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
 import TextField from '@material-ui/core/TextField';
 
-
+// sweet alert set up
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 
 const style = {
@@ -148,24 +148,37 @@ class NewSmoke extends Component {
 // 
 //
 	submitData = () => {
-		const {title, animal, meatCut, ogWeight, trimWeight, smoker, physDesc, notes} = this.state
+		const {title, animal, meatCut, ogWeight, trimWeight, smoker, physDesc, notes, rows, columns} = this.state
 		const d = new Date()
-		
+		columns.forEach((val, i) => {
+			if (val.editable) {
+				columns[i].editable = val.editable.toString()
+			}
+		})
 		const submitData = {
-			date: d.toDateString(),
+			sessionId: 1,
+			userId: 1,
+			created_at: d.toDateString(),
 			title: title,
 			animal: animal,
 			meatCut: meatCut,
-			ogWeight: ogWeight,
-			trimWeight: trimWeight,
+			ogWeight: parseFloat(ogWeight),
 			smoker: smoker,
 			physDesc: physDesc,
 			notes: notes,
-			rows: this.state.rows,
-			columns: this.state.columns
+			data: rows,
+			columns: columns
 		}
-		console.log(submitData)
-		// API.postNewTable()
+
+		API.postNewTable(submitData)
+			.then(res => {
+				console.log(res)
+			})
+			.catch(err => {console.log('error', err)})
+		API.getAllSessions()
+			.then(res => {
+				console.log(res)
+			})
 	}
 
 

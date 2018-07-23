@@ -274,27 +274,37 @@ class CreateNewSessionTest(TestCase):
             'title': 'no',
             'smoker': 'WSM',
             'created_at': 'timestamp',
-            'last_modified': 'datetimefield',
+            'ogWeight': "14",
+            'meatCut': "brisket",
+            'animal': "cow",
             'columns': [
                 {
-                    'column1': 'col1',
-                    'col2': 'col2'
+                    'key': 'col1',
+                    'name': 'col2',
+                    'width': 80
                 },
                 {
-                    'column1': 'col3',
-                    'col2': 'col4'
+                    'key': 'col2',
+                    'name': 'col3',
+                    'editable': 'true'
                 }
             ],
             'data': [
                 {
-                    'column1': 'col1',
-                    'col2': 'col2'
+                    'grillTemp': '300',
+                    'id': '1',
+                    'internalTemp': "400",
+                    'time': "13:00"
                 },
                 {
-                    'column1': 'col1',
-                    'col2': 'col2'
+                    'grillTemp': '600',
+                    'id': '2',
+                    'internalTemp': "500",
+                    'time': "14:00"
                 }
-            ]
+            ],
+            'notes': "NOTES",
+            'physDesc': "DESCRIPTION"
         }
 
         self.invalid_payload = {
