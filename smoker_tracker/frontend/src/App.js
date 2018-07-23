@@ -31,6 +31,7 @@ class App extends Component {
 			displayed_form: '',
 			logged_in: localStorage.getItem('token') ? true : false,
 			name: '',
+			id: '',
 			email: '',
 			password: '',
 			open: false
@@ -46,7 +47,11 @@ class App extends Component {
 			  })
 				.then(res => res.json())
 				.then(json => {
-				  this.setState({ username: json.username });
+					console.log(json)
+					this.setState({ 
+						name: json.first_name,
+						id: json.id
+					});
 				})
 				.catch(err => {console.log(err)})
 		}
@@ -58,120 +63,6 @@ class App extends Component {
 		this.setState({ logged_in: false, username: '' });
 	};
 
-	loginClick = () => {
-		MySwal.mixin({
-			input: 'text',
-			confirmButtonText: 'Next &rarr;',
-			showCancelButton: true,
-			progressSteps: ['1', '2'],
-			inputValidator: (value) => {
-				return !value && 'You need to write something!'
-			}
-		}).queue([
-			{
-				title: 'Email',
-				input: 'email',
-				inputValidator: (value) => {
-					if (!value.includes('@')) {
-						return 'Must be a valid email address';
-					}
-				}
-			},
-			{
-				title: 'Password',
-				text: '*at least 6 characters',
-				input: 'password',
-				confirmButtonText: 'Login',
-				inputValidator: (value) => {
-					if (value.length < 6) {
-						return 'Password must be at least 6 characters';
-					}
-					return !value && 'You need to write something!'
-				}
-			}
-		]).then((result) => {
-			if (result.value) {
-				const requestObj = {
-					email: result.value[0],
-					password: result.value[1]
-				}
-				const url = 'token-auth/'
-				API.loginRegUser(url, requestObj)
-					.then(res => {
-					  localStorage.setItem('token', res.data.token);
-					  console.log(res.token)
-					  this.setState({
-						logged_in: true,
-						displayed_form: '',
-						username: res.data.username
-					  });
-					});
-			}
-		})
-	}
-
-	registerClick = () => {
-		MySwal.mixin({
-			input: 'text',
-			confirmButtonText: 'Next &rarr;',
-			showCancelButton: true,
-			progressSteps: ['1', '2'],
-			inputValidator: (value) => {
-				return !value && 'You need to write something!'
-			}
-		}).queue([
-			{
-				title: 'Email',
-				input: 'email',
-				inputValidator: (value) => {
-					if (!value.includes('@')) {
-						return 'Must be a valid email address';
-					}
-				}
-			},
-			{
-				title: 'Password',
-				text: '*at least 6 characters',
-				input: 'password',
-				confirmButtonText: 'Register',
-				inputValidator: (value) => {
-					if (value.length < 6) {
-						return 'Password must be at least 6 characters';
-					}
-					return !value && 'You need to write something!'
-				}
-			}
-		]).then((result) => {
-			if (result.value) {
-				const url = 'users/'
-				const userData = {
-					username: result.value[0],
-					password: result.value[1]
-				}
-				API.loginRegUser(url, userData)
-					.then(res => {
-						console.log(res)
-						localStorage.setItem('token', res.data.token)
-
-						this.setState({
-							logged_in: true,
-							displayed_form: '',
-							username: res.data.username
-				  });
-					})
-			}
-		})
-	}
-
-	// handleSubmit = async (email, password) => {
-	// 	try {
-	// 		await Auth.signIn(email, password);
-	// 		alert("Logged in");
-	// 	} catch (e) {
-	// 		alert(e.message);
-	// 	}
-	// }
-	// sets displayed_form to either 'login' or 'reg
 	handleLoginRegBtnClick = (e) => {
 		this.setState({
 			displayed_form: e.target.value,
@@ -185,13 +76,70 @@ class App extends Component {
 		})
 	}
 	handleClose = (e) => {
-		if (e.target.value) { // if value is completed
-			console.log(this.state.email, this.state.password)
+		let requestObj = {}
+		console.log(e.target.value)
+		if (e.target.value === "login") { // if value is completed
+			console.log('login runs')
+
+			requestObj = {
+				username: this.state.email,
+				password: this.state.password
+			}
+			const url = 'token-auth/'
+			API.loginRegUser(url, requestObj)
+				.then(res => {
+				  localStorage.setItem('token', res.data.token);
+				  console.log(res.token)
+				  this.setState({
+					logged_in: true,
+					displayed_form: '',
+					username: res.data.username,
+					// resets password/email after use
+					password: '',
+					email: '',
+					open: false
+				  });
+				})
+				.catch(err => {
+					console.log(err)
+				});
+
+		} else if (e.target.value === "register") {
+			console.log('register runs')
+			requestObj = {
+				first_name: this.state.name,
+				email: this.state.email,
+				username: this.state.email,
+				password: this.state.password
+			}
+			console.log(requestObj)
+			const url = 'users/'
+			API.loginRegUser(url, requestObj)
+				.then(res => {
+					console.log(res)
+					localStorage.setItem('token', res.data.token)
+
+					this.setState({
+						logged_in: true,
+						displayed_form: '',
+						name: res.data.first_name,
+						open: false,
+						password: '',
+						email: '',
+						username: ''
+			  		});
+				})
+				.catch(err => {
+					console.log(err)
+				})
+		} else {
+			this.setState({ open: false });
 		}
-		// console.log('close!!!')
-		this.setState({ open: false });
+
 	}
 	
+
+
   render() {
 	let form;
     switch (this.state.displayed_form) {
@@ -208,7 +156,7 @@ class App extends Component {
 			open={this.state.open} 
 			handleClose={this.handleClose}
 			handleFormChange={this.handleFormChange}
-			username={this.state.username}
+			name={this.state.name}
 			email={this.state.email}
 			password={this.state.password} />;
         break;
@@ -222,7 +170,7 @@ class App extends Component {
 						<BootNavBar
 							handleLoginRegBtnClick={this.handleLoginRegBtnClick}
 							logged_in={this.state.logged_in}
-							username={this.state.username}
+							name={this.state.name}
 							loginClick={this.loginClick}
 							logoutClick={this.logoutClick}
 							registerClick={this.registerClick} />

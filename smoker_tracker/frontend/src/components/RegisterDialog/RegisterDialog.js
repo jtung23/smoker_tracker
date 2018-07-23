@@ -16,36 +16,32 @@ const RegisterDialog = props =>
         >
             <DialogTitle id="form-dialog-title">Register</DialogTitle>
             <DialogContent>
-                <DialogContentText>
-                    Name
-                </DialogContentText>
                 <TextField
                     autoFocus
+                    onChange={props.handleFormChange}
                     margin="dense"
                     id="name"
-                    label="Email Address"
+                    name="name"
+                    value={props.name}
+                    label="Name"
                     type="name"
                     fullWidth
                 />
-                <DialogContentText>
-                    Email
-                </DialogContentText>
                 <TextField
-                    autoFocus
                     margin="dense"
-                    id="name"
+                    onChange={props.handleFormChange}
+                    id="email"
+                    name="email"
                     label="Email Address"
                     type="email"
                     fullWidth
                 />
-                <DialogContentText>
-                    Password
-                </DialogContentText>
                 <TextField
-                    autoFocus
-                    margin="dense"
+                    onChange={props.handleFormChange}
+                    name="password"
+                    value={props.password}
                     id="name"
-                    label="Email Address"
+                    label="Password"
                     type="password"
                     fullWidth
                 />
@@ -54,7 +50,7 @@ const RegisterDialog = props =>
                 <Button onClick={props.handleClose} color="primary">
                     Cancel
                 </Button>
-                <Button onClick={props.handleClose} color="primary">
+                <Button onClick={props.handleClose} value="register" color="primary">
                     Register
                 </Button>
             </DialogActions>

@@ -14,12 +14,11 @@ const BootNavBar = props =>
 				</Link>
 			</form>
 		</div>
-		<button onClick={props.handleClose}> GO </button>
 		<div className="nav-item">
 			 
 			{props.logged_in ? 
 				<div>
-					<h1>`Hi ${props.username}` </h1>
+					<h1>Hi {props.name}</h1>
 					<button 
 						className="btn btn-danger nav-link" 
 						onClick={props.logoutClick}>

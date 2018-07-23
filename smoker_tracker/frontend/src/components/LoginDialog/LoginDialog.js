@@ -31,6 +31,7 @@ const LoginDialog = props =>
                 <TextField
                     margin="dense"
                     onChange={props.handleFormChange}
+                    name="password"
                     value={props.password}
                     id="password"
                     label="Password"
@@ -42,7 +43,7 @@ const LoginDialog = props =>
                 <Button onClick={props.handleClose} color="primary">
                     Cancel
                 </Button>
-                <Button onClick={props.handleCompletedLogin} value={true} color="primary">
+                <Button onClick={props.handleClose} value={"login"} color="primary">
                     Login
                 </Button>
             </DialogActions>
