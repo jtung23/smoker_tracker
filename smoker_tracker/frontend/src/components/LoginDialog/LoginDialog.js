@@ -16,6 +16,11 @@ const LoginDialog = props =>
             aria-labelledby="form-dialog-title"
         >
             <DialogTitle id="form-dialog-title">Login</DialogTitle>
+            {props.loginValidation ? 
+                <DialogContentText style={{marginLeft: '24px', marginRight: '24px'}}>
+                    Login Failed, please try again
+                </DialogContentText> : null
+            }
             <DialogContent>
                 <TextField
                     autoFocus

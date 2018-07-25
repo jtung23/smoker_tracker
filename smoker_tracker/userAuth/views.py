@@ -13,7 +13,6 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 @csrf_exempt
 @api_view(['GET'])
 def current_user(request):
-    print('current_user runs')
     """
     Determine the current user by their token, and return their data
     """
@@ -36,8 +35,9 @@ class UserList(APIView):
 
     def post(self, request, format=None):
         serializer = UserSerializerWithToken(data=request.data)
-        print(serializer)
-
+        if User.objects.filter(email=request.data['email']).exists():
+            # if email already exists in the database, sends 409 error code to front
+            return Response("email conflict", status=status.HTTP_409_CONFLICT)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

@@ -34,6 +34,10 @@ class App extends Component {
 			id: '',
 			email: '',
 			password: '',
+			confirmPass: '',
+			passwordValidation: false,
+			loginValidation: false,
+			emailValidation: false,
 			open: false
 		};
 	}
@@ -79,6 +83,7 @@ class App extends Component {
 		let requestObj = {}
 		console.log(e.target.value)
 		if (e.target.value === "login") { // if value is completed
+
 			console.log('login runs')
 
 			requestObj = {
@@ -92,48 +97,79 @@ class App extends Component {
 				  console.log(res.token)
 				  this.setState({
 					logged_in: true,
+					loginValidation: false,
 					displayed_form: '',
 					username: res.data.username,
 					// resets password/email after use
 					password: '',
 					email: '',
-					open: false
+					open: false,
+					passwordValidation: false
 				  });
 				})
 				.catch(err => {
-					console.log(err)
+					// if login fails then notification pops up saying login failed
+					this.setState({
+						email: '',
+						password: '',
+						loginValidation: true,
+					})
 				});
 
 		} else if (e.target.value === "register") {
-			console.log('register runs')
-			requestObj = {
-				first_name: this.state.name,
-				email: this.state.email,
-				username: this.state.email,
-				password: this.state.password
+			if (this.state.password !== this.state.confirmPass) {
+				this.setState({
+					passwordValidation: "Passwords do not match"
+				})
+			} else {
+				console.log('register runs')
+				requestObj = {
+					first_name: this.state.name,
+					email: this.state.email,
+					username: this.state.email,
+					password: this.state.password
+				}
+				console.log(requestObj)
+				const url = 'users/'
+				API.loginRegUser(url, requestObj)
+					.then(res => {
+						console.log(res)
+						localStorage.setItem('token', res.data.token)
+	
+						this.setState({
+							logged_in: true,
+							displayed_form: '',
+							name: res.data.first_name,
+							open: false,
+							password: '',
+							email: '',
+							username: '',
+							passwordValidation: false
+						  });
+					})
+					.catch(err => {
+						if (err.response.status === 409) { // if email already exists in User db
+							this.setState({
+								password: '',
+								confirmPass: '',
+								email: '',
+								passwordValidation: false,
+								emailValidation: "That email has already been used"
+							})
+						}
+					})
 			}
-			console.log(requestObj)
-			const url = 'users/'
-			API.loginRegUser(url, requestObj)
-				.then(res => {
-					console.log(res)
-					localStorage.setItem('token', res.data.token)
 
-					this.setState({
-						logged_in: true,
-						displayed_form: '',
-						name: res.data.first_name,
-						open: false,
-						password: '',
-						email: '',
-						username: ''
-			  		});
-				})
-				.catch(err => {
-					console.log(err)
-				})
 		} else {
-			this.setState({ open: false });
+			this.setState({
+				open: false,
+				passwordValidation: false,
+				emailValidation: false,
+				password: '',
+				confirmPass: '',
+				email: '',
+				name: ''
+			});
 		}
 
 	}
@@ -146,6 +182,7 @@ class App extends Component {
       case 'login':
 		form = <LoginDialog 
 			open={this.state.open} 
+			loginValidation={this.state.loginValidation}
 			handleClose={this.handleClose} 
 			handleFormChange={this.handleFormChange}
 			email={this.state.email}
@@ -153,7 +190,9 @@ class App extends Component {
         break;
       case 'reg':
 		form = <RegisterDialog 
-			open={this.state.open} 
+			open={this.state.open}
+			emailValidation={this.state.emailValidation}
+			passwordValidation={this.state.passwordValidation}
 			handleClose={this.handleClose}
 			handleFormChange={this.handleFormChange}
 			name={this.state.name}

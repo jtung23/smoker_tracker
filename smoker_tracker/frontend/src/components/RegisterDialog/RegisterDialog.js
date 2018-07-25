@@ -36,6 +36,9 @@ const RegisterDialog = props =>
                     type="email"
                     fullWidth
                 />
+                <h4>
+                    {props.emailValidation ? props.emailValidation : null}
+                </h4>
                 <TextField
                     onChange={props.handleFormChange}
                     name="password"
@@ -45,6 +48,19 @@ const RegisterDialog = props =>
                     type="password"
                     fullWidth
                 />
+                <TextField
+                    onChange={props.handleFormChange}
+                    name="confirmPass"
+                    value={props.confirmPass}
+                    id="name"
+                    label="Confirm Password"
+                    type="password"
+                    fullWidth
+                />
+                <h4>
+                    {props.passwordValidation ? props.passwordValidation : null}
+                </h4>
+
             </DialogContent>
             <DialogActions>
                 <Button onClick={props.handleClose} color="primary">
