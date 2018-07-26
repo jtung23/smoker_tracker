@@ -221,7 +221,7 @@ class App extends Component {
 							<Route component={NotFound} />
 						</Switch>
 
-=						{form}
+						{form}
 
 					</div>
 				</Router>

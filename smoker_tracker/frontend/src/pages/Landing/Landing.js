@@ -1,50 +1,15 @@
 import React, {Component} from 'react';
 import Jumbotron from '../../components/Jumbotron';
+import background from '../../img/jumbotronmeat.jpg'
 
-const style = {
-	body: {
-		width: '100%',
-		height: '100%',
-	}
-}
 class Landing extends Component {
 
 	render() {
 		return (
-			<div style={style.body} >
-
-			
+			<div className="landing__body" >
+				<div className="landing--bkg"></div>
 				<Jumbotron />
 
-
-				<div className="container">
-					<div className="row justify-content-center allCards">
-						<div className="col-md-3 allCards__card">
-							<div className="card__image">
-								<img  alt="placeholder" src="http://via.placeholder.com/200x200"/>
-							</div>
-							<div className="card__text">
-								<p>Hello</p>
-							</div>
-						</div>
-						<div className="col-md-3 allCards__card allCards__card--margin">
-							<div className="card__image">
-								<img  alt="placeholder" src="http://via.placeholder.com/200x200"/>
-							</div>
-							<div className="card__text">
-								<p>Hello</p>
-							</div>
-						</div>
-						<div className="col-md-3 allCards__card">
-							<div className="card__image">
-								<img  alt="placeholder" src="http://via.placeholder.com/200x200"/>
-							</div>
-							<div className="card__text">
-								<p>Hello</p>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		)
 	}

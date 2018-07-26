@@ -20,12 +20,27 @@
     10. Miscellaneous
         10a. CustomButton
 /* ****************************************** */
+html {
+    height: 100%;
+}
+
 body {
+    min-height: 100%;
+    width:100%;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
   }
   
+#root {
+    display: block;
+    position:absolute;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+}
 /* ************************* */
 /*    1. App.js      */
 /* ************************* */
@@ -45,15 +60,32 @@ body {
         navbar-brand
     */
 .navbar {
-    border-bottom: 4px solid gray;
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3)
+    border-bottom: 4px double black;
+    background-image: url('./img/rust.jpg');
+    box-shadow: inset 0px 0px 20px rgba(0,0,0,0.9);
 }
 
-.navbar-brand {
+.nav__logoText {
     font-family: 'Shrikhand', cursive;
+    text-decoration: none;
     font-size: 2.5rem;
-    color:blue;
-    width: 20%;
+    color:black;
+    width: 25%;
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    /* line-height: inherit; */
+    /* white-space: nowrap; */
+}
+
+.nav__search {
+    width: 40%;
+    margin: none;
+}
+
+.nav-link {
+    color: white;
 }
 /* ************************* */
 /*    2. Landing Page      */
@@ -87,15 +119,7 @@ body {
     /*  Grid layout
         jumbotron 
     */
-.jumbotron {
-    background-image: url("./img/jumbotronmeat.jpg");
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3)
 
-}
-
-.jumbotron__h1 {
-    color: blue;
-}
 
 /* ************************* */
 /*    4. NewSmoke      */
@@ -130,3 +154,76 @@ body {
     .textField--marginTop {
         margin-top: 20px;
     }
+
+
+
+    .landing__body {
+        height: 100%;
+        z-index: 1;
+    }
+
+    .landing--bkg {
+        /* position: absolute; */
+        z-index: -1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: url('./img/jumbotronmeat.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        box-shadow: inset 0px 0px 80% rgba(0, 0, 0, 0.3);
+        opacity: 0.65;
+        filter: alpha(opacity=65);
+        width: 100%;
+        height: 100%;
+
+    }
+    /* keep box but transparent to see behind, but dont affect font */
+    /* make box more like a square, round corners */
+/* change textr color
+ */
+    .jumbotron__div {
+        width: 35%;
+        height: 30%;
+        opacity: 1;
+        border-radius: 25px;
+
+        position:absolute; /*it can be fixed too*/
+        left:0; right:0;
+        top:0; bottom:0;
+        margin:auto;
+
+        /*this to solve "the content will not be cut when the window is smaller than the content": */
+        max-width:100%;
+        max-height:100%;
+        overflow:none;
+
+        /* border: 5px solid black; */
+        background-color: rgb(0, 0, 0, 0.6);
+        border-width: 25%
+    }
+
+    .jumbotron__div__text {
+        text-align: center;
+        color: #e2dbd3;
+
+        /* font-family: 'Fjalla One', sans-serif; */
+    
+        /* font-family: 'Acme', sans-serif; */
+    
+        /* font-family: 'Crete Round', serif; */
+    
+        /* font-family: 'Concert One', cursive; */
+    }
+
+    .jumbotron__div__h1 {
+        font-size: 5em;
+        font-family: 'Anton', sans-serif;
+    }
+    
+    .jumbotron__div__h2 {
+        /* font-family: 'Fjalla One', sans-serif; */
+        font-family: 'Acme', sans-serif;
+    }
+    

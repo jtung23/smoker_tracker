@@ -2,21 +2,16 @@ import React from 'react';
 // import Background from '../../img/jumbotronmeat.jpg';
 // import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
-// const style = {
-// 	landing: {
-// 		width: '100%',
-// 		height: '100vh',
-// 		backgroundImage: 'url('+Background+')',
 
-// 	}
-// }
 const Jumbotron = props => 
-	<div className="jumbotron">
-		<div className="container">
-			<h1 className="jumbotron__h1">Track your barbecues,<br />
-				share with the world,<br />
-				and learn from others 
+	<div className="jumbotron__div">
+		<div className="jumbotron__div__text">
+			<h1 className="jumbotron__div__h1">
+				BBQ Tracker
 			</h1>
+			<h2 className="jumbotron__div__h2" >
+				Track, Share, Learn
+			</h2>
 			<Link className="btn btn-success" to="/newsmoke">
 				Get Started
 			</Link>
