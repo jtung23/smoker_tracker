@@ -7,6 +7,17 @@
 /* BE MODULAR BE CONCISE */
 /* ********************************* */
 
+/* ***** Available Fonts to use ***** */
+/*                                    */
+/* font-family: "cooper-black-std",serif;
+/* font-family: 'Fjalla One', sans-serif; */
+/* font-family: 'Acme', sans-serif; */
+/* font-family: 'Crete Round', serif; */
+/* font-family: 'Concert One', cursive; */
+/* font-family: 'Anton', sans-serif; */
+/*                                    */
+/* ********************************* */
+
 /* Table of Contents*********************** 
     1. App.js
         1a. NavBar
@@ -129,24 +140,6 @@ body {
     /* Bootstrap Classes Used*/
     /*  Grid layout
     */
-
-.allCards__card {
-    border: 2px solid gray;
-    margin-bottom: 10%;
-    padding-left: 0px;
-    padding-right: 0px;
-}
-.card_image {
-    width: 100%;
-}
-
-/* ************************* */
-/*    2a. Jumbotron      */
-/* ************************* */
-    /* Bootstrap Classes Used*/
-    /*  Grid layout
-        jumbotron 
-    */
 .landing__body {
     height: 80%;
     z-index: 1;
@@ -169,10 +162,14 @@ body {
     height: 100%;
 
 }
-/* keep box but transparent to see behind, but dont affect font */
-/* make box more like a square, round corners */
-/* change textr color
-*/
+
+/* ************************* */
+/*    2a. Jumbotron      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  Grid layout
+        jumbotron 
+    */
 .jumbotron__div {
     padding: 20px 0px 10px 0px;
     width: 30%;
@@ -195,49 +192,9 @@ body {
     border-width: 25%
 }
 
-@media only screen
-and (min-width: 479px)
-and (max-width: 768px) {
-    .nav__logoText {
-        margin: auto;
-        
-    }
-    .nav__nav-btn {
-        margin: auto;
-    }
-    .landing--bkg {
-        background-image: url('./img/jumbotronmeatSide.jpg');
-    }
-    .jumbotron__div {
-        padding-bottom: 300px;
-        width:55%;
-    }
-}
-@media only screen 
-and (min-width: 768px)
-and (max-width: 996px) {
-    html {
-       overflow: auto; 
-    }
-
-    .jumbotron__div {
-        position: relative;
-        margin-top: 10px;
-        padding-bottom: 315px;
-        padding-top:20px;
-    }
-}
 .jumbotron__div__text {
     text-align: center;
     color: #e2dbd3;
-
-    /* font-family: 'Fjalla One', sans-serif; */
-
-    /* font-family: 'Acme', sans-serif; */
-
-    /* font-family: 'Crete Round', serif; */
-
-    /* font-family: 'Concert One', cursive; */
 }
 
 .jumbotron__div__h1 {
@@ -285,3 +242,86 @@ and (max-width: 996px) {
         margin-top: 20px;
     }
     
+/* ************************* */
+/*    10. Media Queries      */
+/* ************************* */
+
+/* all mobile */
+@media screen and (max-width:1199px) {
+    html {
+        overflow: auto; 
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+}
+
+@media screen
+and (min-width: 320px)
+and (max-width: 480px)  {
+    .nav__logoText {
+        margin: auto;
+        
+    }
+    .nav__nav-btn {
+        margin: auto;
+    }
+}
+
+@media screen
+and (min-width: 480px)
+and (max-width: 767px)  {
+    .landing--bkg {
+        height: 200%
+    }
+    .jumbotron__div {
+        position: relative;
+        top: 100px;
+    }
+}
+
+@media only screen
+and (min-width: 480px)
+and (max-width: 768px) {
+    .nav__logoText {
+        margin: auto;
+        
+    }
+    .nav__nav-btn {
+        margin: auto;
+    }
+
+    .landing--bkg {
+        background-image: url('./img/jumbotronmeatSide.jpg');
+    }
+    .jumbotron__div {
+        padding-bottom: 300px;
+        width:55%;
+    }
+}
+
+@media only screen 
+and (min-width: 768px)
+and (max-width: 996px) {
+
+    .jumbotron__div {
+        position: relative;
+        top: 100px;
+        /* margin-top: 50px; */
+        margin:auto;
+        /* padding-bottom: 315px; */
+        padding-top:20px;
+    }
+    .jumbotron__div__text {
+        padding-top:40px;
+    }
+}
+
+@media only screen 
+and (min-width: 996px)
+and (max-width: 1199px) {
+    .jumbotron__div {
+        height: 43%;
+    }
+}
