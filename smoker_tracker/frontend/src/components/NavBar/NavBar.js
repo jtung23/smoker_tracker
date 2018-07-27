@@ -2,14 +2,20 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 const NavBar = props => 
-	<nav className="nav">
-		<div className="nav__logoText">
+	<nav className={`nav ${props.toggleTransparency}`}>
+		<div className={`nav__logoText ${props.toggleClass}`}>
 			<Link to="/">
 				BBQ Tracker
 			</Link>
 		</div>
+		<div className={`nav__toggle ${props.toggleColor} `}>
+			<i 
+			className="fas fa-bars"
+			onClick={props.toggleButton}
+			></i>
+	  	</div>
 		{props.logged_in ? 
-			<div className="nav__nav-btn">
+			<div className={`nav__nav-btn ${props.toggleClass}`}>
 				<h1>Hi {props.name}</h1>
 				<button 
 					className="nav__button"
@@ -19,7 +25,7 @@ const NavBar = props =>
 				</button>
 			</div>
 			:
-			<div className="nav__nav-btn">
+			<div className={`nav__nav-btn ${props.toggleClass}`}>
 				<button 
 					className="nav__button" 
 					onClick={props.handleLoginRegBtnClick}

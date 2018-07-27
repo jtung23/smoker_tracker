@@ -1,6 +1,5 @@
 import React from 'react';
 // import Background from '../../img/jumbotronmeat.jpg';
-// import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
 const Jumbotron = props => 
@@ -12,7 +11,7 @@ const Jumbotron = props =>
 			<h2 className="jumbotron__div__h2" >
 				Track, Share, Learn
 			</h2>
-			<Link className="btn btn-success" to="/newsmoke">
+			<Link className="btn btn-success jumbotron__div__btn" to="/newsmoke">
 				Get Started
 			</Link>
 		</div>

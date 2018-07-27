@@ -38,7 +38,10 @@ class App extends Component {
 			passwordValidation: false,
 			loginValidation: false,
 			emailValidation: false,
-			open: false
+			open: false,
+			toggleClass: null,
+			toggleTransparency: null,
+			toggleColor: null,
 		};
 	}
 
@@ -173,7 +176,23 @@ class App extends Component {
 		}
 
 	}
-	
+
+	toggleButton = () => {
+		if (!this.state.toggleClass) {
+			this.setState({
+				toggleClass: "nav__toggleShow",
+				toggleTransparency: "nav__toggleTransparency",
+				toggleColor: "nav__toggleColor"
+			})
+		} else {
+			this.setState({
+				toggleClass: null,
+				toggleTransparency: null,
+				toggleColor: null
+			})
+
+		}
+	}
 
 
   render() {
@@ -208,6 +227,10 @@ class App extends Component {
 					<div className="app">
 						<NavBar
 							handleLoginRegBtnClick={this.handleLoginRegBtnClick}
+							toggleButton={this.toggleButton}
+							toggleColor={this.state.toggleColor}
+							toggleTransparency={this.state.toggleTransparency}
+							toggleClass={this.state.toggleClass}
 							logged_in={this.state.logged_in}
 							name={this.state.name}
 							loginClick={this.loginClick}

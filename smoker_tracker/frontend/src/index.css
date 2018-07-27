@@ -75,6 +75,10 @@ body {
     /* box-shadow: inset 0px 0px 20px rgba(0,0,0,0.9); */
 }
 
+.nav__toggle {
+    display: none;
+}
+
 .nav__logoText {
     font-family: "cooper-black-std",serif;
     /* font-family: 'Acme', sans-serif; */
@@ -253,10 +257,6 @@ body {
     }
 }
 
-@media screen and (max-width: 320px) {
-
-}
-
 @media screen
 and (min-width: 320px)
 and (max-width: 480px)  {
@@ -267,23 +267,28 @@ and (max-width: 480px)  {
     .nav__nav-btn {
         margin: auto;
     }
-}
 
-@media screen
-and (min-width: 480px)
-and (max-width: 767px)  {
-    .landing--bkg {
-        height: 200%
+    .jumbotron__div__text {
+        font-size: 0.5em;
+    }
+
+    .jumbotron__div__btn {
+        margin-top: 25px;
     }
     .jumbotron__div {
-        position: relative;
-        top: 100px;
+        width: 50%;
+        height:18em;
     }
 }
 
 @media only screen
-and (min-width: 480px)
-and (max-width: 768px) {
+and (min-width: 481px)
+and (max-width: 767px) {
+
+    .jumbotron__div {
+        position: relative;
+        top: 100px;
+    }
     .nav__logoText {
         margin: auto;
         
@@ -294,27 +299,67 @@ and (max-width: 768px) {
 
     .landing--bkg {
         background-image: url('./img/jumbotronmeatSide.jpg');
+        background-size: contain;
     }
     .jumbotron__div {
-        padding-bottom: 300px;
+        padding-bottom: 200px;
         width:55%;
+    }
+
+    .jumbotron__div__btn {
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .nav {
+        background: transparent;
+        position: absolute;
+        z-index: 99;
+        width: 100%;
+        flex-direction: column;
+    }
+    .nav__nav-btn, .nav__logoText {
+        display: none;
+    }
+
+    .nav__toggle {
+        color: #e2dbd3;
+        /* align-self: flex-end; */
+        display: initial;
+        position: absolute;
+        cursor: pointer;
+    }
+    
+    .nav__toggleShow {
+        display: flex;
+    }
+    .nav__toggleTransparency {
+        background: rgba(250,247,245,.77);
+    }
+
+    .nav__toggleColor {
+        color: black;
     }
 }
 
 @media only screen 
 and (min-width: 768px)
 and (max-width: 996px) {
-
+    
     .jumbotron__div {
         position: relative;
-        top: 100px;
+        /* top: 100px; */
         /* margin-top: 50px; */
         margin:auto;
         /* padding-bottom: 315px; */
         padding-top:20px;
+        height: 17em;
     }
     .jumbotron__div__text {
         padding-top:40px;
+        font-size: 0.5em;
     }
 }
 
