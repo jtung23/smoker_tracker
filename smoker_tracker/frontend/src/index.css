@@ -9,14 +9,13 @@
 
 /* Table of Contents*********************** 
     1. App.js
-        1a. BootNavBar
+        1a. NavBar
     2.Landing Page
         2a. Jumbotron
     3.NewSmokeInfo
     4.NewSmoke
         4a. InfoBox
         4b. Table
-        4b. BootModal
     10. Miscellaneous
         10a. CustomButton
 /* ****************************************** */
@@ -53,15 +52,12 @@ body {
 }
 
 /* ************************* */
-/*    1a. BootNavBar      */
+/*    1a. NavBar      */
 /* ************************* */
-    /* Bootstrap Classes Used*/
-    /*  navbar
-        navbar-brand
-    */
+
 .nav {
     background: rgba(250,247,245,.77);
-    padding: 20px;
+    padding: 30px;
 
     /* border-bottom: 4px double black; */
     /* background-image: url('./img/rust.jpg'); */
@@ -78,7 +74,8 @@ body {
     display: inline-block;
     padding-top: .3125rem;
     padding-bottom: .3125rem;
-    margin-right: 1rem;
+    margin-right: auto;
+
     /* line-height: inherit; */
     /* white-space: nowrap; */
 }
@@ -107,15 +104,25 @@ body {
     /* padding: 0; */
     background: inherit;
     color: black;
+    margin-right: 10px;
+    padding:10px;
+    margin-top: 8px;
+    /* justify-content: flex-end;
+    display: flex; */
 }
 
 .nav__button:hover {
     cursor: pointer;
 }
+
+.nav__icon {
+    margin-left: 5px;
+}
 .nav__search {
     width: 40%;
     margin: none;
 }
+
 /* ************************* */
 /*    2. Landing Page      */
 /* ************************* */
@@ -167,9 +174,9 @@ body {
 /* change textr color
 */
 .jumbotron__div {
-    padding: 10px 10px 0px 10px;
-    width: 40%;
-    height: 30%;
+    padding: 20px 0px 10px 0px;
+    width: 30%;
+    height: 35%;
     opacity: 1;
     border-radius: 25px;
 
@@ -188,6 +195,38 @@ body {
     border-width: 25%
 }
 
+@media only screen
+and (min-width: 479px)
+and (max-width: 768px) {
+    .nav__logoText {
+        margin: auto;
+        
+    }
+    .nav__nav-btn {
+        margin: auto;
+    }
+    .landing--bkg {
+        background-image: url('./img/jumbotronmeatSide.jpg');
+    }
+    .jumbotron__div {
+        padding-bottom: 300px;
+        width:55%;
+    }
+}
+@media only screen 
+and (min-width: 768px)
+and (max-width: 996px) {
+    html {
+       overflow: auto; 
+    }
+
+    .jumbotron__div {
+        position: relative;
+        margin-top: 10px;
+        padding-bottom: 315px;
+        padding-top:20px;
+    }
+}
 .jumbotron__div__text {
     text-align: center;
     color: #e2dbd3;

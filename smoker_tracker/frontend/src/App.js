@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Landing from './pages/Landing';
 import NewSmoke from './pages/NewSmoke';
-import BootNavBar from './components/BootNavBar';
+import NavBar from './components/NavBar';
 import NewSmokeInfo from './components/NewSmokeInfo';
 import SearchResults from './pages/SearchResults';
 // materialui's timepicker and other styles
@@ -206,7 +206,7 @@ class App extends Component {
 			<MuiThemeProvider>
 				<Router>
 					<div className="app">
-						<BootNavBar
+						<NavBar
 							handleLoginRegBtnClick={this.handleLoginRegBtnClick}
 							logged_in={this.state.logged_in}
 							name={this.state.name}
