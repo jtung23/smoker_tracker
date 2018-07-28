@@ -5,7 +5,7 @@ const NavBar = props =>
 	<nav className={`nav ${props.toggleTransparency}`}>
 		<div className={`nav__logoText ${props.toggleClass}`}>
 			<Link to="/">
-				BBQ Tracker
+				<i class="fas fa-home"></i>
 			</Link>
 		</div>
 		<div className={`nav__toggle ${props.toggleColor} `}>
