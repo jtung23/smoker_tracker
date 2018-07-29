@@ -95,6 +95,7 @@ body {
     padding-top: .3125rem;
     padding-bottom: .3125rem;
     margin-right: auto;
+    margin-left: 20px;
 
     /* line-height: inherit; */
     /* white-space: nowrap; */
@@ -237,15 +238,17 @@ body {
 }
 
 .landing__div--btn {
-    border: 1px solid rgba(197, 30, 30, 0.294);
+    border: 1px solid rgba(rgba(250,247,245,.77)197, 30, 30, 0.294);
     padding: .375rem .75rem;
     background: rgba(250,247,245,.77);
     color: rgba(197, 30, 30);
     text-decoration: none;
     border-radius: 25px;
+    font-weight: bold;
 }
 .landing__div--btn:hover {
     cursor:pointer;
+    background: rgba(219, 210, 205, 0.89)
 }
 
 
@@ -256,6 +259,11 @@ body {
     /*  
     */
 
+.newSmoke__header {
+    height:19vh;
+    width:100%;
+    background: #e0eaef;
+}
 /* ************************* */
 /*    4b. DataGrid      */
 /* ************************* */
@@ -282,7 +290,10 @@ body {
     .textField--marginTop {
         margin-top: 20px;
     }
-    
+    .textField--bkgborder input {
+        border: none;
+        background-color: transparent;
+    }
 /* ************************* */
 /*    10. Media Queries      */
 /* ************************* */

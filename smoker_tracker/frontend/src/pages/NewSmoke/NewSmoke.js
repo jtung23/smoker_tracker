@@ -10,6 +10,7 @@ import TableFn from '../../utils/TableFn'
 import ReactDataGrid from 'react-data-grid';
 import update from 'immutability-helper';
 import TextField from '@material-ui/core/TextField';
+import Jumbotron from '../../components/Jumbotron';
 
 // sweet alert set up
 import Swal from 'sweetalert2'
@@ -185,13 +186,16 @@ class NewSmoke extends Component {
 	render() {
 		return (
 			<div className="container-fluid"style={style} >
+				<div className="newSmoke__header">
+				</div>
 				<div className="row noMargLeft">
-					<Link to="/newsmokeinfo" className="btn btn-primary">Back</Link>
+					<Link to="/" className="landing__div--btn">Back</Link>
 				</div>
 				<div className="row">
-					<div className="col-md-6">
+					<div className="six columns">
 						<h4>
 							<TextField
+								className="textField--bkgborder"
 								name="title"
 								margin="dense"
 								fullWidth
@@ -202,7 +206,7 @@ class NewSmoke extends Component {
 							/>
 						</h4>
 					</div>
-					<div className="col-md-3 offset-md-3">
+					<div className="offset-by-three three columns">
 						<CustomButton className="bottom-right align-bottom" in="Add Column" value="add" clickHandler={this.handleAddCol} />
 						<CustomButton className="bottom-right align-bottom" in="Remove Column" value="remove" clickHandler={this.handleRemoveCol} />
 					</div>
@@ -229,60 +233,59 @@ class NewSmoke extends Component {
 						clickHandler={this.handleRemove} />
 				</div>
 				<div className="row noMargeLeft row--marginTop" >
-					<div className="col-md-6">
-						<TextField
-							className="textField--padding"
-							label="What animal?"
-							name="animal"
-							value={this.state.animal}
-							onChange={this.handleInfoOnChange} />
-						<TextField
-							className="textField--padding" 
-							style={{marginLeft: "20px"}}
-							label="What cut?"
-							name="meatCut"
-							value={this.state.meatCut}
-							onChange={this.handleInfoOnChange} />
-						<TextField
-							className="textField--padding textField--marginTop" 
-							label="Net Weight? (lbs)"
-							margin="dense"
-							name="ogWeight"
-							value={this.state.ogWeight}
-							onChange={this.handleInfoOnChange} />
-						<TextField
-							className="textField--padding textField--marginTop"
-							style={{marginLeft: "20px"}}
-							margin="dense"
-							label="Smoker?"
-							name="smoker"
-							value={this.state.smoker}
-							onChange={this.handleInfoOnChange} />
-					</div>
-					<div className="col-md-6">
-						<TextField
-							multiline
-							fullWidth
-							rows="2"
-							label="Description"
-							name="physDesc"
-							value={this.state.physDesc}
-							onChange={this.handleInfoOnChange} />
-						<TextField
-							multiline
-							fullWidth
-							rows="2"
-							margin="dense"
-							label="Results/Notes"
-							name="notes"
-							value={this.state.notes}
-							onChange={this.handleInfoOnChange} />
-					</div>
+					<TextField
+						className="offset-by-one two columns textField--bkgborder"
+						label="What animal?"
+						name="animal"
+						value={this.state.animal}
+						onChange={this.handleInfoOnChange} />
+					<TextField
+						className="pffset-by-one two columns textField--bkgborder" 
+						style={{marginLeft: "20px"}}
+						label="What cut?"
+						name="meatCut"
+						value={this.state.meatCut}
+						onChange={this.handleInfoOnChange} />
+					<TextField
+						className="offset-by-one four columns textField--bkgborder"
+						multiline
+						fullWidth
+						rows="2"
+						label="Description"
+						name="physDesc"
+						value={this.state.physDesc}
+						onChange={this.handleInfoOnChange} />
 				</div>
-				<div className="row noMargLeft align-right">
-					<div className="col-md-6">
-						<CustomButton in="Submit" value="submit" clickHandler={this.submitData} />
-					</div>
+				<div className="row noMargeLeft row--marginTop">
+					<TextField
+						className="offset-by-one two columns textField--bkgborder textField--marginTop" 
+						label="Net Weight? (lbs)"
+						margin="dense"
+						name="ogWeight"
+						value={this.state.ogWeight}
+						onChange={this.handleInfoOnChange} />
+					<TextField
+						className="two columns textField--bkgborder textField--marginTop"
+						style={{marginLeft: "20px"}}
+						margin="dense"
+						label="Smoker?"
+						name="smoker"
+						value={this.state.smoker}
+						onChange={this.handleInfoOnChange} />
+					<TextField
+						className="offset-by-one four columns textField--bkgborder"
+						multiline
+						fullWidth
+						rows="2"
+						margin="dense"
+						label="Results/Notes"
+						name="notes"
+						value={this.state.notes}
+						onChange={this.handleInfoOnChange} />
+
+					<CustomButton className="two columns" in="Submit" value="submit" clickHandler={this.submitData} />
+				</div>
+				<div className="row">
 				</div>
 			</div>
 		)

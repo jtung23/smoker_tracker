@@ -5,7 +5,7 @@ This app allows the user to track their BBQ sessions and share their sessions wi
 
 ## MVP
 - [x] save BBQ sessions
-- [ ] Authentication/users
+- [x] Authentication/users
 - [ ] Profile to view all sessions
 - [ ] Search
 ## Getting Started
