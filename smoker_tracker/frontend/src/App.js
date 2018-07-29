@@ -238,7 +238,7 @@ class App extends Component {
 							registerClick={this.registerClick} />
 						<Switch>
 							<Route exact path="/" component={Landing}/>
-							<Route path="/newsmoke" component={NewSmoke} />
+							<Route path="/newsmoke" exact render={() => <NewSmoke logged_in={this.state.logged_in} />} />
 							<Route path="/newsmokeinfo" component={NewSmokeInfo} />
 							<Route path="/searchresults" component={SearchResults} />
 							<Route component={NotFound} />

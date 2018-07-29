@@ -113,11 +113,15 @@ body {
     color: black;
 } 
 
-/* .nav__li {
-    float:left;
-    height: 100%;
-    border-left: 2px solid black;
-} */
+.nav__welcome { /* removes skeleton button styling*/
+    pointer-events: none;
+    cursor: none;
+    border:none;
+    font-family: "cooper-black-std",serif;
+    color:black;
+    font-size:1.5em;
+}
+
 .nav__button {
     font-family: "cooper-black-std",serif;
     border: 0;
@@ -263,6 +267,12 @@ body {
     height:19vh;
     width:100%;
     background: #e0eaef;
+}
+
+.newSmoke__submitBtn:disabled {
+    opacity: .65;
+    pointer-events: none;
+    cursor: default;
 }
 /* ************************* */
 /*    4b. DataGrid      */
@@ -417,4 +427,9 @@ and (max-width: 1199px) {
     .jumbotron__div {
         height: 43%;
     }
+}
+
+.swal2-popup .swal2-styled {
+    padding-top: 0;
+    padding-bottom: 0;
 }

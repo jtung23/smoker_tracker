@@ -5,7 +5,7 @@ const NavBar = props =>
 	<nav className={`nav ${props.toggleTransparency}`}>
 		<div className={`nav__logoText ${props.toggleClass}`}>
 			<Link to="/">
-				<i class="fas fa-home"></i>
+				<i className="fas fa-home"></i>
 			</Link>
 		</div>
 		<div className={`nav__toggle ${props.toggleColor} `}>
@@ -16,12 +16,16 @@ const NavBar = props =>
 	  	</div>
 		{props.logged_in ? 
 			<div className={`nav__nav-btn ${props.toggleClass}`}>
-				<h1>Hi {props.name}</h1>
+				<button className="nav__welcome">
+					{// declaring as button because only way it appears inline in navbar
+					}
+					Welcome {props.name}!
+				</button>
 				<button 
 					className="nav__button"
 					onClick={props.logoutClick}>
 					Log Out
-					<i class="fas fa-sign-out-alt fa-2x"></i>
+					<i className="fas fa-sign-out-alt fa-2x"></i>
 				</button>
 			</div>
 			:
@@ -31,14 +35,14 @@ const NavBar = props =>
 					onClick={props.handleLoginRegBtnClick}
 					value="reg" >
 					Register
-					<i class="fas fa-user-plus nav__icon"></i>
+					<i className="fas fa-user-plus nav__icon"></i>
 				</button>
 				<button 
 					className="nav__button"
 					onClick={props.handleLoginRegBtnClick}
 					value="login" >
 					Login
-					<i class="fas fa-sign-in-alt nav__icon"></i>
+					<i className="fas fa-sign-in-alt nav__icon"></i>
 				</button>
 			</div>
 		}

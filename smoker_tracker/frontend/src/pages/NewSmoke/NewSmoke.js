@@ -10,7 +10,6 @@ import TableFn from '../../utils/TableFn'
 import ReactDataGrid from 'react-data-grid';
 import update from 'immutability-helper';
 import TextField from '@material-ui/core/TextField';
-import Jumbotron from '../../components/Jumbotron';
 
 // sweet alert set up
 import Swal from 'sweetalert2'
@@ -20,12 +19,12 @@ const MySwal = withReactContent(Swal)
 const style = {
 	background: '#a5f3ff'
 }
-let newTime = "";
 
 class NewSmoke extends Component {
 	constructor(props) {
 		super(props);
 		this.state= {
+			notLoggedIn: false,
 			title: '',
 			animal: '',
 			meatCut: '',
@@ -149,6 +148,14 @@ class NewSmoke extends Component {
 // 
 //
 	submitData = () => {
+		if (!title) {
+			MySwal.fire({
+				type: 'error',
+				title: 'Error',
+				text: 'You need a title to continue'
+			})
+			return
+		}
 		const {title, animal, meatCut, ogWeight, trimWeight, smoker, physDesc, notes, rows, columns} = this.state
 		const d = new Date()
 		columns.forEach((val, i) => {
@@ -184,6 +191,7 @@ class NewSmoke extends Component {
 
 
 	render() {
+		console.log(this.props.logged_in)
 		return (
 			<div className="container-fluid"style={style} >
 				<div className="newSmoke__header">
@@ -255,6 +263,10 @@ class NewSmoke extends Component {
 						name="physDesc"
 						value={this.state.physDesc}
 						onChange={this.handleInfoOnChange} />
+					<p className="two columns">
+						You must be logged in and your session
+						must have a title to submit
+					</p>
 				</div>
 				<div className="row noMargeLeft row--marginTop">
 					<TextField
@@ -283,9 +295,7 @@ class NewSmoke extends Component {
 						value={this.state.notes}
 						onChange={this.handleInfoOnChange} />
 
-					<CustomButton className="two columns" in="Submit" value="submit" clickHandler={this.submitData} />
-				</div>
-				<div className="row">
+					<CustomButton disabled={!this.props.logged_in} className="two columns newSmoke__submitBtn" in="Submit" value="submit" clickHandler={this.submitData} />
 				</div>
 			</div>
 		)
