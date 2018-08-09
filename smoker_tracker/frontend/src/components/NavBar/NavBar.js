@@ -13,7 +13,16 @@ const NavBar = props =>
 			className="fas fa-bars"
 			onClick={props.toggleButton}
 			></i>
-	  	</div>
+		</div>
+		
+		<div 
+			className="nav__button"
+			onClick={props.handleProfileClick}
+			value="" >
+			<Link to="/profile">
+				Profile
+			</Link>
+		</div>
 		{props.logged_in ? 
 			<div className={`nav__nav-btn ${props.toggleClass}`}>
 				<button className="nav__welcome">
@@ -21,6 +30,7 @@ const NavBar = props =>
 					}
 					Welcome {props.name}!
 				</button>
+
 				<button 
 					className="nav__button"
 					onClick={props.logoutClick}>

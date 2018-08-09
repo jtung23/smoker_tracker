@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Landing from './pages/Landing';
 import NewSmoke from './pages/NewSmoke';
+import Profile from './pages/Profile';
 import NavBar from './components/NavBar';
 import NewSmokeInfo from './components/NewSmokeInfo';
 import SearchResults from './pages/SearchResults';
@@ -30,8 +31,8 @@ class App extends Component {
 		this.state = {
 			displayed_form: '',
 			logged_in: localStorage.getItem('token') ? true : false,
-			name: '',
-			id: '',
+			name: localStorage.getItem('name') ? localStorage.getItem('name') : '',
+			id: localStorage.getItem('id') ? localStorage.getItem('id') : '',
 			email: '',
 			password: '',
 			confirmPass: '',
@@ -42,6 +43,7 @@ class App extends Component {
 			toggleClass: null,
 			toggleTransparency: null,
 			toggleColor: null,
+			sessions: []
 		};
 	}
 
@@ -54,6 +56,11 @@ class App extends Component {
 			  })
 				.then(res => res.json())
 				.then(json => {
+					// error if signature expires
+					if (json.detail) {
+						this.logoutClick()
+						return
+					}
 					console.log(json)
 					this.setState({ 
 						name: json.first_name,
@@ -97,7 +104,8 @@ class App extends Component {
 			API.loginRegUser(url, requestObj)
 				.then(res => {
 				  localStorage.setItem('token', res.data.token);
-				  console.log(res.token)
+				  localStorage.setItem('name', res.data.user.first_name)
+				  localStorage.setItem('id', res.data.user.id)
 				  this.setState({
 					logged_in: true,
 					loginValidation: false,
@@ -193,7 +201,16 @@ class App extends Component {
 
 		}
 	}
-
+	
+	handleProfileClick = () => {
+		API.getAllSessions()
+		.then(res => {
+			console.log(res)
+			this.setState = {
+				sessions: res.data
+			}
+		})
+	}
 
   render() {
 	let form;
@@ -226,6 +243,7 @@ class App extends Component {
 				<Router>
 					<div className="app">
 						<NavBar
+							handleProfileClick={this.handleProfileClick}
 							handleLoginRegBtnClick={this.handleLoginRegBtnClick}
 							toggleButton={this.toggleButton}
 							toggleColor={this.state.toggleColor}
@@ -239,8 +257,8 @@ class App extends Component {
 						<Switch>
 							<Route exact path="/" component={Landing}/>
 							<Route path="/newsmoke" exact render={() => <NewSmoke logged_in={this.state.logged_in} />} />
-							<Route path="/newsmokeinfo" component={NewSmokeInfo} />
 							<Route path="/searchresults" component={SearchResults} />
+							<Route path="/profile" exact render={() => <Profile sessions={this.state.sessions} />} />
 							<Route component={NotFound} />
 						</Switch>
 

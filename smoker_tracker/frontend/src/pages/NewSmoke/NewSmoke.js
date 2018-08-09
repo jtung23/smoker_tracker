@@ -16,10 +16,6 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 const MySwal = withReactContent(Swal)
 
-const style = {
-	background: '#a5f3ff'
-}
-
 class NewSmoke extends Component {
 	constructor(props) {
 		super(props);
@@ -193,109 +189,113 @@ class NewSmoke extends Component {
 	render() {
 		console.log(this.props.logged_in)
 		return (
-			<div className="container-fluid"style={style} >
-				<div className="newSmoke__header">
-				</div>
-				<div className="row noMargLeft">
-					<Link to="/" className="landing__div--btn">Back</Link>
-				</div>
-				<div className="row">
-					<div className="six columns">
-						<h4>
-							<TextField
-								className="textField--bkgborder"
-								name="title"
-								margin="dense"
-								fullWidth
-								required
-								value={this.state.title}
-								label="Title"
-								onChange={this.handleInfoOnChange} 
+			<div className="container-fluid newSmoke__container" >
+				<div className="container newSmoke__containerData">
+					<div className="row">
+						<Link to="/" className="landing__div--btn">Back</Link>
+					</div>
+					<div className="row align-items-end noMargLeft">
+						<div className="six columns">
+							<h4>
+								<TextField
+									className="textField--bkgborder"
+									name="title"
+									margin="dense"
+									fullWidth
+									required
+									value={this.state.title}
+									label="Title"
+									onChange={this.handleInfoOnChange} 
+								/>
+							</h4>
+						</div>
+						<div className="offset-by-three three columns">
+							<div className="align-bottom">
+								Columns:
+								<CustomButton className="bottom-right align-bottom" in={<i className="fas fa-plus"></i>} value="add" clickHandler={this.handleAddCol} />
+								<CustomButton className="bottom-right align-bottom" in={<i className="fas fa-minus"></i>} value="remove" clickHandler={this.handleRemoveCol} />
+							</div>
+						</div>
+					</div>
+					<div>
+						<DataGrid>
+							<ReactDataGrid
+								enableCellSelect={true}
+								columns={this.state.columns}
+								rowGetter={this.rowGetter}
+								rowsCount={this.state.rows.length}
+								onGridRowsUpdated={this.handleGridRowsUpdated} 
 							/>
-						</h4>
+						</DataGrid>
 					</div>
-					<div className="offset-by-three three columns">
-						<CustomButton className="bottom-right align-bottom" in="Add Column" value="add" clickHandler={this.handleAddCol} />
-						<CustomButton className="bottom-right align-bottom" in="Remove Column" value="remove" clickHandler={this.handleRemoveCol} />
+					<div className="row noMargLeft">
+						Rows:
+						<CustomButton
+							in={<i className="fas fa-plus"></i>}
+							value="add"
+							clickHandler={this.handleAdd} />
+						<CustomButton
+							in={<i className="fas fa-minus"></i>}
+							value="remove"
+							clickHandler={this.handleRemove} />
 					</div>
-				</div>
-				<div>
-					<DataGrid>
-						<ReactDataGrid
-							enableCellSelect={true}
-							columns={this.state.columns}
-							rowGetter={this.rowGetter}
-							rowsCount={this.state.rows.length}
-							onGridRowsUpdated={this.handleGridRowsUpdated} 
-						/>
-					</DataGrid>
-				</div>
-				<div className="row noMargLeft">
-					<CustomButton
-						in="Add"
-						value="add"
-						clickHandler={this.handleAdd} />
-					<CustomButton
-						in="Remove"
-						value="remove"
-						clickHandler={this.handleRemove} />
-				</div>
-				<div className="row noMargeLeft row--marginTop" >
-					<TextField
-						className="offset-by-one two columns textField--bkgborder"
-						label="What animal?"
-						name="animal"
-						value={this.state.animal}
-						onChange={this.handleInfoOnChange} />
-					<TextField
-						className="pffset-by-one two columns textField--bkgborder" 
-						style={{marginLeft: "20px"}}
-						label="What cut?"
-						name="meatCut"
-						value={this.state.meatCut}
-						onChange={this.handleInfoOnChange} />
-					<TextField
-						className="offset-by-one four columns textField--bkgborder"
-						multiline
-						fullWidth
-						rows="2"
-						label="Description"
-						name="physDesc"
-						value={this.state.physDesc}
-						onChange={this.handleInfoOnChange} />
-					<p className="two columns">
-						You must be logged in and your session
-						must have a title to submit
-					</p>
-				</div>
-				<div className="row noMargeLeft row--marginTop">
-					<TextField
-						className="offset-by-one two columns textField--bkgborder textField--marginTop" 
-						label="Net Weight? (lbs)"
-						margin="dense"
-						name="ogWeight"
-						value={this.state.ogWeight}
-						onChange={this.handleInfoOnChange} />
-					<TextField
-						className="two columns textField--bkgborder textField--marginTop"
-						style={{marginLeft: "20px"}}
-						margin="dense"
-						label="Smoker?"
-						name="smoker"
-						value={this.state.smoker}
-						onChange={this.handleInfoOnChange} />
-					<TextField
-						className="offset-by-one four columns textField--bkgborder"
-						multiline
-						fullWidth
-						rows="2"
-						margin="dense"
-						label="Results/Notes"
-						name="notes"
-						value={this.state.notes}
-						onChange={this.handleInfoOnChange} />
+					<div className="row noMargeLeft row--marginTop" >
+						<TextField
+							className="offset-by-one two columns textField--bkgborder"
+							label="What animal?"
+							name="animal"
+							value={this.state.animal}
+							onChange={this.handleInfoOnChange} />
+						<TextField
+							className="pffset-by-one two columns textField--bkgborder" 
+							style={{marginLeft: "20px"}}
+							label="What cut?"
+							name="meatCut"
+							value={this.state.meatCut}
+							onChange={this.handleInfoOnChange} />
+						<TextField
+							className="offset-by-one four columns textField--bkgborder"
+							multiline
+							fullWidth
+							rows="2"
+							label="Description"
+							name="physDesc"
+							value={this.state.physDesc}
+							onChange={this.handleInfoOnChange} />
+						<p className="two columns">
+							You must be logged in and your session
+							must have a title to submit
+						</p>
+					</div>
+					<div className="row noMargeLeft row--marginTop">
+						<TextField
+							className="offset-by-one two columns textField--bkgborder textField--marginTop" 
+							label="Net Weight? (lbs)"
+							margin="dense"
+							name="ogWeight"
+							value={this.state.ogWeight}
+							onChange={this.handleInfoOnChange} />
+						<TextField
+							className="two columns textField--bkgborder textField--marginTop"
+							style={{marginLeft: "20px"}}
+							margin="dense"
+							label="Smoker?"
+							name="smoker"
+							value={this.state.smoker}
+							onChange={this.handleInfoOnChange} />
+						<TextField
+							className="offset-by-one four columns textField--bkgborder"
+							multiline
+							fullWidth
+							rows="2"
+							margin="dense"
+							label="Results/Notes"
+							name="notes"
+							value={this.state.notes}
+							onChange={this.handleInfoOnChange} />
 
-					<CustomButton disabled={!this.props.logged_in} className="two columns newSmoke__submitBtn" in="Submit" value="submit" clickHandler={this.submitData} />
+						<CustomButton disabled={!this.props.logged_in} className="two columns newSmoke__submitBtn" in="Submit" value="submit" clickHandler={this.submitData} />
+					</div>
 				</div>
 			</div>
 		)

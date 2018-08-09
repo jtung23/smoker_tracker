@@ -193,8 +193,8 @@ body {
         jumbotron 
     */
 .jumbotron__div {
-    padding: 0px;
-    padding-top:30px;
+    margin: auto;
+    padding: 10px;
     width: 20em;
     height: 15em;
     border-radius: 25px;
@@ -218,6 +218,7 @@ body {
 .jumbotron__div__text {
     text-align: center;
     color: #e2dbd3;
+    height: inherit;
 }
 
 .jumbotron__div__h1 {
@@ -229,11 +230,13 @@ body {
 
 .jumbotron__div__h2 {
     /* font-family: 'Fjalla One', sans-serif; */
+    font-size: 2em;
     margin-top: 0px;
     font-family: 'Acme', sans-serif;
 }
 
 .landing__divBtn {
+    margin: auto;
     width:20em;
     margin-top: 10px;
     display: flex;
@@ -262,6 +265,32 @@ body {
     /* Bootstrap Classes Used*/
     /*  
     */
+
+.newSmoke__container {
+    overflow:auto;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb(254, 251, 196);
+    width: 100%;
+}
+
+.newSmoke__containerData {
+    background-color: inherit;
+    position:absolute;
+    left:0; right:0;
+    top:0; bottom:0;
+    margin:auto;
+    margin-top: 10%;
+    /* max-width:80%;
+    max-height:80%;
+
+    width: 50%;
+    height: 50%; */
+}
 
 .newSmoke__header {
     height:19vh;

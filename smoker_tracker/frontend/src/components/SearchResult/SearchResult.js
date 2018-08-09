@@ -11,7 +11,6 @@ const SearchResult = props =>
             </div>
             <div className="offset-lg-5">
                 <h4>Weight: {props.ogWeight}</h4>
-                <h4>Trim Weight: {props.trimWeight}</h4>
             </div>
         </div>
         <div className="row">
@@ -22,7 +21,7 @@ const SearchResult = props =>
                 <h4>Cut: {props.cut}</h4>
             </div>
             <div className="col=lg-1">
-                <h4>: {props}</h4>
+                <h4></h4>
             </div>
         </div>
     </div>
