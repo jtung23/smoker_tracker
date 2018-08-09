@@ -43,10 +43,14 @@ class App extends Component {
 			toggleClass: null,
 			toggleTransparency: null,
 			toggleColor: null,
-			sessions: []
+			sessions: [],
+			haveSessions: false
 		};
 	}
 
+	componentDidUpdate = () => {
+		console.log(this.state)
+	}
 	componentDidMount() {
 		if (this.state.logged_in) {
 			fetch('http://localhost:3000/current_user/', {
@@ -61,7 +65,7 @@ class App extends Component {
 						this.logoutClick()
 						return
 					}
-					console.log(json)
+
 					this.setState({ 
 						name: json.first_name,
 						id: json.id
@@ -72,7 +76,6 @@ class App extends Component {
 	}
 
 	logoutClick = () => {
-		console.log('logout')
 		localStorage.removeItem('token');
 		this.setState({ logged_in: false, username: '' });
 	};
@@ -91,10 +94,7 @@ class App extends Component {
 	}
 	handleClose = (e) => {
 		let requestObj = {}
-		console.log(e.target.value)
 		if (e.target.value === "login") { // if value is completed
-
-			console.log('login runs')
 
 			requestObj = {
 				username: this.state.email,
@@ -133,18 +133,15 @@ class App extends Component {
 					passwordValidation: "Passwords do not match"
 				})
 			} else {
-				console.log('register runs')
 				requestObj = {
 					first_name: this.state.name,
 					email: this.state.email,
 					username: this.state.email,
 					password: this.state.password
 				}
-				console.log(requestObj)
 				const url = 'users/'
 				API.loginRegUser(url, requestObj)
 					.then(res => {
-						console.log(res)
 						localStorage.setItem('token', res.data.token)
 	
 						this.setState({
@@ -203,13 +200,16 @@ class App extends Component {
 	}
 	
 	handleProfileClick = () => {
+		console.log('click')
 		API.getAllSessions()
 		.then(res => {
 			console.log(res)
-			this.setState = {
+			this.setState({
+				haveSessions: true,
 				sessions: res.data
-			}
+			})
 		})
+		console.log(this.state)
 	}
 
   render() {
@@ -258,7 +258,7 @@ class App extends Component {
 							<Route exact path="/" component={Landing}/>
 							<Route path="/newsmoke" exact render={() => <NewSmoke logged_in={this.state.logged_in} />} />
 							<Route path="/searchresults" component={SearchResults} />
-							<Route path="/profile" exact render={() => <Profile sessions={this.state.sessions} />} />
+							<Route path="/profile" exact render={() => <Profile sessions={this.state.sessions} haveSessions={this.state.haveSessions} />} />
 							<Route component={NotFound} />
 						</Switch>
 
