@@ -333,6 +333,28 @@ body {
         border: none;
         background-color: transparent;
     }
+
+
+/* ************************* */
+/*    4b. ResultsContainer      */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  
+    */
+    .resultsContainer {
+        padding-top: 10%;
+        background: inherit;
+    }
+
+/* ************************* */
+/*    4b. SearchResults     */
+/* ************************* */
+    /* Bootstrap Classes Used*/
+    /*  
+    */
+    .result {
+        border: 2px black solid;
+    }
 /* ************************* */
 /*    10. Media Queries      */
 /* ************************* */

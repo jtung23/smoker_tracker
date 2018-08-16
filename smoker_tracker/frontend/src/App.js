@@ -198,19 +198,6 @@ class App extends Component {
 
 		}
 	}
-	
-	handleProfileClick = () => {
-		console.log('click')
-		API.getAllSessions()
-		.then(res => {
-			console.log(res)
-			this.setState({
-				haveSessions: true,
-				sessions: res.data
-			})
-		})
-		console.log(this.state)
-	}
 
   render() {
 	let form;
@@ -243,7 +230,6 @@ class App extends Component {
 				<Router>
 					<div className="app">
 						<NavBar
-							handleProfileClick={this.handleProfileClick}
 							handleLoginRegBtnClick={this.handleLoginRegBtnClick}
 							toggleButton={this.toggleButton}
 							toggleColor={this.state.toggleColor}

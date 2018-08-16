@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ResultsContainer = props => 
-    <div>
+    <div className="resultsContainer" >
         {props.children}
     </div>
 

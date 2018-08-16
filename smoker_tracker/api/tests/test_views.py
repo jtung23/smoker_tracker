@@ -3,7 +3,8 @@ from rest_framework import status
 from django.test import TestCase, Client
 from django.urls import reverse
 from ..models import SmokeSession
-from ..serializers import SessionSerializer
+from django.contrib.auth.models import User
+from ..serializers import SessionSerializer, UserSerializer
 
 # initializes the apiclient app
 client = Client()
@@ -514,4 +515,34 @@ class DeleteSingleSessionTest(TestCase):
     def test_invalid_delete_session(self):
         response = client.delete(
             reverse('get_delete_update_session', kwargs={'pk': 30}))
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+class GetSingleSessionTest(TestCase):
+
+    def setUp(self):
+        self.hello = User.objects.create(
+            id=1,
+            password="pbkdf2",
+            last_login="2018-07-18 19:19:54.541403+00",
+            is_superuser="f",
+            username="timestamp",
+            first_name="datetimefield",
+            email="dateguy@date.com",
+            is_staff="t",
+            is_active="t",
+            date_joined="2018-06-13 23:21:43.874432+00"
+        )
+        
+    def test_get_valid_single_session(self):
+        response = client.get(
+            reverse('get_delete_update_user',
+                kwargs={'id': self.hello.id}))
+        session = User.objects.get(id=self.hello.id)
+        serializer = UserSerializer(session)
+        self.assertEqual(response.data, serializer.data)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
+    def test_get_invalid_single_session(self):
+        response = client.get(
+            reverse('get_delete_update_user', kwargs={'id': 2}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
