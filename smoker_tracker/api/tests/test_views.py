@@ -517,7 +517,7 @@ class DeleteSingleSessionTest(TestCase):
             reverse('get_delete_update_session', kwargs={'pk': 30}))
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
-class GetSingleSessionTest(TestCase):
+class GetSingleUserTest(TestCase):
 
     def setUp(self):
         self.hello = User.objects.create(

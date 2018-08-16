@@ -32,7 +32,7 @@ export default {
         return axios.post(url, requestObj, headers)
     },
 
-    getUser: function(url, requestObj) {
-        return axios.get(url, requestObj)
+    getUser: function(id) {
+        return axios.get(`api/users/${id}/`)
     }
 }

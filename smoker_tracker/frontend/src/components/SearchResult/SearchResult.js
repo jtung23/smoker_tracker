@@ -4,10 +4,11 @@ import React from 'react';
 
 const SearchResult = props => 
     <div className="container result">
+        {console.log(props)}
         <div className="row">
             <div className="col-lg-5 result__title">
                 <h1>{props.title}</h1>
-                <p>By {props.user}</p>
+                <p>By {props.username}</p>
             </div>
             <div className="offset-lg-5">
                 <h4>Weight: {props.ogWeight}</h4>
