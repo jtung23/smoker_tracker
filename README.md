@@ -36,12 +36,28 @@ To contribute:
 
 3. Start your virtual environment
 *Using virtualenv*
+*I use the following command because of a virtualenv bug where I have to specify python3 when creating the env*
 `virtualenv -p python3 envname`
 
 2. Installing dependancies
 ```python
 # /smoker_tracker/smoker_tracker
 pip install -r requirements.txt
+```
+
+4. Database Settings
+In `smoker_tracker/settings.py` modify the database settings to match your Postgres database.
+```python
+DATABASES = {
+    'default': {
+      'ENGINE' : 'django.db.backends.postgresql_psycopg2',
+      'NAME' : 'smoker_db',
+      'USER': 'smoker_admin',
+      'PASSWORD': 'smoker_password',
+      'HOST': 'localhost',
+      'PORT': ''
+    }
+}
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
