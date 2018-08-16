@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import "./newSmokeInfo.css";
 // import CustomButton from '../CustomButton';
-import { Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Form, FormGroup, Label, Input} from 'reactstrap';
 import {Link} from 'react-router-dom';
 import TimePicker from 'material-ui/TimePicker';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+// import SelectField from 'material-ui/SelectField';
+// import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const style = { 

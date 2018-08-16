@@ -144,6 +144,7 @@ class NewSmoke extends Component {
 // 
 //
 	submitData = () => {
+		const {title, animal, meatCut, ogWeight, smoker, physDesc, notes, rows, columns} = this.state
 		if (!title) {
 			MySwal.fire({
 				type: 'error',
@@ -152,7 +153,6 @@ class NewSmoke extends Component {
 			})
 			return
 		}
-		const {title, animal, meatCut, ogWeight, trimWeight, smoker, physDesc, notes, rows, columns} = this.state
 		const d = new Date()
 		columns.forEach((val, i) => {
 			if (val.editable) {

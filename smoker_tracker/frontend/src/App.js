@@ -3,7 +3,6 @@ import Landing from './pages/Landing';
 import NewSmoke from './pages/NewSmoke';
 import Profile from './pages/Profile';
 import NavBar from './components/NavBar';
-import NewSmokeInfo from './components/NewSmokeInfo';
 import SearchResults from './pages/SearchResults';
 // materialui's timepicker and other styles
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -11,9 +10,7 @@ import NotFound from './components/NotFound';
 import LoginDialog from './components/LoginDialog';
 import RegisterDialog from './components/RegisterDialog';
 
-// sweet alert set up
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+
 import API from './utils/API';
 // for routing and links
 import {
@@ -21,8 +18,10 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-
-const MySwal = withReactContent(Swal)
+// sweet alert set up
+// import Swal from 'sweetalert2'
+// import withReactContent from 'sweetalert2-react-content'
+// const MySwal = withReactContent(Swal)
 
 
 class App extends Component {

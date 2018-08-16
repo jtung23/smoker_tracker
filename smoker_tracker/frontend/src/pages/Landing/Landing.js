@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Jumbotron from '../../components/Jumbotron';
-import background from '../../img/jumbotronmeat.jpg'
+// import background from '../../img/jumbotronmeat.jpg'
 import {Link} from 'react-router-dom';
 
 class Landing extends Component {

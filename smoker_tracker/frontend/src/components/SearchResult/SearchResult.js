@@ -21,9 +21,6 @@ const SearchResult = props =>
             <div className="col=lg-1">
                 <h4>Cut: {props.cut}</h4>
             </div>
-            <div className="col=lg-1">
-                <h4></h4>
-            </div>
         </div>
     </div>
 
