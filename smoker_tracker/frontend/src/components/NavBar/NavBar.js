@@ -15,10 +15,7 @@ const NavBar = props =>
 			></i>
 		</div>
 		
-		<div 
-			className="nav__button"
-			onClick={props.handleProfileClick}
-			value="" >
+		<div className="nav__button">
 			<Link to="/profile">
 				Profile
 			</Link>
