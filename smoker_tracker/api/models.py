@@ -5,7 +5,7 @@ from django.contrib.postgres.indexes import GinIndex
 # Create your models here.
 
 class SmokeSession(models.Model):
-    sessionId = models.IntegerField()
+    sessionId = models.AutoField(primary_key=True)
     userId = models.IntegerField()
     # time provided by frontend
     created_at = models.CharField(max_length=100)

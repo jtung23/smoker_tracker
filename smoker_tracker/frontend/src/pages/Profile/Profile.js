@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import API from '../../utils/API';
 import SearchResult from '../../components/SearchResult';
 import ResultsContainer from '../../components/ResultsContainer';
+import Mathy from '../../utils/Mathy';
+import {Link} from "react-router-dom";
+import history from './history'
 
 class Profile extends Component {
     constructor(props) {
@@ -22,7 +25,9 @@ class Profile extends Component {
                             res.data[i].username = u.data.username
                             res.data[i].first_name = u.data.first_name
                             res.data[i].last_name = u.data.last_name
-               
+                            
+                            res.data[i].ogWeight = `${Mathy.round(parseInt(val.ogWeight), 2).toFixed(2)} lbs`
+                            
                             this.setState({
                                 sessions: res.data
                             })
@@ -31,7 +36,12 @@ class Profile extends Component {
                 })
             })
     }
+
+    goToSession = () => {
+        history.push('/session')
+    }
     render() {
+        console.log(this.state.sessions)
         return (
             <div>
                 <ResultsContainer>
@@ -47,7 +57,8 @@ class Profile extends Component {
                             date={val.created_at}
                             data={val.data}
                             columns={val.columns}
-                            key={i}
+                            key={val.sessionId}
+                            onClick={this.goToSession}
                         /> 
                     ) : null}
                 </ResultsContainer>

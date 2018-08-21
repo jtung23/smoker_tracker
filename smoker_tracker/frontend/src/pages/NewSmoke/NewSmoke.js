@@ -20,6 +20,7 @@ class NewSmoke extends Component {
 	constructor(props) {
 		super(props);
 		this.state= {
+			id: this.props.id,
 			notLoggedIn: false,
 			title: '',
 			animal: '',
@@ -160,8 +161,7 @@ class NewSmoke extends Component {
 			}
 		})
 		const submitData = {
-			sessionId: 1,
-			userId: 1,
+			userId: this.state.id,
 			created_at: d.toDateString(),
 			title: title,
 			animal: animal,
@@ -187,7 +187,6 @@ class NewSmoke extends Component {
 
 
 	render() {
-		console.log(this.props.logged_in)
 		return (
 			<div className="container-fluid newSmoke__container" >
 				<div className="container newSmoke__containerData">
