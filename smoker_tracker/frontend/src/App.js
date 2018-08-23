@@ -14,8 +14,8 @@ import history from './utils/history.js';
 
 import API from './utils/API';
 // for routing and links
+import { Router } from 'react-router';
 import {
-  BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom';

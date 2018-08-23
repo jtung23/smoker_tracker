@@ -20,7 +20,7 @@ class NewSmoke extends Component {
 	constructor(props) {
 		super(props);
 		this.state= {
-			id: this.props.id,
+			id: '',
 			notLoggedIn: false,
 			title: '',
 			animal: '',
@@ -56,7 +56,16 @@ class NewSmoke extends Component {
 		}
 
 	}
+	
+	componentDidUpdate = () => {
+		if (this.state.id === '' && this.props.id > 0) {
+			console.log('didupdate runs')
+			this.setState({
+				id: this.props.id
+			})
+		}
 
+	}
 	handleInfoOnChange = e => {
 		const {name, value} = e.target
 		this.setState({

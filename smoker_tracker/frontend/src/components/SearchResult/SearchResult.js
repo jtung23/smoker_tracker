@@ -3,8 +3,11 @@ import React from 'react';
 // title, date, meat, cut of meat, pounds pre and post trim
 
 const SearchResult = props => 
-    <div className="container result">
-        <div className="row">
+    <div 
+        className="container result"
+        onClick={() => props.sessionClick(props.sessionId)}
+    >
+        <div className="row" value={props.value}>
             <div className="col-lg-5 result__title">
                 <h1>{props.title}</h1>
                 <p>By {props.first_name}</p>

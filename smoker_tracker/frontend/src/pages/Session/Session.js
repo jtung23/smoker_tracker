@@ -5,7 +5,6 @@ import DataGrid from '../../components/DataGrid';
 import API from '../../utils/API';
 import TableFn from '../../utils/TableFn'
 import ReactDataGrid from 'react-data-grid';
-import update from 'immutability-helper';
 
 class Session extends Component {
     constructor(props) {
@@ -15,11 +14,27 @@ class Session extends Component {
             columns: []
         }
     }
+    componentDidMount = () => {
+        API.searchSessions(this.props.location.state.sessionId)
+            .then(res => {
+                console.log(res)
+            })
+    }
+    rowGetter = (i) => {
+		return this.state.rows[i];
+	};
 
     render() {
         return (
             <div>
-            
+                <DataGrid>
+                    <ReactDataGrid
+                        enableCellSelect={false}
+                        columns={this.state.columns}
+                        rowGetter={this.rowGetter}
+                        rowsCount={this.state.rows.length}
+                    />
+                </DataGrid>
             </div>
         )    
     }

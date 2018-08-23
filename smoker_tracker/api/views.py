@@ -53,7 +53,6 @@ def get_post_session(request):
     # insert a new record for a sessions
     elif request.method == 'POST':
         data = {
-            'sessionId': request.data.get('sessionId'),
             'userId': request.data.get('userId'),
             'created_at': request.data.get('created_at'),
             'title': request.data.get('title'),
@@ -61,7 +60,6 @@ def get_post_session(request):
             'meatCut': request.data.get('meatCut'),
             'smoker': request.data.get('smoker'),
             'ogWeight': request.data.get('ogWeight'),
-            'trimWeight': request.data.get('trimWeight'),
             'physDesc': request.data.get('physDesc'),
             'notes': request.data.get('notes'),
             'columns': request.data.get('columns'),

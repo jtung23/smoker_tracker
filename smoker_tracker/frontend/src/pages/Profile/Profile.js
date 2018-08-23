@@ -4,7 +4,7 @@ import SearchResult from '../../components/SearchResult';
 import ResultsContainer from '../../components/ResultsContainer';
 import Mathy from '../../utils/Mathy';
 import {Link} from "react-router-dom";
-import history from './history'
+import history from '../../utils/history';
 
 class Profile extends Component {
     constructor(props) {
@@ -37,8 +37,13 @@ class Profile extends Component {
             })
     }
 
-    goToSession = () => {
-        history.push('/session')
+    goToSession = (sessionId) => {
+        console.log(sessionId)
+        const string = sessionId.toString()
+        history.push({
+            pathname: `/session/${string}`,
+            state: {sessionId: sessionId}
+          })
     }
     render() {
         console.log(this.state.sessions)
@@ -58,7 +63,8 @@ class Profile extends Component {
                             data={val.data}
                             columns={val.columns}
                             key={val.sessionId}
-                            onClick={this.goToSession}
+                            value={val.sessionId}
+                            sessionClick={() => this.goToSession(val.sessionId)}
                         /> 
                     ) : null}
                 </ResultsContainer>
