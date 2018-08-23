@@ -40,10 +40,17 @@ class Profile extends Component {
     goToSession = (sessionId) => {
         console.log(sessionId)
         const string = sessionId.toString()
-        history.push({
-            pathname: `/session/${string}`,
-            state: {sessionId: sessionId}
-          })
+        API.searchSessions(sessionId)
+        .then(res => {
+            history.push({
+                pathname: `/session/${string}`,
+                state: {data: res.data}
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
     }
     render() {
         console.log(this.state.sessions)

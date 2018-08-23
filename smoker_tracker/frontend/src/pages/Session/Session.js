@@ -15,11 +15,14 @@ class Session extends Component {
         }
     }
     componentDidMount = () => {
-        API.searchSessions(this.props.location.state.sessionId)
-            .then(res => {
-                console.log(res)
-            })
+        const locData = this.props.history.location.state.data
+        this.setState({
+            rows: locData.data,
+            columns: locData.columns,
+            sessionData: locData
+        })
     }
+
     rowGetter = (i) => {
 		return this.state.rows[i];
 	};

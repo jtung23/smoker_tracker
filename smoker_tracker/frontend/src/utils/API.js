@@ -13,19 +13,19 @@ export default {
         return axios.post('/api/sessions/', data)
     },
 
-    // searches for session(s)
-    searchSessions: function(params) {
-        return axios.get('api/sessions/', params)
+    // search for session
+    searchSessions: function(id) {
+        return axios.get(`/api/session/${id}/`)
     },
 
     // deletes a session
     deleteSession: function(id) {
-        return axios.delete('api/sessions/'+id)
+        return axios.delete(`/api/session/${id}/`)
     },
 
     // updates a session
     updateSession: function(id) {
-        return axios.update('api/sessions/'+id)
+        return axios.update(`/api/session/${id}/`)
     },
 
     loginRegUser: function(url, requestObj, headers) {
