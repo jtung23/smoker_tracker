@@ -1,12 +1,12 @@
 # BBQ Tracker
 
-As an avid BBQer I realized I needed a way other than google sheets or excel to track all my smoke sessions. I frequently found myself caught up in the maintenance during a session to remember to record.
-This app allows the user to track their BBQ sessions and share their sessions with everyone else. Allowing anyone to get into the hobby/industry, emulate a session, and deliver delicious meat.
+As an avid BBQer I realized I needed a way other than google sheets or excel to track all my smoke sessions. I frequently found myself caught up in the caring of the meat during a session to remember to record. So I created this app to keep track of my bbq and more specifically, brisket sessions. 
+In the future I will be incorporating a Raspberry Pi w/ WiFi, thermocouple, and setting up an API to automatically record the temperature from the smoker
 
 ## MVP
 - [x] save BBQ sessions
 - [x] Authentication/users
-- [ ] Profile to view all sessions
+- [x] Profile to view all sessions
 - [ ] Search
 ## Getting Started
 
