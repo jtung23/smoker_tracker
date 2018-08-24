@@ -1,3 +1,5 @@
+# Sample data for the api_smokesession model
+
 {
 	"sessionId": 1,
 	"userId": 1,

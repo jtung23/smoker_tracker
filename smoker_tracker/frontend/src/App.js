@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Landing from './pages/Landing';
 import NewSmoke from './pages/NewSmoke';
 import Profile from './pages/Profile';
+import Session from './pages/Session';
 import NavBar from './components/NavBar';
 import SearchResults from './pages/SearchResults';
 import Session from './pages/Session';
@@ -11,6 +12,7 @@ import NotFound from './components/NotFound';
 import LoginDialog from './components/LoginDialog';
 import RegisterDialog from './components/RegisterDialog';
 import history from './utils/history.js';
+
 
 import API from './utils/API';
 // for routing and links
