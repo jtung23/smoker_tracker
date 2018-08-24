@@ -5,7 +5,6 @@ import Profile from './pages/Profile';
 import Session from './pages/Session';
 import NavBar from './components/NavBar';
 import SearchResults from './pages/SearchResults';
-import Session from './pages/Session';
 // materialui's timepicker and other styles
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import NotFound from './components/NotFound';
