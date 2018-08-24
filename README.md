@@ -35,8 +35,10 @@ To contribute:
 1. Fork or Clone
 
 3. Start your virtual environment
+
 *Using virtualenv*
 *I use the following command because of a virtualenv bug where I have to specify python3 when creating the env*
+
 `virtualenv -p python3 envname`
 
 2. Installing dependancies
