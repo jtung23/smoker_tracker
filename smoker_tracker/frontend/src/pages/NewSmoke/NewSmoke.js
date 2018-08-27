@@ -56,6 +56,13 @@ class NewSmoke extends Component {
 		}
 
 	}
+
+	componentDidMount = () => {
+		const stateData = localStorage.getItem('stateData')
+		if (stateData) {
+			this.setState(JSON.parse(stateData))
+		}
+	}
 	
 	componentDidUpdate = () => {
 		if (this.state.id === '' && this.props.id > 0) {
@@ -64,6 +71,8 @@ class NewSmoke extends Component {
 				id: this.props.id
 			})
 		}
+
+		localStorage.setItem('stateData', JSON.stringify(this.state))
 
 	}
 	handleInfoOnChange = e => {
