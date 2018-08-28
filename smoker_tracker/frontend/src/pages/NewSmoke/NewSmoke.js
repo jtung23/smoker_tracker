@@ -58,6 +58,8 @@ class NewSmoke extends Component {
 	}
 
 	componentDidMount = () => {
+		// sets default blank state in localstorage
+		localStorage.setItem('defaultState', JSON.stringify(this.state))
 		const stateData = localStorage.getItem('stateData')
 		if (stateData) {
 			this.setState(JSON.parse(stateData))
@@ -80,6 +82,9 @@ class NewSmoke extends Component {
 		this.setState({
 			[name]: value
 		})
+	}
+	clearEverything = () => {
+		this.setState(JSON.parse(localStorage.getItem('defaultState')))
 	}
 	// Adding and Removing Columns *************************************************
 	handleAddCol = () => {
@@ -210,6 +215,7 @@ class NewSmoke extends Component {
 				<div className="container newSmoke__containerData">
 					<div className="row">
 						<Link to="/" className="landing__div--btn">Back</Link>
+						<CustomButton className="bottom-right align-bottom" in="Clear" value="clear" clickHandler={this.clearEverything} />
 					</div>
 					<div className="row align-items-end noMargLeft">
 						<div className="six columns">
