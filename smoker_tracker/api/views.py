@@ -11,10 +11,8 @@ from .serializers import SessionSerializer, UserSerializer
 @api_view(['GET','PUT','DELETE'])
 @permission_classes((permissions.AllowAny,))
 def get_delete_update_session(request, pk):
-    print('get dleete update session runs')
     try:
         session = SmokeSession.objects.get(pk=pk)
-        print("SESSION: ", session)
     except SmokeSession.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     

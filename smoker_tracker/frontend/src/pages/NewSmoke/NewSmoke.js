@@ -203,10 +203,6 @@ class NewSmoke extends Component {
 				console.log(res)
 			})
 			.catch(err => {console.log('error', err)})
-		API.getAllSessions()
-			.then(res => {
-				console.log(res)
-			})
 	}
 
 
@@ -216,7 +212,7 @@ class NewSmoke extends Component {
 				<div className="container newSmoke__containerData">
 					<div className="row">
 						<Link to="/" className="landing__div--btn">Back</Link>
-						<CustomButton className="bottom-right align-bottom" in="Clear" value="clear" clickHandler={this.clearEverything} />
+						<CustomButton className="resetStyle butt bottom-right align-bottom" in="Clear" value="clear" clickHandler={this.clearEverything} />
 					</div>
 					<div className="row align-items-end noMargLeft">
 						<div className="six columns">
