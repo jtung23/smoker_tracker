@@ -61,6 +61,7 @@ class NewSmoke extends Component {
 		// sets default blank state in localstorage
 		localStorage.setItem('defaultState', JSON.stringify(this.state))
 		const stateData = localStorage.getItem('stateData')
+		// sets table and form values to state if exists in localstorage
 		if (stateData) {
 			this.setState(JSON.parse(stateData))
 		}
@@ -68,7 +69,6 @@ class NewSmoke extends Component {
 	
 	componentDidUpdate = () => {
 		if (this.state.id === '' && this.props.id > 0) {
-			console.log('didupdate runs')
 			this.setState({
 				id: this.props.id
 			})
@@ -84,6 +84,7 @@ class NewSmoke extends Component {
 		})
 	}
 	clearEverything = () => {
+		// retrieves blank state that was set during componentDidMount
 		this.setState(JSON.parse(localStorage.getItem('defaultState')))
 	}
 	// Adding and Removing Columns *************************************************

@@ -1,28 +1,43 @@
 import React from 'react';
 
 const InfoBox = props =>
-	<div>
-		<h4>Animal</h4>
-		<p>{props.animal}</p>
-		
-		<h4>Cut</h4>
-		<p>{props.meatCut}</p>
+	<div className="infoBox__container">
+		<div className="row noMargLeftRight">
+			<div className="vertical-align-wrap">
+				<div className="vertical-aign--bottom">
+					<div>
+						<h4 className="font--freightSans">
+							Details 
+							<p className="font--freightText float--right font--mini">Last Modified: {props.last_modified}</p>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div className="infoBox__div font--freightText">
+			<div className="infobox__textDiv">
+				<label>BBQ'd on</label>
+				<p>{props.created_at}</p>
 
-		<h4>Weight</h4>
-		<p>{props.ogWeight}</p>
+				<label>Animal</label>
+				<p>{props.animal}</p>
+				
+				<label>Cut</label>
+				<p>{props.meatCut}</p>
 
-		<h4>Post-Trim Weight</h4>
-		<p>{props.trimWeight}</p>
+				<label>Weight</label>
+				<p>{props.ogWeight}</p>
 
+				<label>Smoker</label>
+				<p>{props.smoker}</p>
 
-		<h4>Smoker</h4>
-		<p>{props.smoker}</p>
+				<label>Physical Description</label>
+				<p>{props.physDesc}</p>
 
-		<h4>Physical Description</h4>
-		<p>{props.physDesc}</p>
-
-		<h4>Notes</h4>
-		<p>{props.notes}</p>
+				<label>Notes</label>
+				<p>{props.notes}</p>
+			</div>
+		</div>
 	</div>
 
 export default InfoBox
