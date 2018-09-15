@@ -7,20 +7,26 @@ const SearchResult = props =>
         className="container result"
         onClick={() => props.sessionClick(props.sessionId)}
     >
-        <div className="row" value={props.value}>
+        <div className="row noMargLeftRight" value={props.value}>
             <div className="col-lg-5 result__title">
-                <h1>{props.title}</h1>
-                <p>By {props.first_name}</p>
+                <p className="font--header">
+                    <span className="bold">{props.title} </span> 
+                    <span className="font--normal"> by </span>
+                     {props.first_name}
+                </p>
             </div>
-            <div className="offset-lg-5">
-                <h4>Weight: {props.ogWeight}</h4>
+
+        </div>
+        <div>
+            <div className="col-lg-4">
+            <h4>Weight: {props.ogWeight}</h4>
             </div>
         </div>
-        <div className="row">
-            <div className="col=lg-1">
+        <div className="row noMargLeftRight">
+            <div className="col-lg-2">
                 <h4>Animal: {props.animal}</h4>
             </div>
-            <div className="col=lg-1">
+            <div className="col-lg-2">
                 <h4>Cut: {props.cut}</h4>
             </div>
         </div>

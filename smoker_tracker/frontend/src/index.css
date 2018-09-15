@@ -354,6 +354,11 @@ body {
     */
     .result {
         border: 2px black solid;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .result:hover {
+        cursor: pointer
     }
 
 /* ************************* */
@@ -394,7 +399,16 @@ body {
     .butt {
         border: 1px solid black;
     } */
+    .bold {
+        font-weight: bold;
+    }
+    .font--header {
+        font-size: 3em;
+    }
 
+    .font--normal {
+        font-size: 0.5em;
+    }
     .font--freightSans {
         font-family: "Freight Sans";
     }

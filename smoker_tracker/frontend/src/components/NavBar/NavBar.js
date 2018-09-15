@@ -5,7 +5,7 @@ const NavBar = props =>
 	<nav className={`nav ${props.toggleTransparency}`}>
 		<div className={`nav__logoText ${props.toggleClass}`}>
 			<Link to="/">
-				<i className="fas fa-home"></i>
+				<i className="fas fa-home">Home</i>
 			</Link>
 		</div>
 		<div className={`nav__toggle ${props.toggleColor} `}>
@@ -15,6 +15,11 @@ const NavBar = props =>
 			></i>
 		</div>
 		
+		<div className="nav__button">
+			<Link to="/sessionList">
+				Session List
+			</Link>
+		</div>
 		<div className="nav__button">
 			<Link to="/profile">
 				Profile

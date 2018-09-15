@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import Landing from './pages/Landing';
 import NewSmoke from './pages/NewSmoke';
-import Profile from './pages/Profile';
+import SessionList from './pages/SessionList';
 import Session from './pages/Session';
-import NavBar from './components/NavBar';
+import Profile from './pages/Profile';
 import SearchResults from './pages/SearchResults';
-// materialui's timepicker and other styles
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import NavBar from './components/NavBar';
 import NotFound from './components/NotFound';
 import LoginDialog from './components/LoginDialog';
 import RegisterDialog from './components/RegisterDialog';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import history from './utils/history.js';
-
 
 import API from './utils/API';
 // for routing and links
@@ -227,8 +226,6 @@ class App extends Component {
       default:
         form = null;
 }
-console.log("APP ID STATE: ", this.state.id)
-console.log('APP LOGGED IN STATE: ', this.state.logged_in)
     return (
 			<MuiThemeProvider>
 				<Router history={history}>
@@ -248,7 +245,8 @@ console.log('APP LOGGED IN STATE: ', this.state.logged_in)
 							<Route exact path="/" component={Landing}/>
 							<Route path="/newsmoke" exact render={() => <NewSmoke logged_in={this.state.logged_in} id={this.state.id} />} />
 							<Route path="/searchresults" component={SearchResults} />
-							<Route path="/profile" exact render={() => <Profile sessions={this.state.sessions} haveSessions={this.state.haveSessions} />} />
+							<Route path="/sessionList" exact render={() => <SessionList sessions={this.state.sessions} haveSessions={this.state.haveSessions} />} />
+							<Route path="/profile" component={Profile} />
 							<Route path="/session" component={Session} />
 							<Route component={NotFound} />
 						</Switch>
