@@ -8,6 +8,7 @@ In the future I will be incorporating a Raspberry Pi w/ WiFi, thermocouple, and 
 - [x] Authentication/users
 - [x] Profile to view all sessions
 - [ ] Search
+- [ ] Validation for new sessions
 ## Getting Started
 
 *Has not been deployed*

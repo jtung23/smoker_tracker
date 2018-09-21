@@ -4,23 +4,34 @@ import API from '../../utils/API';
 class Profile extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+            userSessions: []
+        }
     }
 
     componentDidMount = () => {
-        const id = localStorage.getItem('id')
-        API.searchSessions(id)
+        console.log('page loads')
+        const id = localStorage.getItem('id') // string
+        API.getAllSessions() // gets every session then filters
             .then((res,err)=> {
                 if (err) {
                     console.log('ERR',err)
                 }
-                console.log('RES',res)
+                const filtered = res.data.filter( ele => ele.userId == id)
+                this.setState({
+                    userSessions: filtered
+                })
             })
     }
 
     render() {
         return (
             <div>
-                Hello
+                {this.state.userSessions.map(ele =>
+                    <div key={ele.sessionId}>
+                        {ele.title}
+                    </div>
+                )}
             </div>
         )    
     }

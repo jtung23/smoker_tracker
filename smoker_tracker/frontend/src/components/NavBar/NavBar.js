@@ -20,13 +20,13 @@ const NavBar = props =>
 				Session List
 			</Link>
 		</div>
-		<div className="nav__button">
-			<Link to="/profile">
-				Profile
-			</Link>
-		</div>
 		{props.logged_in ? 
 			<div className={`nav__nav-btn ${props.toggleClass}`}>
+				<div className="nav__button">
+					<Link to="/profile">
+						Profile
+					</Link>
+				</div>
 				<button className="nav__welcome">
 					{// declaring as button because only way it appears inline in navbar
 					}

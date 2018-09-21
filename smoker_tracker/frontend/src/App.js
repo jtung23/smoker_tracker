@@ -118,6 +118,7 @@ class App extends Component {
 					open: false,
 					passwordValidation: false
 				  });
+				  Location.reload()
 				})
 				.catch(err => {
 					// if login fails then notification pops up saying login failed

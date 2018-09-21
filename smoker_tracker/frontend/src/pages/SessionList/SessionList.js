@@ -10,7 +10,8 @@ class SessionList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            sessions: []
+            sessions: [],
+            searchField: ''
         }
     }
 
@@ -52,11 +53,29 @@ class SessionList extends Component {
         })
 
     }
+
+    searchOnChange = e => {
+		const {name, value} = e.target
+		this.setState({
+			[name]: value
+		})
+    }
+    
+    searchHandler = () => {
+        
+    }
+    
     render() {
-        console.log(this.state.sessions)
         return (
             <div>
                 <ResultsContainer>
+                <input 
+                    type="text"
+                    placeholder="Title"
+                    name="searchField"
+                    value={this.state.searchField}
+                    onChange={this.searchOnChange} />
+                <button onClick={this.searchHandler}>Search</button>
                     {this.state.sessions ? this.state.sessions.map((val, i) =>
                         <SearchResult
                             first_name={val.first_name}
