@@ -12,7 +12,7 @@ class SmokeSession(models.Model):
     title = models.CharField(max_length=100)
     animal = models.CharField(max_length=100, null=True)
     meatCut = models.CharField(max_length=100, null=True)
-    smoker = models.CharField(max_length=100)
+    smoker = models.CharField(max_length=100, null=True)
     ogWeight = models.DecimalField(max_digits=8, decimal_places=4, null=True)
     trimWeight = models.DecimalField(max_digits=8, decimal_places=4, null=True)
     physDesc = models.CharField(max_length=1000, null=True)

@@ -12,7 +12,6 @@ from .serializers import SessionSerializer, UserSerializer
 @permission_classes((permissions.AllowAny,))
 def get_delete_update_session(request, pk):
     try:
-        print(pk)
         session = SmokeSession.objects.get(pk=pk)
     except SmokeSession.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
@@ -67,7 +66,9 @@ def get_post_session(request):
             'data': request.data.get('data')
         }
         serializer = SessionSerializer(data=data)
+        print(serializer)
         if serializer.is_valid():
+            print('is valid')
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

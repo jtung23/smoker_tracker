@@ -170,6 +170,7 @@ class NewSmoke extends Component {
 //
 	submitData = () => {
 		const {title, animal, meatCut, ogWeight, smoker, physDesc, notes, rows, columns} = this.state
+		const parsedWeight = parseFloat(ogWeight)
 		if (!title) {
 			MySwal.fire({
 				type: 'error',
@@ -188,12 +189,12 @@ class NewSmoke extends Component {
 			userId: this.state.id,
 			created_at: d.toDateString(),
 			title: title,
-			animal: animal,
-			meatCut: meatCut,
-			ogWeight: parseFloat(ogWeight),
-			smoker: smoker,
-			physDesc: physDesc,
-			notes: notes,
+			animal: animal ? animal : null,
+			meatCut: meatCut ? meatCut : null,
+			ogWeight: parsedWeight ? parsedWeight : null,
+			smoker: smoker ? smoker : null,
+			physDesc: physDesc ? physDesc : null,
+			notes: notes ? notes : null,
 			data: rows,
 			columns: columns
 		}
