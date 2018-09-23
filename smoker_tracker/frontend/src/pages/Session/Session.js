@@ -4,6 +4,7 @@ import DataGrid from '../../components/DataGrid';
 import InfoBox from '../../components/InfoBox';
 import API from '../../utils/API';
 import TableFn from '../../utils/TableFn'
+import CustomButton from '../../components/CustomButton';
 import ReactDataGrid from 'react-data-grid';
 import moment from 'moment';
 
@@ -13,23 +14,35 @@ class Session extends Component {
         this.state = {
             rows: [],
             columns: [],
-            sessionData: {}
+            sessionData: {},
+            userId: localStorage.getItem('id'),
+            editStatus: true
         }
     }
     componentDidMount = () => {
         const locData = this.props.history.location.state.data
         const date = moment(locData.last_modified).toDate().toLocaleDateString() // converts to user friendly date
+        let editStatus = true
         locData.last_modified = date
+        if (this.state.userId == locData.userId) {
+            editStatus = false
+        }
         this.setState({
             rows: locData.data,
             columns: locData.columns,
-            sessionData: locData
+            sessionData: locData,
+            editStatus: editStatus
         })
     }
 
     rowGetter = (i) => {
 		return this.state.rows[i];
-	};
+    };
+    
+    editHandler = () => { // allows editing if userId matches from cookie
+        // go to newsmoke page
+        return
+    }
 
     render() {
         const stateSession = this.state.sessionData
@@ -39,7 +52,14 @@ class Session extends Component {
                     <div>
                         <h1 className="font--freightSans">
                             {stateSession.title}
+                            <CustomButton 
+                                disabled={this.state.editStatus}
+                                className="btn"
+                                in="Edit"
+                                value="edit"
+                                clickHandler={this.editHandler} />
                         </h1>
+
                     </div>
                     <DataGrid>
                         <ReactDataGrid
