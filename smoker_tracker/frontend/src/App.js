@@ -24,7 +24,6 @@ import {
 // import withReactContent from 'sweetalert2-react-content'
 // const MySwal = withReactContent(Swal)
 
-
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -47,10 +46,7 @@ class App extends Component {
 			haveSessions: false
 		};
 	}
-
-	componentDidUpdate = () => {
-		// console.log(this.state)
-	}
+	
 	componentDidMount() {
 		if (this.state.logged_in) {
 			fetch('http://localhost:3000/current_user/', {

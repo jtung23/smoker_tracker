@@ -3,6 +3,10 @@
 As an avid BBQer I realized I needed a way other than google sheets or excel to track all my smoke sessions. I frequently found myself caught up in the caring of the meat during a session to remember to record. So I created this app to keep track of my bbq and more specifically, brisket sessions. 
 In the future I will be incorporating a Raspberry Pi w/ WiFi, thermocouple, and setting up an API to automatically record the temperature from the smoker
 
+## to do
+  add rating system to newsmoke, require before finish
+  add search or filter capabilities
+  add validation, or check null/not null fields
 ## MVP
 - [x] save BBQ sessions
 - [x] Authentication/users

@@ -268,13 +268,13 @@ body {
 
 .newSmoke__container {
     overflow:auto;
-    height: 100%;
+    height: 150%;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgb(254, 251, 196);
+    background-color: rgb(39, 65, 106);
     width: 100%;
 }
 
