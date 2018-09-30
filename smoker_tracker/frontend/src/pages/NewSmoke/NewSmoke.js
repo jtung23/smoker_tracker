@@ -137,7 +137,6 @@ class NewSmoke extends Component {
 			let rows = this.state.rows.slice(0,this.state.rows.length-1)
 			this.setState({ rows })	
 		} else return
-
 	}
 	// End Add Removing Rows ********************************************************************
 	//
